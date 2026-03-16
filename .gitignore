@@ -4,7 +4,6 @@ __pycache__/
 .venv/
 .env
 *.egg-info/
-dist/
 .pytest_cache/
 .ruff_cache/
 
@@ -13,6 +12,7 @@ node_modules/
 dist/
 .env.local
 .env.*.local
+.env.production
 
 # Editors
 .vscode/
