@@ -12,7 +12,7 @@ React + FastAPI + PostgreSQL starter.
 
 ### Prerequisites
 - Node 20+
-- Python 3.12+
+- Python 3.13+
 - uv (`pip install uv`)
 - Docker + Docker Compose
 
