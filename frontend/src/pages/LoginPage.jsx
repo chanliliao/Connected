@@ -11,6 +11,9 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [signUpSent, setSignUpSent] = useState(false)
   const [keepMeSignedIn, setKeepMeSignedIn] = useState(true)
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [birthday, setBirthday] = useState('')
   const navigate = useNavigate()
 
   async function handleSubmit(e) {
@@ -49,13 +52,13 @@ export default function LoginPage() {
         <div className="login-tabs">
           <button
             className={`login-tab ${mode === 'signin' ? 'active' : ''}`}
-            onClick={() => { setMode('signin'); setError(''); setSignUpSent(false) }}
+            onClick={() => { setMode('signin'); setError(''); setSignUpSent(false); setFirstName(''); setLastName(''); setBirthday('') }}
           >
-            Sign In
+            Login
           </button>
           <button
             className={`login-tab ${mode === 'signup' ? 'active' : ''}`}
-            onClick={() => { setMode('signup'); setError(''); setSignUpSent(false) }}
+            onClick={() => { setMode('signup'); setError(''); setSignUpSent(false); setFirstName(''); setLastName(''); setBirthday('') }}
           >
             Sign Up
           </button>
@@ -76,6 +79,20 @@ export default function LoginPage() {
               required
               autoComplete="email"
             />
+            {mode === 'signup' && (
+              <>
+                <div className="login-name-row">
+                  <input className="login-input" type="text" placeholder="First Name"
+                    value={firstName} onChange={e => setFirstName(e.target.value)} required />
+                  <input className="login-input" type="text" placeholder="Last Name"
+                    value={lastName} onChange={e => setLastName(e.target.value)} required />
+                </div>
+                <input className="login-input login-input-date" type="date"
+                  value={birthday} onChange={e => setBirthday(e.target.value)}
+                  required placeholder="Birthday" />
+              </>
+            )}
+
             <input
               className="login-input"
               type="password"
@@ -85,6 +102,13 @@ export default function LoginPage() {
               required
               autoComplete={mode === 'signin' ? 'current-password' : 'new-password'}
             />
+
+            {mode === 'signin' && (
+              <div className="login-forgot-row">
+                <button type="button" className="login-forgot-link">Forgot password?</button>
+                <button type="button" className="login-forgot-link">Forgot email?</button>
+              </div>
+            )}
 
             <label className="login-keep-row">
               <input

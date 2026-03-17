@@ -170,6 +170,39 @@
   cursor: pointer;
 }
 
+/* Name row */
+.login-name-row {
+  display: flex;
+  gap: 10px;
+}
+.login-name-row .login-input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Date input */
+.login-input-date {
+  color-scheme: light;
+}
+
+/* Forgot links row */
+.login-forgot-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -4px;
+}
+.login-forgot-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* Confirmation message */
 .login-confirm-msg {
   text-align: center;
