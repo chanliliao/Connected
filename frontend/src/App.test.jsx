@@ -1,7 +1,21 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
+import { vi } from 'vitest'
 import App from './App'
 
-test('renders without crashing', () => {
+vi.mock('./lib/supabase', () => ({
+  supabase: {
+    auth: {
+      getSession: vi.fn().mockResolvedValue({ data: { session: null } }),
+      onAuthStateChange: vi.fn().mockReturnValue({
+        data: { subscription: { unsubscribe: vi.fn() } },
+      }),
+    },
+  },
+}))
+
+test('renders login page when not authenticated', async () => {
   render(<App />)
-  expect(screen.getByRole('heading')).toBeInTheDocument()
+  await waitFor(() => {
+    expect(screen.getByRole('heading', { name: /connected/i })).toBeInTheDocument()
+  })
 })
