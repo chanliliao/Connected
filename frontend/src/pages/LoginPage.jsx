@@ -110,6 +110,12 @@ export default function LoginPage() {
               </div>
             )}
 
+            {error && <p className="login-error">{error}</p>}
+
+            <button className="login-btn-primary" type="submit" disabled={loading}>
+              {loading ? 'Please wait…' : mode === 'signin' ? 'Login' : 'Sign Up'}
+            </button>
+
             {mode === 'signin' && (
               <label className="login-keep-row">
                 <input
@@ -120,12 +126,6 @@ export default function LoginPage() {
                 Keep me signed in
               </label>
             )}
-
-            {error && <p className="login-error">{error}</p>}
-
-            <button className="login-btn-primary" type="submit" disabled={loading}>
-              {loading ? 'Please wait…' : mode === 'signin' ? 'Login' : 'Sign Up'}
-            </button>
           </form>
         )}
       </div>
