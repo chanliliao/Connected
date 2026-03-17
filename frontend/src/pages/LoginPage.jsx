@@ -5,7 +5,7 @@ import './LoginPage.css'
 
 export default function LoginPage() {
   const [mode, setMode] = useState('signin')
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -16,6 +16,10 @@ export default function LoginPage() {
   const [birthday, setBirthday] = useState('')
   const navigate = useNavigate()
 
+  // Supabase requires an email — we derive one internally from the username.
+  // Users never see or enter an email address.
+  const internalEmail = `${username.trim().toLowerCase()}@connected.app`
+
   async function handleSubmit(e) {
     e.preventDefault()
     setError('')
@@ -23,18 +27,29 @@ export default function LoginPage() {
 
     if (mode === 'signin') {
       localStorage.setItem('connected_persist', keepMeSignedIn ? 'true' : 'false')
-      const { error } = await supabase.auth.signInWithPassword({ email, password })
+      const { error } = await supabase.auth.signInWithPassword({ email: internalEmail, password })
       if (error) {
         setError(error.message)
       } else {
         navigate('/')
       }
     } else {
-      const { error } = await supabase.auth.signUp({ email, password })
+      const { error } = await supabase.auth.signUp({
+        email: internalEmail,
+        password,
+        options: {
+          data: {
+            username: username.trim().toLowerCase(),
+            first_name: firstName,
+            last_name: lastName,
+            birthday,
+          },
+        },
+      })
       if (error) {
         setError(error.message)
       } else {
-        setSignUpSent(true)
+        navigate('/')
       }
     }
 
@@ -52,13 +67,13 @@ export default function LoginPage() {
         <div className="login-tabs">
           <button
             className={`login-tab ${mode === 'signin' ? 'active' : ''}`}
-            onClick={() => { setMode('signin'); setError(''); setSignUpSent(false); setFirstName(''); setLastName(''); setBirthday('') }}
+            onClick={() => { setMode('signin'); setError(''); setSignUpSent(false); setUsername(''); setFirstName(''); setLastName(''); setBirthday('') }}
           >
             Login
           </button>
           <button
             className={`login-tab ${mode === 'signup' ? 'active' : ''}`}
-            onClick={() => { setMode('signup'); setError(''); setSignUpSent(false); setFirstName(''); setLastName(''); setBirthday('') }}
+            onClick={() => { setMode('signup'); setError(''); setSignUpSent(false); setUsername(''); setFirstName(''); setLastName(''); setBirthday('') }}
           >
             Sign Up
           </button>
@@ -66,18 +81,18 @@ export default function LoginPage() {
 
         {signUpSent ? (
           <div className="login-confirm-msg">
-            Check your email to confirm your account, then sign in.
+            Account created! Sign in with your username.
           </div>
         ) : (
           <form className="login-form" onSubmit={handleSubmit}>
             <input
               className="login-input"
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
               required
-              autoComplete="email"
+              autoComplete="username"
             />
             {mode === 'signup' && (
               <>

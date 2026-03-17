@@ -2,6 +2,19 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { supabase } from './lib/supabase'
 import LoginPage from './pages/LoginPage'
+import HomePage from './pages/HomePage'
+
+function ProtectedRoute({ session, children }) {
+  if (session === undefined) return <div className="app-loading">Loading…</div>
+  if (!session) return <Navigate to="/login" replace />
+  return children
+}
+
+function PublicRoute({ session, children }) {
+  if (session === undefined) return <div className="app-loading">Loading…</div>
+  if (session) return <Navigate to="/" replace />
+  return children
+}
 
 function App() {
   const [session, setSession] = useState(undefined) // undefined = loading
@@ -12,13 +25,19 @@ function App() {
     return () => subscription.unsubscribe()
   }, [])
 
-  if (session === undefined) return null
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={!session ? <LoginPage /> : <Navigate to="/" />} />
-        <Route path="/" element={session ? <div>Home (coming soon)</div> : <Navigate to="/login" />} />
+        <Route path="/login" element={
+          <PublicRoute session={session}>
+            <LoginPage />
+          </PublicRoute>
+        } />
+        <Route path="/" element={
+          <ProtectedRoute session={session}>
+            <HomePage session={session} />
+          </ProtectedRoute>
+        } />
       </Routes>
     </BrowserRouter>
   )
