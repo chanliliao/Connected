@@ -110,19 +110,21 @@ export default function LoginPage() {
               </div>
             )}
 
-            <label className="login-keep-row">
-              <input
-                type="checkbox"
-                checked={keepMeSignedIn}
-                onChange={e => setKeepMeSignedIn(e.target.checked)}
-              />
-              Keep me signed in
-            </label>
+            {mode === 'signin' && (
+              <label className="login-keep-row">
+                <input
+                  type="checkbox"
+                  checked={keepMeSignedIn}
+                  onChange={e => setKeepMeSignedIn(e.target.checked)}
+                />
+                Keep me signed in
+              </label>
+            )}
 
             {error && <p className="login-error">{error}</p>}
 
             <button className="login-btn-primary" type="submit" disabled={loading}>
-              {loading ? 'Please wait…' : mode === 'signin' ? 'Sign In' : 'Create Account'}
+              {loading ? 'Please wait…' : mode === 'signin' ? 'Login' : 'Sign Up'}
             </button>
           </form>
         )}
