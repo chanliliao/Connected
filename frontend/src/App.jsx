@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { supabase } from './lib/supabase'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
+import ProfilePage from './pages/ProfilePage'
 
 function ProtectedRoute({ session, children }) {
   if (session === undefined) return <div className="app-loading">Loading…</div>
@@ -36,6 +37,11 @@ function App() {
         <Route path="/" element={
           <ProtectedRoute session={session}>
             <HomePage session={session} />
+          </ProtectedRoute>
+        } />
+        <Route path="/profile" element={
+          <ProtectedRoute session={session}>
+            <ProfilePage session={session} />
           </ProtectedRoute>
         } />
       </Routes>

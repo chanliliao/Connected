@@ -1,0 +1,192 @@
+.profile-page {
+  min-height: 100vh;
+  background: var(--color-bg, #FFF5F7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body, 'Lato', sans-serif);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.profile-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body, 'Lato', sans-serif);
+  color: #888;
+}
+
+.profile-card {
+  background: var(--color-card, #fff);
+  border-radius: var(--radius-card, 16px);
+  box-shadow: var(--shadow-card, 0 4px 24px rgba(232, 96, 122, 0.1));
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 440px;
+  box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    padding: 36px 24px;
+  }
+}
+
+.profile-title {
+  font-family: var(--font-heading, 'Lato', sans-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary, #E8607A);
+  margin: 0 0 24px;
+  text-align: center;
+}
+
+.profile-field-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border, #eee);
+  margin-bottom: 8px;
+}
+
+.profile-field-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-field-value {
+  font-size: 15px;
+  color: var(--color-text, #222);
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.profile-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-radius: var(--radius-input, 10px);
+  background: var(--color-input-bg, #fafafa);
+  color: var(--color-text, #222);
+  font-family: var(--font-body, 'Lato', sans-serif);
+  font-size: 15px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.profile-input::placeholder {
+  color: var(--color-text-muted, #aaa);
+}
+
+.profile-input:focus {
+  border-color: var(--color-primary, #E8607A);
+  box-shadow: 0 0 0 3px rgba(232, 96, 122, 0.12);
+}
+
+.profile-input-date {
+  color-scheme: light;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.profile-btn-primary {
+  flex: 1;
+  padding: 14px;
+  background: var(--color-primary, #E8607A);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-input, 10px);
+  font-family: var(--font-body, 'Lato', sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.profile-btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-hover, #d44f69);
+}
+
+.profile-btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.profile-btn-secondary {
+  flex: 1;
+  padding: 14px;
+  background: transparent;
+  color: var(--color-primary, #E8607A);
+  border: 1.5px solid var(--color-primary, #E8607A);
+  border-radius: var(--radius-input, 10px);
+  font-family: var(--font-body, 'Lato', sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.profile-btn-secondary:hover {
+  background: rgba(232, 96, 122, 0.06);
+}
+
+.profile-success-msg {
+  margin: 16px 0 0;
+  padding: 10px 14px;
+  background: rgba(40, 167, 69, 0.08);
+  border: 1px solid rgba(40, 167, 69, 0.25);
+  border-radius: 8px;
+  font-size: 13px;
+  color: #1a7a33;
+  font-family: var(--font-body, 'Lato', sans-serif);
+}
+
+.profile-error {
+  margin: 16px 0 0;
+  padding: 10px 14px;
+  background: rgba(232, 96, 122, 0.08);
+  border: 1px solid rgba(232, 96, 122, 0.2);
+  border-radius: 8px;
+  font-size: 13px;
+  color: #c94d66;
+  font-family: var(--font-body, 'Lato', sans-serif);
+}
+
+.profile-danger-zone {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #f0d0d5;
+  text-align: center;
+}
+
+.profile-btn-danger {
+  padding: 11px 28px;
+  background: transparent;
+  color: #dc3545;
+  border: 1.5px solid #dc3545;
+  border-radius: var(--radius-input, 10px);
+  font-family: var(--font-body, 'Lato', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.profile-btn-danger:hover {
+  background: #dc3545;
+  color: #fff;
+}
