@@ -120,6 +120,14 @@
   color: var(--color-text-muted);
 }
 
+.login-input:-webkit-autofill,
+.login-input:-webkit-autofill:hover,
+.login-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #fdf8fb inset;
+  -webkit-text-fill-color: #6b7280;
+  caret-color: #6b7280;
+}
+
 .login-input:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.10);
