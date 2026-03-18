@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140">
+  <!-- Accent chair: clean rectangular form, thin straight legs, 3D back/seat separation -->
+  <!-- Outer frame -->
+  <rect x="22" y="14" width="76" height="68" rx="4" fill="#a3647a"/>
+  <!-- Thin flat arm rests -->
+  <rect x="14" y="58" width="16" height="8" rx="2" fill="#c07888"/>
+  <rect x="90" y="58" width="16" height="8" rx="2" fill="#c07888"/>
+  <!-- Back cushion -->
+  <rect x="26" y="18" width="68" height="48" rx="3" fill="#d8a4b4"/>
+  <!-- Shadow strip — 3D depth cue -->
+  <rect x="26" y="60" width="68" height="6" fill="#8a506a"/>
+  <!-- Seat cushion (wider than back, protrudes past frame sides) -->
+  <rect x="16" y="64" width="88" height="20" rx="3" fill="#d8a4b4"/>
+  <!-- Front apron -->
+  <rect x="18" y="81" width="84" height="5" rx="2" fill="#a3647a"/>
+  <!-- Thin straight legs -->
+  <rect x="28" y="84" width="5" height="40" rx="2" fill="#7a6d88"/>
+  <rect x="87" y="84" width="5" height="40" rx="2" fill="#7a6d88"/>
+</svg>

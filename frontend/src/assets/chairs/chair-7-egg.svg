@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140">
+  <!-- Egg Chair — large oval back, pedestal base -->
+  <!-- Outer egg shell -->
+  <ellipse cx="60" cy="60" rx="44" ry="50" fill="#c07888"/>
+  <!-- Inner shadow (depth of the egg interior) -->
+  <ellipse cx="62" cy="64" rx="34" ry="40" fill="#a3647a"/>
+  <!-- Seat cushion -->
+  <ellipse cx="60" cy="78" rx="28" ry="14" fill="#d8a4b4"/>
+  <!-- Pedestal stem -->
+  <rect x="54" y="108" width="12" height="14" rx="3" fill="#a3647a"/>
+  <!-- Base disc -->
+  <ellipse cx="60" cy="122" rx="24" ry="8" fill="#7a6d88"/>
+</svg>

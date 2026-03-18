@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Top surface: steep angle -->
+  <polygon points="24,6 96,6 118,62 2,62" fill="#d8a4b4"/>
+  <!-- Front edge -->
+  <rect x="2" y="62" width="116" height="5" rx="1" fill="#c07888"/>
+  <!-- Left trestle X-legs (short) -->
+  <line x1="8" y1="67" x2="20" y2="98" stroke="#7a6d88" stroke-width="7" stroke-linecap="round"/>
+  <line x1="24" y1="67" x2="6" y2="98" stroke="#a3647a" stroke-width="7" stroke-linecap="round"/>
+  <!-- Right trestle X-legs (short) -->
+  <line x1="96" y1="67" x2="114" y2="98" stroke="#7a6d88" stroke-width="7" stroke-linecap="round"/>
+  <line x1="112" y1="67" x2="98" y2="98" stroke="#a3647a" stroke-width="7" stroke-linecap="round"/>
+  <!-- Stretcher -->
+  <rect x="18" y="80" width="84" height="6" rx="3" fill="#a3647a"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140">
+  <!-- Pod chair: rounded outer shell (half-oval), cushioned inside, separate seat pad -->
+  <!-- Outer rounded pod shell -->
+  <path d="M6,100 L6,54 Q6,8 60,8 Q114,8 114,54 L114,100 Z" fill="#a3647a"/>
+  <!-- Inner cushioned back surface -->
+  <path d="M18,98 L18,56 Q18,20 60,20 Q102,20 102,56 L102,98 Z" fill="#d8a4b4"/>
+  <!-- Shadow strip — 3D depth cue between back and seat -->
+  <rect x="18" y="92" width="84" height="6" rx="1" fill="#8a506a"/>
+  <!-- Seat pad (wider than inner pod, sits in front) -->
+  <rect x="12" y="96" width="96" height="20" rx="10" fill="#d8a4b4"/>
+  <!-- Front apron -->
+  <rect x="14" y="113" width="92" height="6" rx="3" fill="#a3647a"/>
+  <!-- Legs -->
+  <rect x="28" y="117" width="10" height="18" rx="4" fill="#7a6d88"/>
+  <rect x="82" y="117" width="10" height="18" rx="4" fill="#7a6d88"/>
+</svg>

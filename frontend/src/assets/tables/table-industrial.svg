@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Top surface: steep angle -->
+  <polygon points="24,6 96,6 118,62 2,62" fill="#d8a4b4"/>
+  <!-- Front edge -->
+  <rect x="2" y="62" width="116" height="6" rx="1" fill="#c07888"/>
+  <!-- Front legs (short) -->
+  <rect x="4" y="68" width="14" height="30" rx="2" fill="#7a6d88"/>
+  <rect x="102" y="68" width="14" height="30" rx="2" fill="#7a6d88"/>
+  <!-- Lower stretcher -->
+  <rect x="4" y="84" width="112" height="7" rx="3" fill="#a3647a"/>
+</svg>

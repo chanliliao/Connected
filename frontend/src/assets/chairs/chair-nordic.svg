@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140">
+  <!-- Nordic: clean simple form, very prominent gap between back and seat, slim tapered legs -->
+  <!-- Clean outer back frame -->
+  <rect x="26" y="14" width="68" height="62" rx="6" fill="#a3647a"/>
+  <!-- Back cushion (clean inset) -->
+  <rect x="32" y="18" width="56" height="50" rx="4" fill="#d8a4b4"/>
+  <!-- Slim flat arm rests -->
+  <rect x="14" y="60" width="14" height="14" rx="3" fill="#c07888"/>
+  <rect x="92" y="60" width="14" height="14" rx="3" fill="#c07888"/>
+  <!-- VERY VISIBLE shadow strip (8px, extra dark) — defining feature -->
+  <rect x="22" y="68" width="76" height="8" rx="2" fill="#8a506a"/>
+  <!-- Seat cushion (clearly wider than back on both sides) -->
+  <rect x="14" y="74" width="92" height="20" rx="6" fill="#d8a4b4"/>
+  <!-- Front apron (thin) -->
+  <rect x="18" y="91" width="84" height="5" rx="2" fill="#a3647a"/>
+  <!-- Slim tapered legs (splayed outward) -->
+  <line x1="32" y1="94" x2="26" y2="132" stroke="#7a6d88" stroke-width="5" stroke-linecap="round"/>
+  <line x1="88" y1="94" x2="94" y2="132" stroke="#7a6d88" stroke-width="5" stroke-linecap="round"/>
+</svg>

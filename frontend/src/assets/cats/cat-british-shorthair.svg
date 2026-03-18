@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+  <!-- Background -->
+  <rect width="300" height="200" fill="#2D1B5E"/>
+  <!-- Tail -->
+  <ellipse cx="82" cy="148" rx="44" ry="15" fill="#7B8FA1" transform="rotate(-13 82 148)"/>
+  <ellipse cx="58" cy="156" rx="20" ry="11" fill="#6A7E90" transform="rotate(20 58 156)"/>
+  <!-- Body (extra chunky) -->
+  <ellipse cx="152" cy="146" rx="80" ry="48" fill="#7B8FA1"/>
+  <!-- Head (extra round/chunky) -->
+  <circle cx="210" cy="104" r="42" fill="#7B8FA1"/>
+  <!-- Ears (round, not too tall) -->
+  <ellipse cx="192" cy="70" rx="13" ry="11" fill="#7B8FA1"/>
+  <ellipse cx="228" cy="70" rx="13" ry="11" fill="#7B8FA1"/>
+  <ellipse cx="192" cy="72" rx="8" ry="7" fill="#6A7E90"/>
+  <ellipse cx="228" cy="72" rx="8" ry="7" fill="#6A7E90"/>
+  <!-- Chubby cheeks -->
+  <ellipse cx="188" cy="112" rx="14" ry="11" fill="#6A7E90"/>
+  <ellipse cx="232" cy="112" rx="14" ry="11" fill="#6A7E90"/>
+  <!-- Eyes -->
+  <circle cx="199" cy="103" r="9" fill="#E07B39"/>
+  <circle cx="221" cy="103" r="9" fill="#E07B39"/>
+  <circle cx="200" cy="103" r="4.5" fill="#0A0500"/>
+  <circle cx="222" cy="103" r="4.5" fill="#0A0500"/>
+  <circle cx="201" cy="102" r="1.5" fill="white"/>
+  <circle cx="223" cy="102" r="1.5" fill="white"/>
+  <!-- Nose -->
+  <circle cx="210" cy="114" r="3" fill="#C87070"/>
+  <!-- Whiskers -->
+  <line x1="170" y1="113" x2="197" y2="115" stroke="#A0B0C0" stroke-width="1" opacity="0.7"/>
+  <line x1="170" y1="117" x2="197" y2="117" stroke="#A0B0C0" stroke-width="1" opacity="0.7"/>
+  <line x1="223" y1="115" x2="250" y2="113" stroke="#A0B0C0" stroke-width="1" opacity="0.7"/>
+  <line x1="223" y1="117" x2="250" y2="117" stroke="#A0B0C0" stroke-width="1" opacity="0.7"/>
+  <!-- Label -->
+  <text x="150" y="190" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" opacity="0.8">British Shorthair</text>
+</svg>

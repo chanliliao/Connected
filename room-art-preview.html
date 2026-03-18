@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moon &amp; Sun — Ten Room Portraits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0f0f14;
+      font-family: Inter, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 40px 80px;
+      gap: 0;
+    }
+
+    .page-title {
+      color: #eeeeff;
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .page-subtitle {
+      color: #666688;
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 56px;
+      letter-spacing: 0.5px;
+    }
+
+    .scene-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1520px;
+      margin-bottom: 56px;
+    }
+
+    .row-label {
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 700;
+      font-family: Inter, sans-serif;
+      margin-bottom: 16px;
+    }
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .phone-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .phone {
+      width: 280px;
+      height: 580px;
+      border-radius: 36px;
+      overflow: hidden;
+      border: 3px solid #1a1a2e;
+      background: #0d1028;
+      position: relative;
+    }
+
+    .phone svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .phone-label {
+      color: #8888aa;
+      font-size: 11px;
+      font-family: Inter, sans-serif;
+      text-align: center;
+    }
+
+    .phone-title {
+      color: #ccccee;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: Inter, sans-serif;
+      text-align: center;
+    }
+
+    .phone-desc {
+      color: #666688;
+      font-size: 11px;
+      font-family: Inter, sans-serif;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-title">Moon &amp; Sun — Ten Room Portraits</h1>
+  <p class="page-subtitle">Five night scenes &nbsp;·&nbsp; Five day scenes &nbsp;·&nbsp; Flat illustration</p>
+
+  <!-- ROW 1: MOON -->
+  <div class="scene-block">
+    <div class="row-label">🌙 Moon</div>
+    <div class="row">
+
+      <!-- M1: Crescent Library -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <svg viewBox="0 0 320 620" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="skyGradM1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1e0f38"/>
+                <stop offset="100%" stop-color="#2d1b52"/>
+              </linearGradient>
+              <radialGradient id="m1StarGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(255,240,180,0.5)"/>
+                <stop offset="100%" stop-color="rgba(255,240,180,0)"/>
+              </radialGradient>
+            </defs>
+
+            <!-- 1. Sky background -->
+            <rect x="0" y="0" width="320" height="140" fill="url(#skyGradM1)"/>
+
+            <!-- 2. Rooftop silhouette -->
+            <polygon points="0,120 160,60 320,120 320,145 0,145" fill="#141830"/>
+
+            <!-- 3. Crescent moon -->
+            <circle cx="252" cy="45" r="22" fill="#ffe8a1"/>
+            <circle cx="262" cy="38" r="19" fill="#1e0f38"/>
+
+            <!-- 4. Stars -->
+            <circle cx="80" cy="25" r="4" fill="url(#m1StarGlow)"/>
+            <circle cx="80" cy="25" r="1.5" fill="rgba(255,240,180,0.9)"/>
+            <line x1="80" y1="22" x2="80" y2="28" stroke="rgba(255,240,180,0.7)" stroke-width="0.8"/>
+            <line x1="77" y1="25" x2="83" y2="25" stroke="rgba(255,240,180,0.7)" stroke-width="0.8"/>
+
+            <circle cx="140" cy="40" r="4" fill="url(#m1StarGlow)"/>
+            <circle cx="140" cy="40" r="1.5" fill="rgba(255,240,180,0.9)"/>
+            <line x1="140" y1="37" x2="140" y2="43" stroke="rgba(255,240,180,0.7)" stroke-width="0.8"/>
+            <line x1="137" y1="40" x2="143" y2="40" stroke="rgba(255,240,180,0.7)" stroke-width="0.8"/>
+
+            <circle cx="60" cy="55" r="3" fill="url(#m1StarGlow)"/>
+            <circle cx="60" cy="55" r="1.2" fill="rgba(255,240,180,0.8)"/>
+            <line x1="60" y1="52.5" x2="60" y2="57.5" stroke="rgba(255,240,180,0.6)" stroke-width="0.7"/>
+            <line x1="57.5" y1="55" x2="62.5" y2="55" stroke="rgba(255,240,180,0.6)" stroke-width="0.7"/>
+
+            <circle cx="200" cy="35" r="3" fill="url(#m1StarGlow)"/>
+            <circle cx="200" cy="35" r="1.2" fill="rgba(255,240,180,0.8)"/>
+            <line x1="200" y1="32.5" x2="200" y2="37.5" stroke="rgba(255,240,180,0.6)" stroke-width="0.7"/>
+            <line x1="197.5" y1="35" x2="202.5" y2="35" stroke="rgba(255,240,180,0.6)" stroke-width="0.7"/>
+
+            <!-- 5. Room wall -->
+            <rect x="0" y="100" width="320" height="520" fill="#0d1028"/>
+
+            <!-- 6. Left bookshelf unit -->
+            <rect x="12" y="130" width="85" height="280" rx="2" fill="#1a2040"/>
+            <!-- Shelf dividers -->
+            <rect x="12" y="220" width="85" height="4" fill="#0d1028"/>
+            <rect x="12" y="310" width="85" height="4" fill="#0d1028"/>
+            <!-- Bottom shelf books -->
+            <rect x="18" y="328" width="10" height="38" rx="1" fill="#8b4a6b"/>
+            <rect x="30" y="332" width="9" height="34" rx="1" fill="#4a7a5c"/>
+            <rect x="41" y="325" width="11" height="41" rx="1" fill="#6a5a8a"/>
+            <rect x="54" y="330" width="8" height="36" rx="1" fill="#3a7a88"/>
+            <rect x="64" y="335" width="9" height="31" rx="1" fill="#7a6040"/>
+            <rect x="75" y="328" width="8" height="38" rx="1" fill="#5a3a6a"/>
+            <!-- Mid shelf books -->
+            <rect x="18" y="235" width="9" height="32" rx="1" fill="#4a6a8a"/>
+            <rect x="29" y="238" width="10" height="29" rx="1" fill="#7a4a5a"/>
+            <!-- Bonsai on mid shelf -->
+            <rect x="55" y="249" width="2" height="18" fill="#5a7a5a"/>
+            <circle cx="56" cy="242" r="10" fill="#5a9a6a"/>
+            <circle cx="48" cy="248" r="7" fill="#4a8a5a"/>
+            <circle cx="64" cy="248" r="7" fill="#4a8a5a"/>
+            <!-- Top shelf: a few books -->
+            <rect x="18" y="145" width="8" height="30" rx="1" fill="#5a5a80"/>
+            <rect x="28" y="148" width="9" height="27" rx="1" fill="#6a4a60"/>
+            <rect x="39" y="143" width="10" height="32" rx="1" fill="#3a5a70"/>
+
+            <!-- 7. Framed art on back wall -->
+            <!-- Spotlight cone above frame -->
+            <polygon points="160,115 138,135 182,135" fill="rgba(200,210,255,0.08)"/>
+            <!-- Frame -->
+            <rect x="115" y="135" width="90" height="70" rx="3" fill="#151830" stroke="#2a2f52" stroke-width="2"/>
+            <!-- Abstract world map lines inside frame -->
+            <ellipse cx="160" cy="170" rx="30" ry="18" fill="none" stroke="#2a3558" stroke-width="1"/>
+            <line x1="130" y1="170" x2="190" y2="170" stroke="#2a3558" stroke-width="0.8"/>
+            <line x1="160" y1="152" x2="160" y2="188" stroke="#2a3558" stroke-width="0.8"/>
+            <path d="M138,157 Q148,163 143,172" stroke="#3a4568" stroke-width="0.8" fill="none"/>
+            <path d="M172,160 Q180,168 175,175" stroke="#3a4568" stroke-width="0.8" fill="none"/>
+            <circle cx="160" cy="170" r="4" fill="#2a3558"/>
+
+            <!-- 8. Right floating shelf + speaker + TV -->
+            <!-- Speaker -->
+            <rect x="225" y="175" width="30" height="40" rx="4" fill="#252a48"/>
+            <circle cx="240" cy="192" r="8" fill="#1a1f3a" stroke="#363b60" stroke-width="1"/>
+            <circle cx="240" cy="192" r="3" fill="#363b60"/>
+            <rect x="228" y="176" width="24" height="5" rx="2" fill="#1e2345"/>
+            <!-- Floating shelf -->
+            <rect x="220" y="220" width="85" height="8" fill="#1a2040"/>
+            <!-- Small items on shelf -->
+            <rect x="270" y="210" width="20" height="10" rx="2" fill="#1e2345"/>
+            <rect x="228" y="212" width="14" height="8" rx="2" fill="#2a3055"/>
+            <!-- TV -->
+            <rect x="220" y="300" width="85" height="55" rx="3" fill="#151830" stroke="#2a2f52" stroke-width="1.5"/>
+            <!-- TV screen glow -->
+            <rect x="225" y="305" width="75" height="42" rx="2" fill="#0d1828"/>
+            <!-- TV content: abstract lines -->
+            <rect x="230" y="315" width="45" height="3" rx="1" fill="#1e3050"/>
+            <rect x="230" y="322" width="35" height="3" rx="1" fill="#1e3050"/>
+            <rect x="230" y="329" width="40" height="3" rx="1" fill="#1e3050"/>
+            <circle cx="278" cy="323" r="8" fill="#1a2840"/>
+
+            <!-- 9. Coffee table -->
+            <rect x="130" y="400" width="100" height="30" rx="8" fill="#111630"/>
+            <!-- Pill items on table -->
+            <rect x="145" y="393" width="28" height="10" rx="5" fill="#1a2040"/>
+            <rect x="182" y="393" width="22" height="10" rx="5" fill="#1a2040"/>
+            <!-- Small mug on table -->
+            <rect x="200" y="388" width="14" height="14" rx="2" fill="#252a48"/>
+
+            <!-- 10. Armchair -->
+            <!-- Back -->
+            <rect x="60" y="295" width="110" height="65" rx="10" fill="#7d5c7d"/>
+            <!-- Seat -->
+            <rect x="60" y="350" width="110" height="70" rx="12" fill="#6b4f6b"/>
+            <!-- Arms -->
+            <rect x="55" y="330" width="12" height="60" rx="6" fill="#7d5c7d"/>
+            <rect x="163" y="330" width="12" height="60" rx="6" fill="#7d5c7d"/>
+            <!-- Chair cushion highlight -->
+            <rect x="68" y="358" width="94" height="20" rx="8" fill="#7a5c7a"/>
+
+            <!-- 11. Black cat on chair -->
+            <!-- Body -->
+            <ellipse cx="115" cy="355" rx="20" ry="14" fill="#1a1a1a"/>
+            <!-- Tail -->
+            <path d="M95,358 Q78,345 82,335" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <!-- Head -->
+            <circle cx="128" cy="343" r="11" fill="#222222"/>
+            <!-- Ears -->
+            <polygon points="121,335 118,327 126,333" fill="#222222"/>
+            <polygon points="134,333 137,326 140,334" fill="#222222"/>
+            <!-- Eyes -->
+            <circle cx="125" cy="341" r="2" fill="#4aaa44"/>
+            <circle cx="131" cy="341" r="2" fill="#4aaa44"/>
+            <!-- Pupil slits -->
+            <ellipse cx="125" cy="341" rx="0.7" ry="1.8" fill="#0a1a0a"/>
+            <ellipse cx="131" cy="341" rx="0.7" ry="1.8" fill="#0a1a0a"/>
+
+            <!-- 12. Flower vase (right side of coffee table area) -->
+            <rect x="210" y="378" width="18" height="28" rx="4" fill="#2a4060"/>
+            <!-- Vase rim -->
+            <rect x="207" y="376" width="24" height="5" rx="3" fill="#2a4060"/>
+            <!-- Branches -->
+            <path d="M219,378 Q219,365 215,355" stroke="#c084a0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M219,378 Q222,362 228,350" stroke="#c084a0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M219,370 Q210,362 204,358" stroke="#c084a0" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <!-- Flowers -->
+            <circle cx="215" cy="354" r="4" fill="#c084a0"/>
+            <circle cx="228" cy="349" r="3.5" fill="#d090b0"/>
+            <circle cx="204" cy="357" r="3" fill="#b06890"/>
+            <circle cx="220" cy="347" r="2.5" fill="#e0a0c0"/>
+
+            <!-- 13. Floor -->
+            <rect x="0" y="540" width="320" height="80" fill="#0a0d1f"/>
+            <!-- Floor line separator -->
+            <line x1="0" y1="540" x2="320" y2="540" stroke="#14183a" stroke-width="1.5"/>
+
+            <!-- Ambient room glow from lamp/warm light -->
+            <ellipse cx="160" cy="420" rx="90" ry="30" fill="rgba(180,140,255,0.04)"/>
+
+            <!-- 14. Top stats bar -->
+            <rect x="0" y="0" width="320" height="32" fill="#0d1028"/>
+            <!-- Pill badges -->
+            <rect x="16" y="8" width="52" height="18" rx="9" fill="#1e2445"/>
+            <text x="42" y="21" text-anchor="middle" fill="#ccccee" font-size="10" font-family="Inter, sans-serif">⭐ 42</text>
+            <rect x="76" y="8" width="52" height="18" rx="9" fill="#1e2445"/>
+            <text x="102" y="21" text-anchor="middle" fill="#ccccee" font-size="10" font-family="Inter, sans-serif">🔥 7</text>
+            <rect x="136" y="8" width="54" height="18" rx="9" fill="#1e2445"/>
+            <text x="163" y="21" text-anchor="middle" fill="#ccccee" font-size="10" font-family="Inter, sans-serif">⚡ 99</text>
+
+            <!-- 15. Bottom nav bar -->
+            <rect x="0" y="570" width="320" height="50" fill="#151c38"/>
+            <!-- Nav icon pills -->
+            <rect x="16" y="579" width="40" height="28" rx="8" fill="#252b50"/>
+            <rect x="70" y="579" width="40" height="28" rx="8" fill="#252b50"/>
+            <rect x="124" y="579" width="40" height="28" rx="8" fill="#252b50"/>
+            <rect x="178" y="579" width="40" height="28" rx="8" fill="#252b50"/>
+            <rect x="232" y="579" width="40" height="28" rx="8" fill="#252b50"/>
+            <!-- Nav icon dots (placeholder) -->
+            <circle cx="36" cy="593" r="5" fill="#3a4068"/>
+            <circle cx="90" cy="593" r="5" fill="#3a4068"/>
+            <circle cx="144" cy="593" r="5" fill="#8870cc"/>
+            <circle cx="198" cy="593" r="5" fill="#3a4068"/>
+            <circle cx="252" cy="593" r="5" fill="#3a4068"/>
+          </svg>
+        </div>
+        <div class="phone-label">M1</div>
+        <div class="phone-title">Crescent Library</div>
+        <div class="phone-desc">Classic cozy night</div>
+      </div>
+
+      <!-- M2: Midnight Garden -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <svg viewBox="0 0 320 620" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="skyGradM2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#120828"/>
+                <stop offset="100%" stop-color="#1e1040"/>
+              </linearGradient>
+              <radialGradient id="m2MoonGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(255,245,208,0.22)"/>
+                <stop offset="60%" stop-color="rgba(255,245,208,0.08)"/>
+                <stop offset="100%" stop-color="rgba(255,245,208,0)"/>
+              </radialGradient>
+              <radialGradient id="m2StarGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(255,240,180,0.5)"/>
+                <stop offset="100%" stop-color="rgba(255,240,180,0)"/>
+              </radialGradient>
+            </defs>
+
+            <!-- 1. Sky background -->
+            <rect x="0" y="0" width="320" height="140" fill="url(#skyGradM2)"/>
+
+            <!-- 2. Moon glow halo -->
+            <circle cx="160" cy="40" r="52" fill="url(#m2MoonGlow)"/>
+            <!-- Full moon -->
+            <circle cx="160" cy="40" r="28" fill="#fff5d0"/>
+
+            <!-- 3. Stars scattered in sky -->
+            <circle cx="42" cy="22" r="3.5" fill="url(#m2StarGlow)"/>
+            <circle cx="42" cy="22" r="1.3" fill="rgba(255,240,180,0.9)"/>
+
+            <circle cx="72" cy="48" r="3" fill="url(#m2StarGlow)"/>
+            <circle cx="72" cy="48" r="1.1" fill="rgba(255,240,180,0.8)"/>
+
+            <circle cx="28" cy="68" r="2.5" fill="url(#m2StarGlow)"/>
+            <circle cx="28" cy="68" r="1" fill="rgba(255,240,180,0.7)"/>
+
+            <circle cx="248" cy="28" r="3.5" fill="url(#m2StarGlow)"/>
+            <circle cx="248" cy="28" r="1.3" fill="rgba(255,240,180,0.9)"/>
+
+            <circle cx="284" cy="55" r="3" fill="url(#m2StarGlow)"/>
+            <circle cx="284" cy="55" r="1.1" fill="rgba(255,240,180,0.8)"/>
+
+            <circle cx="302" cy="20" r="2" fill="rgba(255,240,180,0.7)"/>
+            <circle cx="96" cy="18" r="2" fill="rgba(255,240,180,0.6)"/>
+
+            <!-- 4. Rooftop/house silhouette -->
+            <polygon points="0,120 160,60 320,120 320,145 0,145" fill="#141830"/>
+
+            <!-- 5. Room wall -->
+            <rect x="0" y="100" width="320" height="520" fill="#0d1028"/>
+
+            <!-- 6. Window frame on left wall showing garden -->
+            <rect x="15" y="140" width="100" height="130" rx="3" fill="#080d1e" stroke="#2a2f52" stroke-width="2.5"/>
+            <!-- Window cross divider -->
+            <line x1="65" y1="140" x2="65" y2="270" stroke="#2a2f52" stroke-width="1.5"/>
+            <line x1="15" y1="205" x2="115" y2="205" stroke="#2a2f52" stroke-width="1.5"/>
+            <!-- Garden inside window: left tree triangle -->
+            <polygon points="24,268 38,230 52,268" fill="#0a1020"/>
+            <!-- Right tree triangle (taller) -->
+            <polygon points="68,268 85,212 102,268" fill="#0a1020"/>
+            <!-- Small tree mid -->
+            <polygon points="52,268 62,245 72,268" fill="#0c1525"/>
+            <!-- Moon reflection in window (upper half) -->
+            <circle cx="65" cy="172" r="10" fill="#fff5d0" opacity="0.6"/>
+            <!-- Soft moonlit ground in garden -->
+            <rect x="15" y="255" width="100" height="15" rx="0" fill="#0e1530" opacity="0.8"/>
+
+            <!-- 7. Right bookshelf with plants -->
+            <rect x="225" y="130" width="80" height="240" rx="2" fill="#1a2040"/>
+            <!-- Shelf dividers -->
+            <rect x="225" y="210" width="80" height="4" fill="#0d1028"/>
+            <rect x="225" y="290" width="80" height="4" fill="#0d1028"/>
+            <!-- Top shelf books -->
+            <rect x="231" y="145" width="8" height="30" rx="1" fill="#5a4a8a"/>
+            <rect x="241" y="148" width="7" height="27" rx="1" fill="#3a6a5a"/>
+            <rect x="250" y="143" width="9" height="32" rx="1" fill="#7a4050"/>
+            <rect x="261" y="147" width="7" height="28" rx="1" fill="#2a5570"/>
+            <rect x="270" y="145" width="8" height="30" rx="1" fill="#6a5a30"/>
+            <!-- Small plant pot on top shelf -->
+            <rect x="284" y="196" width="14" height="12" rx="2" fill="#2a3a28"/>
+            <circle cx="291" cy="192" r="7" fill="#3a6a3a"/>
+            <!-- Mid shelf books -->
+            <rect x="231" y="225" width="9" height="28" rx="1" fill="#4a5a8a"/>
+            <rect x="242" y="228" width="8" height="25" rx="1" fill="#7a3a5a"/>
+            <rect x="252" y="223" width="10" height="30" rx="1" fill="#3a6880"/>
+            <!-- Trailing vine from bookshelf -->
+            <path d="M270,215 Q268,240 272,255 Q268,270 265,285 Q260,300 258,320" stroke="#6aaa78" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M270,230 Q280,238 285,245" stroke="#6aaa78" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="288" cy="244" rx="7" ry="4" fill="#5aaa68" transform="rotate(-20,288,244)"/>
+            <path d="M270,255 Q280,260 282,268" stroke="#6aaa78" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="284" cy="270" rx="6" ry="3.5" fill="#5aaa68" transform="rotate(15,284,270)"/>
+            <path d="M265,285 Q255,290 250,298" stroke="#6aaa78" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="247" cy="300" rx="7" ry="4" fill="#4a9a58" transform="rotate(-30,247,300)"/>
+            <!-- Bottom shelf: small decorative item -->
+            <rect x="231" y="300" width="30" height="22" rx="2" fill="#1e2848"/>
+            <rect x="264" y="303" width="18" height="14" rx="2" fill="#283058"/>
+
+            <!-- 8. Left floor plant (short) -->
+            <rect x="76" y="468" width="22" height="24" rx="3" fill="#1a3028"/>
+            <!-- Pot rim -->
+            <rect x="73" y="466" width="28" height="6" rx="3" fill="#1a3028"/>
+            <!-- Short plant leaves -->
+            <ellipse cx="87" cy="455" rx="9" ry="5" fill="#4a8a5a" transform="rotate(-30,87,455)"/>
+            <ellipse cx="87" cy="455" rx="9" ry="5" fill="#4a8a5a" transform="rotate(30,87,455)"/>
+            <ellipse cx="87" cy="452" rx="7" ry="11" fill="#3a7a4a" transform="rotate(0,87,452)"/>
+            <ellipse cx="76" cy="458" rx="8" ry="4" fill="#4a8a5a" transform="rotate(-50,76,458)"/>
+            <ellipse cx="98" cy="458" rx="8" ry="4" fill="#4a8a5a" transform="rotate(50,98,458)"/>
+
+            <!-- 9. Armchair -->
+            <!-- Back -->
+            <rect x="105" y="300" width="110" height="68" rx="10" fill="#3a5580"/>
+            <!-- Seat -->
+            <rect x="105" y="360" width="110" height="75" rx="12" fill="#2d4468"/>
+            <!-- Arms -->
+            <rect x="100" y="338" width="12" height="58" rx="6" fill="#3a5580"/>
+            <rect x="208" y="338" width="12" height="58" rx="6" fill="#3a5580"/>
+            <!-- Seat cushion highlight -->
+            <rect x="113" y="368" width="94" height="22" rx="9" fill="#344e78"/>
+
+            <!-- 10. Black cat on armchair back (sitting upright) -->
+            <!-- Cat body (sitting) -->
+            <ellipse cx="160" cy="316" rx="14" ry="11" fill="#181818"/>
+            <!-- Cat head -->
+            <circle cx="160" cy="300" r="10" fill="#1e1e1e"/>
+            <!-- Cat ears -->
+            <polygon points="153,293 150,283 158,290" fill="#1e1e1e"/>
+            <polygon points="167,293 170,283 162,290" fill="#1e1e1e"/>
+            <!-- Cat eyes (bright green-yellow) -->
+            <circle cx="156" cy="299" r="2.2" fill="#a0e020"/>
+            <circle cx="164" cy="299" r="2.2" fill="#a0e020"/>
+            <!-- Pupil slits -->
+            <ellipse cx="156" cy="299" rx="0.7" ry="1.8" fill="#0a1a00"/>
+            <ellipse cx="164" cy="299" rx="0.7" ry="1.8" fill="#0a1a00"/>
+            <!-- Cat tail draped over armchair back -->
+            <path d="M174,318 Q188,312 192,300 Q194,290 188,285" stroke="#181818" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+            <!-- 11. Coffee table -->
+            <rect x="120" y="430" width="95" height="28" rx="8" fill="#111630"/>
+            <!-- Teacup on table -->
+            <!-- Cup body -->
+            <rect x="135" y="420" width="18" height="13" rx="3" fill="#252a48"/>
+            <!-- Cup handle -->
+            <path d="M153,423 Q160,423 160,427 Q160,431 153,431" stroke="#3a4068" stroke-width="1.5" fill="none"/>
+            <!-- Saucer -->
+            <ellipse cx="144" cy="433" rx="12" ry="3" fill="#1e2445"/>
+            <!-- Steam wisps -->
+            <path d="M140,419 Q142,414 140,410" stroke="rgba(180,190,255,0.3)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M145,418 Q147,412 145,408" stroke="rgba(180,190,255,0.3)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <!-- Open book on table -->
+            <rect x="168" y="418" width="22" height="15" rx="1" fill="#1e2848"/>
+            <rect x="190" y="418" width="22" height="15" rx="1" fill="#232e52"/>
+            <line x1="190" y1="418" x2="190" y2="433" stroke="#0d1028" stroke-width="1"/>
+            <!-- Book text lines -->
+            <line x1="172" y1="423" x2="186" y2="423" stroke="#2a3558" stroke-width="1"/>
+            <line x1="172" y1="427" x2="186" y2="427" stroke="#2a3558" stroke-width="1"/>
+            <line x1="194" y1="423" x2="208" y2="423" stroke="#2a3558" stroke-width="1"/>
+            <line x1="194" y1="427" x2="208" y2="427" stroke="#2a3558" stroke-width="1"/>
+
+            <!-- 12. Large potted tropical plant (right corner) -->
+            <!-- Tall pot -->
+            <rect x="270" y="458" width="40" height="55" rx="4" fill="#1a3050"/>
+            <!-- Pot rim -->
+            <rect x="266" y="455" width="48" height="8" rx="4" fill="#1e3858"/>
+            <!-- Large tropical leaves -->
+            <path d="M290,455 Q310,420 330,400 Q315,415 295,440" fill="#3a6a4a"/>
+            <path d="M290,455 Q265,415 248,398 Q265,420 285,442" fill="#3a6a4a"/>
+            <path d="M290,455 Q318,440 340,430 Q320,442 295,452" fill="#4a8a5a"/>
+            <path d="M290,455 Q260,445 238,440 Q262,448 285,454" fill="#4a8a5a"/>
+            <path d="M290,455 Q295,425 300,405" stroke="#2a5038" stroke-width="1.5" fill="none"/>
+            <path d="M290,455 Q285,428 280,410" stroke="#2a5038" stroke-width="1.5" fill="none"/>
+
+            <!-- Right floor plant (tall, next to bookshelf base) -->
+            <rect x="253" y="468" width="18" height="22" rx="3" fill="#1a3028"/>
+            <rect x="250" y="465" width="24" height="6" rx="3" fill="#1a3028"/>
+            <path d="M262,465 Q250,440 238,425 Q252,442 260,462" fill="#4a8a5a"/>
+            <path d="M262,465 Q275,440 286,430 Q272,445 264,462" fill="#3a7a4a"/>
+            <path d="M262,465 Q255,445 250,430" stroke="#2a5038" stroke-width="1.5" fill="none"/>
+
+            <!-- 13. Floor -->
+            <rect x="0" y="540" width="320" height="80" fill="#0a0d1f"/>
+            <line x1="0" y1="540" x2="320" y2="540" stroke="#14183a" stroke-width="1.5"/>
+
+            <!-- Subtle ambient moonlight glow on floor -->
+            <ellipse cx="160" cy="450" rx="100" ry="28" fill="rgba(160,140,240,0.04)"/>
+
+            <!-- 14. Top stats bar -->
+            <rect x="0" y="0" width="320" height="32" fill="#0d1028"/>
+            <rect x="16" y="8" width="52" height="18" rx="9" fill="#1e2445"/>
+            <text x="42" y="21" text-anchor="middle" fill="#ccccee" font-size="10" font-family="Inter, sans-serif">&#11088; 42</text>
+            <rect x="76" y="8" width="52" height="18" rx="9" fill="#1e2445"/>
+            <text x="102" y="21" text-anchor="middle" fill="#ccccee" font-size="10" font-family="Inter, sans-serif">&#128293; 7</text>
+            <rect x="136" y="8" width="54" height="18" rx="9" fill="#1e2445"/>
+            <text x="163" y="21" text-anchor="middle" fill="#ccccee" font-size="10" font-family="Inter, sans-serif">&#9889; 99</text>
+
+            <!-- 15. Bottom nav bar -->
+            <rect x="0" y="570" width="320" height="50" fill="#151c38"/>
+            <rect x="16" y="579" width="40" height="28" rx="8" fill="#252b50"/>
+            <rect x="70" y="579" width="40" height="28" rx="8" fill="#252b50"/>
+            <rect x="124" y="579" width="40" height="28" rx="8" fill="#252b50"/>
+            <rect x="178" y="579" width="40" height="28" rx="8" fill="#252b50"/>
+            <rect x="232" y="579" width="40" height="28" rx="8" fill="#252b50"/>
+            <circle cx="36" cy="593" r="5" fill="#3a4068"/>
+            <circle cx="90" cy="593" r="5" fill="#3a4068"/>
+            <circle cx="144" cy="593" r="5" fill="#8870cc"/>
+            <circle cx="198" cy="593" r="5" fill="#3a4068"/>
+            <circle cx="252" cy="593" r="5" fill="#3a4068"/>
+          </svg>
+        </div>
+        <div class="phone-label">M2</div>
+        <div class="phone-title">Midnight Garden</div>
+        <div class="phone-desc">Garden window</div>
+      </div>
+
+      <!-- M3: Observatory Loft -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <svg viewBox="0 0 320 620" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="620" fill="#0d1028"/>
+            <text x="160" y="298" text-anchor="middle" fill="#3a3a66" font-size="13" font-family="Inter, sans-serif" font-weight="600">M3</text>
+            <text x="160" y="318" text-anchor="middle" fill="#2e2e55" font-size="11" font-family="Inter, sans-serif">Observatory Loft</text>
+          </svg>
+        </div>
+        <div class="phone-label">M3</div>
+        <div class="phone-title">Observatory Loft</div>
+        <div class="phone-desc">Star gazing</div>
+      </div>
+
+      <!-- M4: Tea & Rain -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <svg viewBox="0 0 320 620" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="620" fill="#0d1028"/>
+            <text x="160" y="298" text-anchor="middle" fill="#3a3a66" font-size="13" font-family="Inter, sans-serif" font-weight="600">M4</text>
+            <text x="160" y="318" text-anchor="middle" fill="#2e2e55" font-size="11" font-family="Inter, sans-serif">Tea &amp; Rain</text>
+          </svg>
+        </div>
+        <div class="phone-label">M4</div>
+        <div class="phone-title">Tea &amp; Rain</div>
+        <div class="phone-desc">Rainy night warmth</div>
+      </div>
+
+      <!-- M5: Neon Night Lounge -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <svg viewBox="0 0 320 620" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="620" fill="#0d1028"/>
+            <text x="160" y="298" text-anchor="middle" fill="#3a3a66" font-size="13" font-family="Inter, sans-serif" font-weight="600">M5</text>
+            <text x="160" y="318" text-anchor="middle" fill="#2e2e55" font-size="11" font-family="Inter, sans-serif">Neon Night Lounge</text>
+          </svg>
+        </div>
+        <div class="phone-label">M5</div>
+        <div class="phone-title">Neon Night Lounge</div>
+        <div class="phone-desc">Modern moody</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ROW 2: SUN -->
+  <div class="scene-block">
+    <div class="row-label">☀️ Sun</div>
+    <div class="row">
+
+      <!-- S1: Morning Golden Hour -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <svg viewBox="0 0 320 620" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="620" fill="#f5ede0"/>
+            <text x="160" y="298" text-anchor="middle" fill="#b8906a" font-size="13" font-family="Inter, sans-serif" font-weight="600">S1</text>
+            <text x="160" y="318" text-anchor="middle" fill="#c9a07a" font-size="11" font-family="Inter, sans-serif">Morning Golden Hour</text>
+          </svg>
+        </div>
+        <div class="phone-label">S1</div>
+        <div class="phone-title">Morning Golden Hour</div>
+        <div class="phone-desc">Warm morning</div>
+      </div>
+
+      <!-- S2: Greenhouse Corner -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <svg viewBox="0 0 320 620" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="620" fill="#f5ede0"/>
+            <text x="160" y="298" text-anchor="middle" fill="#b8906a" font-size="13" font-family="Inter, sans-serif" font-weight="600">S2</text>
+            <text x="160" y="318" text-anchor="middle" fill="#c9a07a" font-size="11" font-family="Inter, sans-serif">Greenhouse Corner</text>
+          </svg>
+        </div>
+        <div class="phone-label">S2</div>
+        <div class="phone-title">Greenhouse Corner</div>
+        <div class="phone-desc">Maximum greenery</div>
+      </div>
+
+      <!-- S3: Beach Cottage -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <svg viewBox="0 0 320 620" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="620" fill="#f5ede0"/>
+            <text x="160" y="298" text-anchor="middle" fill="#b8906a" font-size="13" font-family="Inter, sans-serif" font-weight="600">S3</text>
+            <text x="160" y="318" text-anchor="middle" fill="#c9a07a" font-size="11" font-family="Inter, sans-serif">Beach Cottage</text>
+          </svg>
+        </div>
+        <div class="phone-label">S3</div>
+        <div class="phone-title">Beach Cottage</div>
+        <div class="phone-desc">Coastal breezy</div>
+      </div>
+
+      <!-- S4: Study at Dawn -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <svg viewBox="0 0 320 620" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="620" fill="#f5ede0"/>
+            <text x="160" y="298" text-anchor="middle" fill="#b8906a" font-size="13" font-family="Inter, sans-serif" font-weight="600">S4</text>
+            <text x="160" y="318" text-anchor="middle" fill="#c9a07a" font-size="11" font-family="Inter, sans-serif">Study at Dawn</text>
+          </svg>
+        </div>
+        <div class="phone-label">S4</div>
+        <div class="phone-title">Study at Dawn</div>
+        <div class="phone-desc">Productive morning</div>
+      </div>
+
+      <!-- S5: Tropical Afternoon -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <svg viewBox="0 0 320 620" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="620" fill="#f5ede0"/>
+            <text x="160" y="298" text-anchor="middle" fill="#b8906a" font-size="13" font-family="Inter, sans-serif" font-weight="600">S5</text>
+            <text x="160" y="318" text-anchor="middle" fill="#c9a07a" font-size="11" font-family="Inter, sans-serif">Tropical Afternoon</text>
+          </svg>
+        </div>
+        <div class="phone-label">S5</div>
+        <div class="phone-title">Tropical Afternoon</div>
+        <div class="phone-desc">Bright maximalist</div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

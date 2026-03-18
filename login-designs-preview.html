@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connected — Twenty Pink Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0f0f14;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    padding: 40px 24px 80px;
+  }
+  .page-title {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  .page-heading {
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .page-sub {
+    text-align: center;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 48px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .col { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+  .col-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #444;
+  }
+  .style-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .tag-p1  { background: rgba(236,72,153,0.12); color: #ec4899; border: 1px solid rgba(236,72,153,0.3); }
+  .tag-p2  { background: rgba(236,72,153,0.1);  color: #f472b6; border: 1px solid rgba(236,72,153,0.25); }
+  .tag-p3  { background: rgba(190,24,93,0.12);  color: #be185d; border: 1px solid rgba(190,24,93,0.3); }
+  .tag-p4  { background: rgba(244,63,94,0.1);   color: #f43f5e; border: 1px solid rgba(244,63,94,0.25); }
+  .tag-p5  { background: rgba(236,72,153,0.08); color: #ec4899; border: 1px solid rgba(236,72,153,0.2); }
+  .tag-p6  { background: rgba(244,114,182,0.12);color: #f472b6; border: 1px solid rgba(244,114,182,0.3); }
+  .tag-p7  { background: rgba(176,99,130,0.12); color: #b06382; border: 1px solid rgba(176,99,130,0.3); }
+  .tag-p8  { background: rgba(236,72,153,0.1);  color: #ec4899; border: 1px solid rgba(236,72,153,0.25); }
+  .tag-p9  { background: rgba(249,168,212,0.2); color: #ec4899; border: 1px solid rgba(249,168,212,0.4); }
+  .tag-p10 { background: rgba(219,112,147,0.12);color: #db7093; border: 1px solid rgba(219,112,147,0.3); }
+  .tag-p11 { background: rgba(236,72,153,0.1);  color: #ec4899; border: 1px solid rgba(236,72,153,0.25); }
+  .tag-p12 { background: rgba(232,121,249,0.12);color: #e879f9; border: 1px solid rgba(232,121,249,0.3); }
+  .tag-p13 { background: rgba(244,114,182,0.12);color: #f472b6; border: 1px solid rgba(244,114,182,0.3); }
+  .tag-p14 { background: rgba(244,114,182,0.1); color: #f472b6; border: 1px solid rgba(244,114,182,0.25); }
+  .tag-p15 { background: rgba(225,29,72,0.12);  color: #e11d48; border: 1px solid rgba(225,29,72,0.3); }
+  .tag-p16 { background: rgba(219,39,119,0.12); color: #db2777; border: 1px solid rgba(219,39,119,0.3); }
+  .tag-p17 { background: rgba(157,23,77,0.12);  color: #9d174d; border: 1px solid rgba(157,23,77,0.3); }
+  .tag-p18 { background: rgba(251,113,133,0.12);color: #fb7185; border: 1px solid rgba(251,113,133,0.3); }
+  .tag-p19 { background: rgba(236,72,153,0.1);  color: #ec4899; border: 1px solid rgba(236,72,153,0.2); }
+  .tag-p20 { background: rgba(236,72,153,0.12); color: #ec4899; border: 1px solid rgba(236,72,153,0.3); }
+
+  .phone {
+    width: 100%;
+    max-width: 300px;
+    height: 620px;
+    border-radius: 38px;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.07);
+    box-shadow: 0 40px 90px rgba(0,0,0,0.65);
+    position: relative;
+  }
+  .col-desc {
+    font-size: 12px;
+    color: #444;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 240px;
+  }
+
+  /* ─────────────────────────────────────────
+     SHARED INNER STRUCTURE HELPERS
+  ───────────────────────────────────────── */
+  .lp-inner {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 52px 24px 36px;
+    position: relative; overflow: hidden;
+  }
+  .lp-logo { text-align: center; margin-bottom: 26px; position: relative; z-index: 2; }
+  .lp-logo-box {
+    width: 58px; height: 58px;
+    border-radius: 20px;
+    margin: 0 auto 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; line-height: 1;
+  }
+  .lp-card {
+    position: relative; z-index: 2;
+    width: 100%; padding: 22px 20px 20px;
+  }
+  .lp-field { margin-bottom: 14px; }
+  .lp-btn-main {
+    width: 100%; padding: 13px;
+    border: none; cursor: pointer;
+    font-size: 14px; font-weight: 700;
+    color: #fff; margin-top: 4px;
+  }
+  .lp-or {
+    text-align: center; font-size: 10px;
+    margin: 12px 0; position: relative;
+  }
+  .lp-or::before,.lp-or::after {
+    content:''; position:absolute; top:50%; width:36%; height:1px;
+  }
+  .lp-or::before { left:0; } .lp-or::after { right:0; }
+  .lp-btn-google {
+    width: 100%; padding: 10px;
+    border: none; cursor: pointer;
+    font-size: 12px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .lp-foot {
+    position: relative; z-index: 2;
+    margin-top: 16px; font-size: 12px;
+    text-align: center;
+  }
+  .lp-blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(60px); pointer-events: none;
+  }
+
+  /* ══════════════════════════════════════════
+     P1 — Cherry Blossom
+  ══════════════════════════════════════════ */
+  .lp1 {
+    background: #fdf7f9;
+    font-family: 'Quicksand', sans-serif;
+  }
+  .lp1 .lp-logo-box { background: linear-gradient(135deg,#f9a8d4,#ec4899); border-radius: 22px; box-shadow: 0 6px 20px rgba(236,72,153,0.35); }
+  .lp1 .app-name { font-family: 'Caveat', cursive; font-size: 32px; font-weight: 700; color: #1c1c2e; }
+  .lp1 .lp-card { background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.05); }
+  .lp1 .lp-lbl { font-size: 10px; color: #9ca3af; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; font-family: 'Quicksand', sans-serif; }
+  .lp1 .lp-inp { width:100%; padding:10px 14px; background:#fdf8fb; border:1.5px solid #fce7f3; border-radius:12px; color:#6b7280; font-size:12px; font-family:'Quicksand',sans-serif; margin-bottom:14px; }
+  .lp1 .lp-btn-main { background:#ec4899; border-radius:14px; box-shadow:0 4px 16px rgba(236,72,153,0.35); font-family:'Quicksand',sans-serif; }
+  .lp1 .lp-or { color:#d1d5db; } .lp1 .lp-or::before,.lp1 .lp-or::after { background:#f3f4f6; }
+  .lp1 .lp-btn-google { background:#f9fafb; border:1px solid #f3f4f6; border-radius:12px; color:#6b7280; font-family:'Quicksand',sans-serif; }
+  .lp1 .lp-foot { color:#9ca3af; } .lp1 .lp-foot a { color:#ec4899; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P2 — Petal Pill
+  ══════════════════════════════════════════ */
+  .lp2 {
+    background: linear-gradient(150deg,#fce4ec 0%,#fff 100%);
+    font-family: 'Nunito', sans-serif;
+  }
+  .lp2 .app-name { font-family:'Nunito',sans-serif; font-size:30px; font-weight:800; color:#1c1c2e; }
+  .lp2 .lp-card { background:#fff; border:1px solid rgba(236,72,153,0.12); border-radius:28px; box-shadow:0 4px 24px rgba(236,72,153,0.08); }
+  .lp2 .lp-lbl { font-size:10px; color:#9ca3af; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; font-family:'Nunito',sans-serif; }
+  .lp2 .lp-inp { width:100%; padding:10px 18px; background:#fff5f9; border:1px solid #fce7f3; border-radius:50px; color:#6b7280; font-size:12px; font-family:'Nunito',sans-serif; margin-bottom:14px; }
+  .lp2 .lp-btn-main { background:#ec4899; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; }
+  .lp2 .lp-or { color:#d1d5db; } .lp2 .lp-or::before,.lp2 .lp-or::after { background:#f3f4f6; }
+  .lp2 .lp-btn-google { background:#fdf2f8; border:1px solid rgba(236,72,153,0.15); border-radius:50px; color:#6b7280; font-family:'Nunito',sans-serif; }
+  .lp2 .lp-foot { color:#9ca3af; } .lp2 .lp-foot a { color:#ec4899; font-weight:700; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P3 — Rose Editorial
+  ══════════════════════════════════════════ */
+  .lp3 {
+    background: #fff5f7;
+    font-family: 'Inter', sans-serif;
+  }
+  .lp3 .app-name { font-family:'Playfair Display',serif; font-size:28px; font-weight:600; font-style:italic; color:#1c1c2e; }
+  .lp3 .lp-card { background:#fff; border:2px solid rgba(190,24,93,0.15); border-radius:16px; }
+  .lp3 .lp-lbl { font-size:11px; color:#6b7280; margin-bottom:6px; font-family:'Inter',sans-serif; font-weight:500; }
+  .lp3 .lp-inp { width:100%; padding:10px 14px; background:#fff; border:1px solid #fbcfe8; border-radius:8px; color:#6b7280; font-size:12px; font-family:'Inter',sans-serif; margin-bottom:14px; }
+  .lp3 .lp-btn-main { background:#be185d; border-radius:8px; font-family:'Inter',sans-serif; font-weight:600; }
+  .lp3 .lp-or { color:#d1d5db; } .lp3 .lp-or::before,.lp3 .lp-or::after { background:#f3f4f6; }
+  .lp3 .lp-btn-google { background:#fff; border:1px solid #fce7f3; border-radius:8px; color:#6b7280; font-family:'Inter',sans-serif; }
+  .lp3 .lp-foot { color:#9ca3af; } .lp3 .lp-foot a { color:#be185d; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P4 — Frosted Blush
+  ══════════════════════════════════════════ */
+  .lp4 {
+    background: linear-gradient(135deg,#ffe4e6 0%,#fce7f3 100%);
+    font-family: 'Nunito', sans-serif;
+  }
+  .lp4 .lp-logo-box { background:#f43f5e; border-radius:20px; box-shadow:0 6px 20px rgba(244,63,94,0.35); }
+  .lp4 .app-name { font-family:'Nunito',sans-serif; font-size:30px; font-weight:800; color:#1c1c2e; }
+  .lp4 .lp-card { background:rgba(255,255,255,0.72); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-radius:24px; }
+  .lp4 .lp-lbl { font-size:10px; color:#9ca3af; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; font-family:'Nunito',sans-serif; }
+  .lp4 .lp-inp { width:100%; padding:10px 14px; background:rgba(255,255,255,0.6); border:none; border-radius:12px; color:#6b7280; font-size:12px; font-family:'Nunito',sans-serif; margin-bottom:14px; box-shadow:0 2px 8px rgba(244,63,94,0.06); }
+  .lp4 .lp-btn-main { background:#f43f5e; border-radius:14px; font-family:'Nunito',sans-serif; font-weight:800; }
+  .lp4 .lp-or { color:rgba(156,163,175,0.7); } .lp4 .lp-or::before,.lp4 .lp-or::after { background:rgba(156,163,175,0.25); }
+  .lp4 .lp-btn-google { background:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.7); border-radius:12px; color:#6b7280; font-family:'Nunito',sans-serif; }
+  .lp4 .lp-foot { color:#9ca3af; } .lp4 .lp-foot a { color:#f43f5e; font-weight:700; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P5 — Minimal Float
+  ══════════════════════════════════════════ */
+  .lp5 {
+    background: #fff9fb;
+    font-family: 'Inter', sans-serif;
+  }
+  .lp5 .app-name { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:600; font-style:italic; color:#1c1c2e; }
+  .lp5 .lp-tagline { font-size:10px; color:#9ca3af; letter-spacing:0.12em; margin-top:3px; font-family:'Inter',sans-serif; }
+  .lp5 .lp-card { background:transparent; padding:0; }
+  .lp5 .lp-lbl { font-size:10px; color:#9ca3af; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px; font-family:'Inter',sans-serif; }
+  .lp5 .lp-inp { width:100%; padding:10px 0; background:transparent; border:none; border-bottom:1px solid rgba(236,72,153,0.45); border-radius:0; color:#4b5563; font-size:13px; font-family:'Inter',sans-serif; margin-bottom:18px; }
+  .lp5 .lp-btn-main { background:#ec4899; border-radius:0; font-family:'Inter',sans-serif; font-weight:600; margin-top:8px; }
+  .lp5 .lp-or { color:#d1d5db; } .lp5 .lp-or::before,.lp5 .lp-or::after { background:#f0f0f0; }
+  .lp5 .lp-btn-google { background:transparent; border:1px solid #e5e7eb; border-radius:0; color:#6b7280; font-family:'Inter',sans-serif; }
+  .lp5 .lp-foot { color:#9ca3af; } .lp5 .lp-foot a { color:#ec4899; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P6 — Cotton Puff
+  ══════════════════════════════════════════ */
+  .lp6 {
+    background: #fafafa;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .lp6 .lp-logo-box { background:linear-gradient(135deg,#f472b6,#ec4899); border-radius:18px; box-shadow:0 6px 20px rgba(244,114,182,0.4); }
+  .lp6 .app-name { font-family:'DM Sans',sans-serif; font-size:28px; font-weight:500; color:#1c1c2e; }
+  .lp6 .lp-card { background:#fff; border-radius:32px; box-shadow:0 20px 60px rgba(244,114,182,0.15),0 4px 16px rgba(0,0,0,0.04); }
+  .lp6 .lp-lbl { font-size:10px; color:#9ca3af; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; font-family:'DM Sans',sans-serif; }
+  .lp6 .lp-inp { width:100%; padding:10px 14px; background:#fff0f5; border:1px solid #fecdd3; border-radius:12px; color:#6b7280; font-size:12px; font-family:'DM Sans',sans-serif; margin-bottom:14px; }
+  .lp6 .lp-btn-main { background:linear-gradient(135deg,#f472b6,#ec4899); border-radius:12px; font-family:'DM Sans',sans-serif; box-shadow:0 4px 16px rgba(244,114,182,0.4); }
+  .lp6 .lp-or { color:#d1d5db; } .lp6 .lp-or::before,.lp6 .lp-or::after { background:#f3f4f6; }
+  .lp6 .lp-btn-google { background:#fdf9fb; border:1px solid #fce7f3; border-radius:12px; color:#6b7280; font-family:'DM Sans',sans-serif; }
+  .lp6 .lp-foot { color:#9ca3af; } .lp6 .lp-foot a { color:#ec4899; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P7 — Dusty Lora
+  ══════════════════════════════════════════ */
+  .lp7 {
+    background: #fdf2f5;
+    font-family: 'Lora', serif;
+  }
+  .lp7 .app-name { font-family:'Lora',serif; font-size:28px; font-weight:600; font-style:italic; color:#1c1c2e; }
+  .lp7 .lp-logo-sym { font-size:28px; color:#b06382; margin-bottom:6px; }
+  .lp7 .lp-card { background:#fff; border:1px solid rgba(176,99,130,0.2); border-radius:20px; box-shadow:0 4px 20px rgba(176,99,130,0.08); }
+  .lp7 .lp-lbl { font-size:10px; color:#b06382; font-family:'Lora',serif; font-style:italic; margin-bottom:6px; }
+  .lp7 .lp-inp { width:100%; padding:10px 14px; background:#fff; border:1.5px solid rgba(176,99,130,0.28); border-radius:10px; color:#6b7280; font-size:12px; font-family:'Lora',serif; margin-bottom:14px; }
+  .lp7 .lp-btn-main { background:#b06382; border-radius:10px; font-family:'Lora',serif; font-weight:600; }
+  .lp7 .lp-or { color:#d1b8c4; } .lp7 .lp-or::before,.lp7 .lp-or::after { background:#f0e0e8; }
+  .lp7 .lp-btn-google { background:#fff; border:1px solid rgba(176,99,130,0.2); border-radius:10px; color:#9ca3af; font-family:'Lora',serif; font-size:11px; }
+  .lp7 .lp-foot { color:#b06382; font-style:italic; } .lp7 .lp-foot a { color:#b06382; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P8 — Clean SaaS
+  ══════════════════════════════════════════ */
+  .lp8 {
+    background: #ffffff;
+    font-family: 'Inter', sans-serif;
+  }
+  .lp8 .app-name { font-family:'Inter',sans-serif; font-size:26px; font-weight:600; color:#1c1c2e; }
+  .lp8 .app-name span { color:#ec4899; }
+  .lp8 .lp-card { background:#fff; border:1.5px solid #fce7f3; border-radius:12px; }
+  .lp8 .lp-lbl { font-size:10px; color:#6b7280; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px; font-family:'Inter',sans-serif; font-weight:500; }
+  .lp8 .lp-inp { width:100%; padding:10px 14px; background:#fff; border:1px solid #fce7f3; border-radius:8px; color:#6b7280; font-size:12px; font-family:'Inter',sans-serif; margin-bottom:14px; }
+  .lp8 .lp-btn-main { background:#ec4899; border-radius:10px; font-family:'Inter',sans-serif; font-weight:600; }
+  .lp8 .lp-or { color:#d1d5db; } .lp8 .lp-or::before,.lp8 .lp-or::after { background:#f3f4f6; }
+  .lp8 .lp-btn-google { background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#6b7280; font-family:'Inter',sans-serif; }
+  .lp8 .lp-foot { color:#9ca3af; } .lp8 .lp-foot a { color:#ec4899; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P9 — Fairy Garden
+  ══════════════════════════════════════════ */
+  .lp9 {
+    background: radial-gradient(ellipse at 50% 0%,#fce7f3 0%,#fff 60%);
+    font-family: 'Quicksand', sans-serif;
+  }
+  .lp9 .lp-logo-box { width:68px; height:68px; background:linear-gradient(135deg,#f9a8d4,#ec4899); border-radius:24px; box-shadow:0 8px 28px rgba(236,72,153,0.35); margin-bottom:10px; }
+  .lp9 .app-name { font-family:'Caveat',cursive; font-size:38px; font-weight:700; color:#1c1c2e; }
+  .lp9 .lp-card { background:#fff; border-radius:28px; box-shadow:0 8px 40px rgba(236,72,153,0.1),0 2px 8px rgba(0,0,0,0.04); }
+  .lp9 .lp-lbl { font-size:10px; color:#9ca3af; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; font-family:'Quicksand',sans-serif; }
+  .lp9 .lp-inp { width:100%; padding:10px 14px; background:#fff5f9; border:1px solid rgba(249,168,212,0.6); border-radius:14px; color:#6b7280; font-size:12px; font-family:'Quicksand',sans-serif; margin-bottom:14px; }
+  .lp9 .lp-btn-main { background:linear-gradient(90deg,#f9a8d4,#ec4899); border-radius:14px; font-family:'Quicksand',sans-serif; font-weight:700; box-shadow:0 4px 16px rgba(236,72,153,0.3); }
+  .lp9 .lp-or { color:#d1d5db; } .lp9 .lp-or::before,.lp9 .lp-or::after { background:#f3e8f0; }
+  .lp9 .lp-btn-google { background:#fff; border:1px solid rgba(249,168,212,0.4); border-radius:14px; color:#9ca3af; font-family:'Quicksand',sans-serif; }
+  .lp9 .lp-foot { color:#9ca3af; } .lp9 .lp-foot a { color:#ec4899; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P10 — Mauve Club
+  ══════════════════════════════════════════ */
+  .lp10 {
+    background: #fdf4f8;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .lp10 .lp-logo-box { background:linear-gradient(135deg,#db7093,#c9617a); border-radius:20px; box-shadow:0 6px 20px rgba(219,112,147,0.35); }
+  .lp10 .app-name { font-family:'Plus Jakarta Sans',sans-serif; font-size:26px; font-weight:800; color:#1c1c2e; }
+  .lp10 .lp-card { background:#fff; border:1px solid rgba(219,112,147,0.2); border-radius:20px; box-shadow:0 4px 20px rgba(219,112,147,0.1); }
+  .lp10 .lp-lbl { font-size:10px; color:#9ca3af; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; font-family:'Plus Jakarta Sans',sans-serif; }
+  .lp10 .lp-inp { width:100%; padding:10px 14px; background:#fdf0f5; border:1.5px solid rgba(219,112,147,0.3); border-radius:10px; color:#6b7280; font-size:12px; font-family:'Plus Jakarta Sans',sans-serif; margin-bottom:14px; }
+  .lp10 .lp-btn-main { background:#db7093; border-radius:12px; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; }
+  .lp10 .lp-or { color:#d1d5db; } .lp10 .lp-or::before,.lp10 .lp-or::after { background:#f3e8ef; }
+  .lp10 .lp-btn-google { background:#fff; border:1px solid rgba(219,112,147,0.2); border-radius:10px; color:#9ca3af; font-family:'Plus Jakarta Sans',sans-serif; }
+  .lp10 .lp-foot { color:#9ca3af; } .lp10 .lp-foot a { color:#db7093; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P11 — Paper Cut
+  ══════════════════════════════════════════ */
+  .lp11 {
+    background: linear-gradient(160deg,#fff1f5 0%,#fff 100%);
+    font-family: 'Inter', sans-serif;
+  }
+  .lp11 .app-name { font-family:'Inter',sans-serif; font-size:26px; font-weight:600; color:#1c1c2e; }
+  .lp11 .lp-card { background:#fff; border-left:3px solid #ec4899; border-top:none; border-right:none; border-bottom:none; border-radius:0 20px 20px 0; box-shadow:0 4px 24px rgba(0,0,0,0.05); }
+  .lp11 .lp-lbl { font-size:10px; color:#9ca3af; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; font-family:'Inter',sans-serif; }
+  .lp11 .lp-inp { width:100%; padding:10px 14px; background:#fff; border:1px solid rgba(236,72,153,0.25); border-radius:8px; color:#6b7280; font-size:12px; font-family:'Inter',sans-serif; margin-bottom:14px; }
+  .lp11 .lp-btn-main { background:#ec4899; border-radius:8px; font-family:'Inter',sans-serif; font-weight:600; }
+  .lp11 .lp-or { color:#d1d5db; } .lp11 .lp-or::before,.lp11 .lp-or::after { background:#f3f4f6; }
+  .lp11 .lp-btn-google { background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#6b7280; font-family:'Inter',sans-serif; }
+  .lp11 .lp-foot { color:#9ca3af; } .lp11 .lp-foot a { color:#ec4899; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P12 — Lavender Blush
+  ══════════════════════════════════════════ */
+  .lp12 {
+    background: linear-gradient(150deg,#fdf2ff 0%,#fdf2f8 100%);
+    font-family: 'Quicksand', sans-serif;
+  }
+  .lp12 .lp-logo-box { background:linear-gradient(135deg,#e879f9,#ec4899); border-radius:20px; box-shadow:0 6px 20px rgba(232,121,249,0.35); }
+  .lp12 .app-name { font-family:'Quicksand',sans-serif; font-size:28px; font-weight:700; color:#1c1c2e; }
+  .lp12 .lp-card { background:#fff; border:1px solid rgba(232,121,249,0.2); border-radius:22px; box-shadow:0 4px 20px rgba(232,121,249,0.08); }
+  .lp12 .lp-lbl { font-size:10px; color:#9ca3af; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; font-family:'Quicksand',sans-serif; }
+  .lp12 .lp-inp { width:100%; padding:10px 14px; background:rgba(255,255,255,0.8); border:1px solid rgba(232,121,249,0.25); border-radius:12px; color:#6b7280; font-size:12px; font-family:'Quicksand',sans-serif; margin-bottom:14px; }
+  .lp12 .lp-btn-main { background:linear-gradient(90deg,#e879f9,#ec4899); border-radius:14px; font-family:'Quicksand',sans-serif; font-weight:700; box-shadow:0 4px 16px rgba(232,121,249,0.35); }
+  .lp12 .lp-or { color:#d1d5db; } .lp12 .lp-or::before,.lp12 .lp-or::after { background:#ede8f3; }
+  .lp12 .lp-btn-google { background:rgba(255,255,255,0.8); border:1px solid rgba(232,121,249,0.2); border-radius:14px; color:#9ca3af; font-family:'Quicksand',sans-serif; }
+  .lp12 .lp-foot { color:#9ca3af; } .lp12 .lp-foot a { color:#e879f9; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P13 — Handwritten All
+  ══════════════════════════════════════════ */
+  .lp13 {
+    background: #fff8fb;
+    font-family: 'Caveat', cursive;
+  }
+  .lp13 .app-name { font-family:'Caveat',cursive; font-size:40px; font-weight:700; color:#1c1c2e; }
+  .lp13 .lp-tagline { font-family:'Caveat',cursive; font-size:14px; color:#9ca3af; margin-top:2px; }
+  .lp13 .lp-card { background:#fff; border:2px solid rgba(244,114,182,0.25); border-radius:24px; }
+  .lp13 .lp-lbl { font-size:14px; color:#9ca3af; margin-bottom:4px; font-family:'Caveat',cursive; }
+  .lp13 .lp-inp { width:100%; padding:10px 14px; background:#fff; border:1px solid rgba(244,114,182,0.4); border-radius:12px; color:#6b7280; font-size:14px; font-family:'Caveat',cursive; margin-bottom:14px; }
+  .lp13 .lp-btn-main { background:#f472b6; border-radius:14px; font-family:'Caveat',cursive; font-size:17px; }
+  .lp13 .lp-or { color:#d1d5db; font-family:'Caveat',cursive; font-size:14px; } .lp13 .lp-or::before,.lp13 .lp-or::after { background:#fce7f3; }
+  .lp13 .lp-btn-google { background:#fff; border:1px solid rgba(244,114,182,0.3); border-radius:14px; color:#9ca3af; font-family:'Caveat',cursive; font-size:14px; }
+  .lp13 .lp-foot { color:#9ca3af; font-family:'Caveat',cursive; font-size:15px; } .lp13 .lp-foot a { color:#f472b6; font-weight:700; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P14 — Double Border
+  ══════════════════════════════════════════ */
+  .lp14 {
+    background: #fffbfc;
+    font-family: 'Nunito', sans-serif;
+  }
+  .lp14 .app-name { font-family:'Nunito',sans-serif; font-size:28px; font-weight:800; color:#1c1c2e; }
+  .lp14 .app-name span { color:#f472b6; }
+  .lp14 .lp-card { background:#fff; border:1px solid #fce7f3; outline:3px solid #fdf2f8; outline-offset:3px; border-radius:20px; }
+  .lp14 .lp-lbl { font-size:10px; color:#9ca3af; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; font-family:'Nunito',sans-serif; }
+  .lp14 .lp-inp { width:100%; padding:10px 18px; background:#fff5f9; border:1px solid rgba(244,114,182,0.3); border-radius:50px; color:#6b7280; font-size:12px; font-family:'Nunito',sans-serif; margin-bottom:14px; }
+  .lp14 .lp-btn-main { background:#f472b6; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; }
+  .lp14 .lp-or { color:#d1d5db; } .lp14 .lp-or::before,.lp14 .lp-or::after { background:#fce7f3; }
+  .lp14 .lp-btn-google { background:#fff; border:1px solid rgba(244,114,182,0.25); border-radius:50px; color:#9ca3af; font-family:'Nunito',sans-serif; }
+  .lp14 .lp-foot { color:#9ca3af; } .lp14 .lp-foot a { color:#f472b6; font-weight:700; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P15 — Deep Rose
+  ══════════════════════════════════════════ */
+  .lp15 {
+    background: #fef2f4;
+    font-family: 'Inter', sans-serif;
+  }
+  .lp15 .lp-logo-box { background:#e11d48; border-radius:18px; box-shadow:0 6px 20px rgba(225,29,72,0.4); }
+  .lp15 .app-name { font-family:'Playfair Display',serif; font-size:28px; font-weight:600; font-style:italic; color:#1c1c2e; }
+  .lp15 .lp-card { background:#fff; border:1.5px solid rgba(225,29,72,0.18); border-radius:16px; box-shadow:0 4px 32px rgba(225,29,72,0.08); }
+  .lp15 .lp-lbl { font-size:9px; color:#e11d48; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:6px; font-family:'Inter',sans-serif; font-weight:600; }
+  .lp15 .lp-inp { width:100%; padding:10px 14px; background:#fff; border:1.5px solid rgba(225,29,72,0.2); border-radius:8px; color:#6b7280; font-size:12px; font-family:'Inter',sans-serif; margin-bottom:14px; }
+  .lp15 .lp-btn-main { background:#e11d48; border-radius:8px; font-family:'Inter',sans-serif; font-weight:600; box-shadow:0 4px 16px rgba(225,29,72,0.35); }
+  .lp15 .lp-or { color:#d1d5db; } .lp15 .lp-or::before,.lp15 .lp-or::after { background:#f3f4f6; }
+  .lp15 .lp-btn-google { background:#fff; border:1px solid rgba(225,29,72,0.15); border-radius:8px; color:#6b7280; font-family:'Inter',sans-serif; }
+  .lp15 .lp-foot { color:#9ca3af; } .lp15 .lp-foot a { color:#e11d48; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P16 — Soft Focus
+  ══════════════════════════════════════════ */
+  .lp16 {
+    background: linear-gradient(135deg,#fce7f3 0%,#fdf2ff 100%);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .lp16 .app-name { font-family:'DM Sans',sans-serif; font-size:27px; font-weight:500; color:#1c1c2e; }
+  .lp16 .lp-logo-sym { font-size:28px; margin-bottom:6px; }
+  .lp16 .lp-card { background:rgba(255,255,255,0.82); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.95); border-radius:28px; }
+  .lp16 .lp-lbl { font-size:10px; color:#9ca3af; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; font-family:'DM Sans',sans-serif; }
+  .lp16 .lp-inp { width:100%; padding:10px 14px; background:rgba(255,255,255,0.7); border:1px solid rgba(219,39,119,0.2); border-radius:12px; color:#6b7280; font-size:12px; font-family:'DM Sans',sans-serif; margin-bottom:14px; }
+  .lp16 .lp-btn-main { background:#db2777; border-radius:12px; font-family:'DM Sans',sans-serif; font-weight:600; }
+  .lp16 .lp-or { color:rgba(156,163,175,0.7); } .lp16 .lp-or::before,.lp16 .lp-or::after { background:rgba(209,213,219,0.4); }
+  .lp16 .lp-btn-google { background:rgba(255,255,255,0.6); border:1px solid rgba(219,39,119,0.15); border-radius:12px; color:#6b7280; font-family:'DM Sans',sans-serif; }
+  .lp16 .lp-foot { color:#9ca3af; } .lp16 .lp-foot a { color:#db2777; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P17 — Porcelain Serif
+  ══════════════════════════════════════════ */
+  .lp17 {
+    background: #fffeff;
+    font-family: 'Inter', sans-serif;
+  }
+  .lp17 .app-name { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:600; font-style:italic; color:#1c1c2e; }
+  .lp17 .lp-logo-sym { font-size:24px; color:#9d174d; margin-bottom:8px; }
+  .lp17 .lp-card { background:#fff; border:1px solid #f3e8ef; border-radius:20px; box-shadow:0 2px 12px rgba(157,23,77,0.04); }
+  .lp17 .lp-lbl { font-size:11px; color:#9d174d; font-family:'Cormorant Garamond',serif; font-style:italic; margin-bottom:6px; }
+  .lp17 .lp-inp { width:100%; padding:10px 14px; background:#fff; border:1px solid #f9d1e2; border-radius:10px; color:#6b7280; font-size:12px; font-family:'Inter',sans-serif; margin-bottom:14px; }
+  .lp17 .lp-btn-main { background:#9d174d; border-radius:10px; font-family:'Inter',sans-serif; font-weight:600; }
+  .lp17 .lp-or { color:#d1d5db; } .lp17 .lp-or::before,.lp17 .lp-or::after { background:#f3e8ef; }
+  .lp17 .lp-btn-google { background:#fff; border:1px solid #f3e8ef; border-radius:10px; color:#9ca3af; font-family:'Inter',sans-serif; }
+  .lp17 .lp-foot { color:#9ca3af; } .lp17 .lp-foot a { color:#9d174d; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P18 — Sunrise Glow
+  ══════════════════════════════════════════ */
+  .lp18 {
+    background: radial-gradient(ellipse at top,#fce7f3 0%,#fff 50%);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .lp18 .lp-logo-box { background:linear-gradient(135deg,#fb7185,#ec4899); border-radius:22px; box-shadow:0 6px 20px rgba(251,113,133,0.4); }
+  .lp18 .app-name { font-family:'Plus Jakarta Sans',sans-serif; font-size:26px; font-weight:700; color:#1c1c2e; }
+  .lp18 .lp-card { background:#fff; border-radius:30px; box-shadow:0 8px 40px rgba(0,0,0,0.06),0 0 0 1px rgba(244,114,182,0.1); }
+  .lp18 .lp-lbl { font-size:10px; color:#9ca3af; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; font-family:'Plus Jakarta Sans',sans-serif; }
+  .lp18 .lp-inp { width:100%; padding:10px 14px; background:#fdf2f6; border:1px solid #fce7f3; border-radius:12px; color:#6b7280; font-size:12px; font-family:'Plus Jakarta Sans',sans-serif; margin-bottom:14px; }
+  .lp18 .lp-btn-main { background:linear-gradient(135deg,#fb7185,#ec4899); border-radius:12px; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; box-shadow:0 4px 16px rgba(236,72,153,0.3); }
+  .lp18 .lp-or { color:#d1d5db; } .lp18 .lp-or::before,.lp18 .lp-or::after { background:#f3f4f6; }
+  .lp18 .lp-btn-google { background:#fff; border:1px solid #fce7f3; border-radius:12px; color:#9ca3af; font-family:'Plus Jakarta Sans',sans-serif; }
+  .lp18 .lp-foot { color:#9ca3af; } .lp18 .lp-foot a { color:#ec4899; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P19 — Warm Cream Pink
+  ══════════════════════════════════════════ */
+  .lp19 {
+    background: #fdfaf8;
+    font-family: 'Inter', sans-serif;
+  }
+  .lp19 .lp-logo-box { background:linear-gradient(135deg,#f9a8d4,#ec4899); border-radius:20px; box-shadow:0 6px 20px rgba(236,72,153,0.3); }
+  .lp19 .app-name { font-family:'Lora',serif; font-size:28px; font-weight:600; color:#1c1c2e; }
+  .lp19 .lp-card { background:#fff; border:1px solid rgba(236,72,153,0.1); border-radius:20px; box-shadow:0 4px 20px rgba(0,0,0,0.04); }
+  .lp19 .lp-lbl { font-size:10px; color:#9ca3af; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; font-family:'Inter',sans-serif; }
+  .lp19 .lp-inp { width:100%; padding:10px 14px; background:#fffbf9; border:1px solid rgba(236,72,153,0.2); border-radius:12px; color:#6b7280; font-size:12px; font-family:'Inter',sans-serif; margin-bottom:14px; }
+  .lp19 .lp-btn-main { background:#ec4899; border-radius:12px; font-family:'Inter',sans-serif; font-weight:600; box-shadow:0 4px 14px rgba(236,72,153,0.3); }
+  .lp19 .lp-or { color:#d1d5db; } .lp19 .lp-or::before,.lp19 .lp-or::after { background:#f5ede8; }
+  .lp19 .lp-btn-google { background:#fff; border:1px solid rgba(236,72,153,0.12); border-radius:12px; color:#9ca3af; font-family:'Inter',sans-serif; }
+  .lp19 .lp-foot { color:#9ca3af; } .lp19 .lp-foot a { color:#ec4899; font-weight:600; text-decoration:none; }
+
+  /* ══════════════════════════════════════════
+     P20 — Bold Contrast
+  ══════════════════════════════════════════ */
+  .lp20 {
+    background: #fff;
+    font-family: 'Inter', sans-serif;
+  }
+  .lp20 .app-name { font-family:'Nunito',sans-serif; font-size:28px; font-weight:800; color:#1c1c2e; }
+  .lp20 .lp-tagline { font-size:11px; color:#9ca3af; margin-top:3px; font-family:'Inter',sans-serif; }
+  .lp20 .lp-card { background:#fff; border-top:4px solid #ec4899; border-left:none; border-right:none; border-bottom:none; border-radius:20px; box-shadow:0 4px 24px rgba(0,0,0,0.07); }
+  .lp20 .lp-lbl { font-size:10px; color:#6b7280; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px; font-family:'Inter',sans-serif; font-weight:500; }
+  .lp20 .lp-inp { width:100%; padding:10px 14px; background:#fff; border:1px solid #fce7f3; border-radius:10px; color:#6b7280; font-size:12px; font-family:'Inter',sans-serif; margin-bottom:14px; }
+  .lp20 .lp-btn-main { background:#ec4899; border-radius:10px; font-family:'Inter',sans-serif; font-weight:600; }
+  .lp20 .lp-or { color:#d1d5db; } .lp20 .lp-or::before,.lp20 .lp-or::after { background:#f3f4f6; }
+  .lp20 .lp-btn-google { background:#fff; border:1px solid #e5e7eb; border-radius:10px; color:#6b7280; font-family:'Inter',sans-serif; }
+  .lp20 .lp-foot { color:#9ca3af; } .lp20 .lp-foot a { color:#ec4899; font-weight:600; text-decoration:none; }
+
+</style>
+</head>
+<body>
+
+<p class="page-title">Connected — Login Design Exploration</p>
+<h1 class="page-heading">Twenty Pink Directions</h1>
+<p class="page-sub">All variations on Design C "Warm Blossom" with pink accent · Light backgrounds · Clean form</p>
+
+<div class="grid">
+
+  <!-- P1 Cherry Blossom -->
+  <div class="col">
+    <span class="col-label">P1</span>
+    <span class="style-tag tag-p1">Cherry Blossom</span>
+    <div class="phone">
+      <div class="lp-inner lp1">
+        <div class="lp-blob" style="width:180px;height:180px;top:-40px;right:-40px;background:rgba(249,168,212,0.35);"></div>
+        <div class="lp-blob" style="width:160px;height:160px;bottom:-30px;left:-40px;background:rgba(196,181,253,0.25);"></div>
+        <div class="lp-logo">
+          <div class="lp-logo-box">🌸</div>
+          <div class="app-name">Connected</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp1 lp-lbl">Email</div>
+            <input class="lp1 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp1 lp-lbl">Password</div>
+            <input class="lp1 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp1">Sign In</button>
+          <div class="lp-or lp1">or</div>
+          <button class="lp-btn-google lp1">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp1">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Caveat name · Quicksand body · Soft pink blobs · Classic shadow card</p>
+  </div>
+
+  <!-- P2 Petal Pill -->
+  <div class="col">
+    <span class="col-label">P2</span>
+    <span class="style-tag tag-p2">Petal Pill</span>
+    <div class="phone">
+      <div class="lp-inner lp2">
+        <div class="lp-logo">
+          <div class="app-name">Connected ♡</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp2 lp-lbl">Email</div>
+            <input class="lp2 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp2 lp-lbl">Password</div>
+            <input class="lp2 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp2">Sign In</button>
+          <div class="lp-or lp2">or</div>
+          <button class="lp-btn-google lp2">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp2">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Nunito 800 · Pill inputs & buttons · Gen-Z energy · Gradient BG</p>
+  </div>
+
+  <!-- P3 Rose Editorial -->
+  <div class="col">
+    <span class="col-label">P3</span>
+    <span class="style-tag tag-p3">Rose Editorial</span>
+    <div class="phone">
+      <div class="lp-inner lp3">
+        <div class="lp-logo" style="margin-bottom:22px;">
+          <div class="app-name">Connected</div>
+          <div style="font-size:10px;color:#be185d;letter-spacing:0.16em;font-family:'Inter',sans-serif;margin-top:4px;">STAY CLOSE</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp3 lp-lbl">Email address</div>
+            <input class="lp3 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp3 lp-lbl">Password</div>
+            <input class="lp3 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp3">Sign In</button>
+          <div class="lp-or lp3">or</div>
+          <button class="lp-btn-google lp3">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp3">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Playfair italic · Inter body · Deep rose #BE185D · Thick card border</p>
+  </div>
+
+  <!-- P4 Frosted Blush -->
+  <div class="col">
+    <span class="col-label">P4</span>
+    <span class="style-tag tag-p4">Frosted Blush</span>
+    <div class="phone">
+      <div class="lp-inner lp4">
+        <div class="lp-logo">
+          <div class="lp-logo-box">🌷</div>
+          <div class="app-name">Connected</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp4 lp-lbl">Email</div>
+            <input class="lp4 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp4 lp-lbl">Password</div>
+            <input class="lp4 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp4">Sign In</button>
+          <div class="lp-or lp4">or</div>
+          <button class="lp-btn-google lp4">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp4">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Frosted glass card · Gradient BG · Nunito 800 · Borderless inputs</p>
+  </div>
+
+  <!-- P5 Minimal Float -->
+  <div class="col">
+    <span class="col-label">P5</span>
+    <span class="style-tag tag-p5">Minimal Float</span>
+    <div class="phone">
+      <div class="lp-inner lp5">
+        <div class="lp-logo" style="margin-bottom:32px;">
+          <div class="app-name">Connected</div>
+          <div class="lp-tagline lp5">STAY CLOSE</div>
+        </div>
+        <div class="lp-card lp5">
+          <div class="lp-field">
+            <div class="lp5 lp-lbl">Email</div>
+            <input class="lp5 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp5 lp-lbl">Password</div>
+            <input class="lp5 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp5">Sign In</button>
+          <div class="lp-or lp5">or</div>
+          <button class="lp-btn-google lp5">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp5">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">No card · Cormorant italic name · Underline inputs · Square button</p>
+  </div>
+
+  <!-- P6 Cotton Puff -->
+  <div class="col">
+    <span class="col-label">P6</span>
+    <span class="style-tag tag-p6">Cotton Puff</span>
+    <div class="phone">
+      <div class="lp-inner lp6">
+        <div class="lp-logo">
+          <div class="lp-logo-box">☁️</div>
+          <div class="app-name">Connected</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp6 lp-lbl">Email</div>
+            <input class="lp6 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp6 lp-lbl">Password</div>
+            <input class="lp6 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp6">Sign In</button>
+          <div class="lp-or lp6">or</div>
+          <button class="lp-btn-google lp6">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp6">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">DM Sans · Heavy pink shadow · Gradient button · No border cloud card</p>
+  </div>
+
+  <!-- P7 Dusty Lora -->
+  <div class="col">
+    <span class="col-label">P7</span>
+    <span class="style-tag tag-p7">Dusty Lora</span>
+    <div class="phone">
+      <div class="lp-inner lp7">
+        <div class="lp-logo" style="margin-bottom:24px;">
+          <div class="lp7 lp-logo-sym">♡</div>
+          <div class="app-name">Connected</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp7 lp-lbl">Email address</div>
+            <input class="lp7 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp7 lp-lbl">Password</div>
+            <input class="lp7 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp7">Sign In</button>
+          <div class="lp-or lp7">or</div>
+          <button class="lp-btn-google lp7">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp7">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Lora serif · Dusty rose #B06382 · Italic labels · Blush BG</p>
+  </div>
+
+  <!-- P8 Clean SaaS -->
+  <div class="col">
+    <span class="col-label">P8</span>
+    <span class="style-tag tag-p8">Clean SaaS</span>
+    <div class="phone">
+      <div class="lp-inner lp8">
+        <div class="lp-logo" style="margin-bottom:20px;">
+          <div class="app-name">Connected <span>♡</span></div>
+          <div style="font-size:10px;color:#9ca3af;letter-spacing:0.1em;font-family:'Inter',sans-serif;margin-top:3px;">STAY CLOSE</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp8 lp-lbl">Email</div>
+            <input class="lp8 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp8 lp-lbl">Password</div>
+            <input class="lp8 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp8">Sign In</button>
+          <div class="lp-or lp8">or</div>
+          <button class="lp-btn-google lp8">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp8">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Pure Inter · No decoration · Pink ♡ accent · Clean app border card</p>
+  </div>
+
+  <!-- P9 Fairy Garden -->
+  <div class="col">
+    <span class="col-label">P9</span>
+    <span class="style-tag tag-p9">Fairy Garden</span>
+    <div class="phone">
+      <div class="lp-inner lp9">
+        <div class="lp-logo">
+          <div class="lp9 lp-logo-box" style="display:flex;align-items:center;justify-content:center;font-size:28px;">🌸</div>
+          <div class="app-name">Connected</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp9 lp-lbl">Email</div>
+            <input class="lp9 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp9 lp-lbl">Password</div>
+            <input class="lp9 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp9">Sign In</button>
+          <div class="lp-or lp9">or</div>
+          <button class="lp-btn-google lp9">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp9">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Caveat 38px · Large logo box · Gradient radial BG · Dreamy shadows</p>
+  </div>
+
+  <!-- P10 Mauve Club -->
+  <div class="col">
+    <span class="col-label">P10</span>
+    <span class="style-tag tag-p10">Mauve Club</span>
+    <div class="phone">
+      <div class="lp-inner lp10">
+        <div class="lp-logo">
+          <div class="lp-logo-box lp10" style="display:flex;align-items:center;justify-content:center;font-size:26px;">💜</div>
+          <div class="app-name">Connected</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp10 lp-lbl">Email</div>
+            <input class="lp10 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp10 lp-lbl">Password</div>
+            <input class="lp10 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp10">Sign In</button>
+          <div class="lp-or lp10">or</div>
+          <button class="lp-btn-google lp10">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp10">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Plus Jakarta Sans 800 · Mauve #DB7093 · Warm pink BG · Subtle borders</p>
+  </div>
+
+  <!-- P11 Paper Cut -->
+  <div class="col">
+    <span class="col-label">P11</span>
+    <span class="style-tag tag-p11">Paper Cut</span>
+    <div class="phone">
+      <div class="lp-inner lp11">
+        <div class="lp-logo" style="margin-bottom:28px;">
+          <div class="app-name">Connected</div>
+          <div style="font-size:10px;color:#9ca3af;letter-spacing:0.12em;font-family:'Inter',sans-serif;margin-top:3px;">STAY CLOSE</div>
+        </div>
+        <div class="lp-card lp11">
+          <div class="lp-field">
+            <div class="lp11 lp-lbl">Email</div>
+            <input class="lp11 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp11 lp-lbl">Password</div>
+            <input class="lp11 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp11">Sign In</button>
+          <div class="lp-or lp11">or</div>
+          <button class="lp-btn-google lp11">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp11">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Left pink accent border · Asymmetric radius · Inter · Gradient BG</p>
+  </div>
+
+  <!-- P12 Lavender Blush -->
+  <div class="col">
+    <span class="col-label">P12</span>
+    <span class="style-tag tag-p12">Lavender Blush</span>
+    <div class="phone">
+      <div class="lp-inner lp12">
+        <div class="lp-logo">
+          <div class="lp-logo-box lp12" style="display:flex;align-items:center;justify-content:center;font-size:26px;">✨</div>
+          <div class="app-name">Connected</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp12 lp-lbl">Email</div>
+            <input class="lp12 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp12 lp-lbl">Password</div>
+            <input class="lp12 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp12">Sign In</button>
+          <div class="lp-or lp12">or</div>
+          <button class="lp-btn-google lp12">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp12">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Quicksand · Lavender-blush BG · Purple-pink gradient button</p>
+  </div>
+
+  <!-- P13 Handwritten All -->
+  <div class="col">
+    <span class="col-label">P13</span>
+    <span class="style-tag tag-p13">Handwritten All</span>
+    <div class="phone">
+      <div class="lp-inner lp13">
+        <div class="lp-logo" style="margin-bottom:22px;">
+          <div class="app-name">Connected</div>
+          <div class="lp-tagline lp13">stay close ♡</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp13 lp-lbl">Your email</div>
+            <input class="lp13 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp13 lp-lbl">Password</div>
+            <input class="lp13 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp13">Sign In</button>
+          <div class="lp-or lp13">or</div>
+          <button class="lp-btn-google lp13">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp13">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Caveat everywhere · Labels not caps · Large app name · Playful pink</p>
+  </div>
+
+  <!-- P14 Double Border -->
+  <div class="col">
+    <span class="col-label">P14</span>
+    <span class="style-tag tag-p14">Double Border</span>
+    <div class="phone">
+      <div class="lp-inner lp14">
+        <div class="lp-logo" style="margin-bottom:22px;">
+          <div class="app-name">Connected <span>♡</span></div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp14 lp-lbl">Email</div>
+            <input class="lp14 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp14 lp-lbl">Password</div>
+            <input class="lp14 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp14">Sign In</button>
+          <div class="lp-or lp14">or</div>
+          <button class="lp-btn-google lp14">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp14">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Nunito 800 · Double border frame effect · Pill inputs & buttons</p>
+  </div>
+
+  <!-- P15 Deep Rose -->
+  <div class="col">
+    <span class="col-label">P15</span>
+    <span class="style-tag tag-p15">Deep Rose</span>
+    <div class="phone">
+      <div class="lp-inner lp15">
+        <div class="lp-logo">
+          <div class="lp-logo-box lp15" style="display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;">🌹</div>
+          <div class="app-name">Connected</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp15 lp-lbl">Email Address</div>
+            <input class="lp15 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp15 lp-lbl">Password</div>
+            <input class="lp15 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp15">Sign In</button>
+          <div class="lp-or lp15">or</div>
+          <button class="lp-btn-google lp15">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp15">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Playfair italic · #E11D48 deep rose · Uppercase rose labels · Strong shadow btn</p>
+  </div>
+
+  <!-- P16 Soft Focus -->
+  <div class="col">
+    <span class="col-label">P16</span>
+    <span class="style-tag tag-p16">Soft Focus</span>
+    <div class="phone">
+      <div class="lp-inner lp16">
+        <div class="lp-logo" style="margin-bottom:22px;">
+          <div class="lp16 lp-logo-sym">♡</div>
+          <div class="app-name">Connected</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp16 lp-lbl">Email</div>
+            <input class="lp16 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp16 lp-lbl">Password</div>
+            <input class="lp16 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp16">Sign In</button>
+          <div class="lp-or lp16">or</div>
+          <button class="lp-btn-google lp16">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp16">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">DM Sans · Frosted glass on pink grad BG · Instagram aesthetic</p>
+  </div>
+
+  <!-- P17 Porcelain Serif -->
+  <div class="col">
+    <span class="col-label">P17</span>
+    <span class="style-tag tag-p17">Porcelain Serif</span>
+    <div class="phone">
+      <div class="lp-inner lp17">
+        <div class="lp-logo" style="margin-bottom:22px;">
+          <div class="lp17 lp-logo-sym">♡</div>
+          <div class="app-name">Connected</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp17 lp-lbl">Email address</div>
+            <input class="lp17 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp17 lp-lbl">Password</div>
+            <input class="lp17 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp17">Sign In</button>
+          <div class="lp-or lp17">or</div>
+          <button class="lp-btn-google lp17">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp17">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Cormorant Garamond · Lora italic labels · Deep raspberry #9D174D · Minimal</p>
+  </div>
+
+  <!-- P18 Sunrise Glow -->
+  <div class="col">
+    <span class="col-label">P18</span>
+    <span class="style-tag tag-p18">Sunrise Glow</span>
+    <div class="phone">
+      <div class="lp-inner lp18">
+        <div class="lp-logo">
+          <div class="lp-logo-box lp18" style="display:flex;align-items:center;justify-content:center;font-size:26px;">🌅</div>
+          <div class="app-name">Connected</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp18 lp-lbl">Email</div>
+            <input class="lp18 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp18 lp-lbl">Password</div>
+            <input class="lp18 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp18">Sign In</button>
+          <div class="lp-or lp18">or</div>
+          <button class="lp-btn-google lp18">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp18">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Plus Jakarta Sans · Radial warm BG · fb7185→ec4899 gradient · No border</p>
+  </div>
+
+  <!-- P19 Warm Cream Pink -->
+  <div class="col">
+    <span class="col-label">P19</span>
+    <span class="style-tag tag-p19">Warm Cream Pink</span>
+    <div class="phone">
+      <div class="lp-inner lp19">
+        <div class="lp-blob" style="width:160px;height:160px;top:-30px;right:-30px;background:rgba(249,168,212,0.3);"></div>
+        <div class="lp-blob" style="width:140px;height:140px;bottom:-20px;left:-30px;background:rgba(252,231,243,0.5);"></div>
+        <div class="lp-logo">
+          <div class="lp-logo-box lp19" style="display:flex;align-items:center;justify-content:center;font-size:26px;">🌸</div>
+          <div class="app-name">Connected</div>
+        </div>
+        <div class="lp-card">
+          <div class="lp-field">
+            <div class="lp19 lp-lbl">Email</div>
+            <input class="lp19 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp19 lp-lbl">Password</div>
+            <input class="lp19 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp19">Sign In</button>
+          <div class="lp-or lp19">or</div>
+          <button class="lp-btn-google lp19">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp19">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Lora name · Inter body · Warm cream #fdfaf8 · Soft blobs · Adult romantic</p>
+  </div>
+
+  <!-- P20 Bold Contrast -->
+  <div class="col">
+    <span class="col-label">P20</span>
+    <span class="style-tag tag-p20">Bold Contrast</span>
+    <div class="phone">
+      <div class="lp-inner lp20">
+        <div class="lp-logo" style="margin-bottom:20px;">
+          <div class="app-name">Connected</div>
+          <div class="lp-tagline lp20">Stay close to the ones you love</div>
+        </div>
+        <div class="lp-card lp20">
+          <div class="lp-field">
+            <div class="lp20 lp-lbl">Email</div>
+            <input class="lp20 lp-inp" type="text" placeholder="you@example.com" readonly>
+          </div>
+          <div class="lp-field">
+            <div class="lp20 lp-lbl">Password</div>
+            <input class="lp20 lp-inp" type="text" placeholder="••••••••" readonly>
+          </div>
+          <button class="lp-btn-main lp20">Sign In</button>
+          <div class="lp-or lp20">or</div>
+          <button class="lp-btn-google lp20">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.27 9.76A7.08 7.08 0 0 1 19.07 12h-7.13v3h4.07a4.07 4.07 0 0 1-1.72 2.45v2h2.77A7.08 7.08 0 0 0 12 4.93a7.08 7.08 0 0 0-6.73 4.83z"/><path fill="#34A853" d="M12 19.93a7.08 7.08 0 0 0 4.93-1.93h-2.77A4.07 4.07 0 0 1 7.86 15H5.09a7.08 7.08 0 0 0 6.91 4.93z"/><path fill="#FBBC04" d="M7.86 15A4.07 4.07 0 0 1 7.86 9H5.09a7.08 7.08 0 0 0 0 6z"/><path fill="#4285F4" d="M19.07 12H12v3h7.07c.1-.48.17-.97.17-1.5s-.07-1.02-.17-1.5z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="lp-foot lp20">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+    <p class="col-desc">Nunito 800 + Inter · Top pink border accent · Pure white · Zero decoration</p>
+  </div>
+
+</div>
+</body>
+</html>

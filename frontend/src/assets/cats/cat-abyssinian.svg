@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+  <!-- Background -->
+  <rect width="300" height="200" fill="#2D1B5E"/>
+  <!-- Tail (slender) -->
+  <ellipse cx="86" cy="149" rx="43" ry="11" fill="#B8611A" transform="rotate(-15 86 149)"/>
+  <ellipse cx="62" cy="156" rx="18" ry="8" fill="#9A5015" transform="rotate(22 62 156)"/>
+  <!-- Body (slender, lean) -->
+  <ellipse cx="154" cy="147" rx="68" ry="35" fill="#B8611A"/>
+  <!-- Head (slightly triangular/wedge) -->
+  <ellipse cx="212" cy="105" rx="32" ry="30" fill="#B8611A"/>
+  <!-- Large pointed ears -->
+  <polygon points="196,78 183,52 210,72" fill="#B8611A"/>
+  <polygon points="228,78 241,52 214,72" fill="#B8611A"/>
+  <polygon points="196,76 186,56 208,72" fill="#9A5015"/>
+  <polygon points="228,76 238,56 216,72" fill="#9A5015"/>
+  <!-- Agouti ticking pattern (subtle) -->
+  <line x1="200" y1="92" x2="200" y2="100" stroke="#9A5015" stroke-width="1" opacity="0.4"/>
+  <line x1="205" y1="90" x2="204" y2="98" stroke="#9A5015" stroke-width="1" opacity="0.4"/>
+  <line x1="218" y1="90" x2="218" y2="98" stroke="#9A5015" stroke-width="1" opacity="0.4"/>
+  <!-- Eyes (large, almond-shaped for Abyssinian) -->
+  <ellipse cx="200" cy="103" rx="9" ry="7.5" fill="#DAA520"/>
+  <ellipse cx="224" cy="103" rx="9" ry="7.5" fill="#DAA520"/>
+  <ellipse cx="201" cy="103" rx="4.5" ry="4" fill="#0A0A00"/>
+  <ellipse cx="225" cy="103" rx="4.5" ry="4" fill="#0A0A00"/>
+  <circle cx="202" cy="102" r="1.5" fill="white"/>
+  <circle cx="226" cy="102" r="1.5" fill="white"/>
+  <!-- Slender muzzle -->
+  <ellipse cx="212" cy="114" rx="9" ry="6" fill="#9A5015"/>
+  <!-- Nose -->
+  <circle cx="212" cy="113" r="2" fill="#C87070"/>
+  <!-- Whiskers -->
+  <line x1="176" y1="113" x2="202" y2="115" stroke="#E0A870" stroke-width="1" opacity="0.7"/>
+  <line x1="176" y1="117" x2="202" y2="117" stroke="#E0A870" stroke-width="1" opacity="0.7"/>
+  <line x1="222" y1="115" x2="248" y2="113" stroke="#E0A870" stroke-width="1" opacity="0.7"/>
+  <line x1="222" y1="117" x2="248" y2="117" stroke="#E0A870" stroke-width="1" opacity="0.7"/>
+  <!-- Label -->
+  <text x="150" y="190" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" opacity="0.8">Abyssinian</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140">
+  <!-- Barrel 2: horseshoe outer frame wrapping back+arms, separate seat pad -->
+  <!-- Horseshoe outer shell (continuous curved arms + back) -->
+  <path d="M10,96 L10,52 Q10,10 60,10 Q110,10 110,52 L110,96 Z" fill="#a3647a"/>
+  <!-- Inner cushioned back surface -->
+  <path d="M22,94 L22,54 Q22,22 60,22 Q98,22 98,54 L98,94 Z" fill="#d8a4b4"/>
+  <!-- Shadow strip — 3D depth cue between back and seat -->
+  <rect x="22" y="88" width="76" height="6" rx="1" fill="#8a506a"/>
+  <!-- Seat pad (wider than inner horseshoe, sits in front) -->
+  <rect x="16" y="92" width="88" height="20" rx="10" fill="#d8a4b4"/>
+  <!-- Front apron -->
+  <rect x="18" y="109" width="84" height="6" rx="3" fill="#a3647a"/>
+  <!-- Legs -->
+  <rect x="30" y="113" width="10" height="20" rx="4" fill="#7a6d88"/>
+  <rect x="80" y="113" width="10" height="20" rx="4" fill="#7a6d88"/>
+</svg>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crescent Moon SVG</title>
+  <style>
+    body {
+      background: #0f0f14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!--
+  Crescent moon using SVG mask:
+  - Full circle drawn at center
+  - Offset circle masked out (black = hide), leaving the crescent shape
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="160" height="160">
+  <defs>
+    <mask id="crescent-mask">
+      <!-- White = show, Black = hide -->
+      <rect width="80" height="80" fill="white"/>
+      <!-- This offset circle cuts out the right side, leaving a left-opening crescent -->
+      <circle cx="52" cy="38" r="24" fill="black"/>
+    </mask>
+  </defs>
+  <circle cx="40" cy="40" r="26" fill="#ffe8a1" mask="url(#crescent-mask)"/>
+</svg>
+
+</body>
+</html>

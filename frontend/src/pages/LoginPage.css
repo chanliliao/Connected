@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   background: var(--color-bg);
-  padding: 24px;
+  padding: 16px;
   box-sizing: border-box;
 }
 
@@ -12,13 +12,13 @@
   background: var(--color-card);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
-  padding: 48px 40px;
+  padding: 32px 20px;
   width: 100%;
-  max-width: 420px;
+  max-width: 430px;
   box-sizing: border-box;
 
-  @media (max-width: 480px) {
-    padding: 36px 24px;
+  @media (min-width: 480px) {
+    padding: 48px 40px;
   }
 }
 
@@ -207,6 +207,11 @@
 /* Date input */
 .login-input-date {
   color-scheme: light;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* Forgot links row */

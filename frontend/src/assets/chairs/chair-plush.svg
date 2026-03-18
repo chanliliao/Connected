@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140">
+  <!-- Plush armchair: wide puffy round arms, short legs, 3D back/seat separation -->
+  <!-- Outer shell body -->
+  <rect x="12" y="18" width="96" height="70" rx="18" fill="#a3647a"/>
+  <!-- Puffy arm pads (sides) -->
+  <ellipse cx="20" cy="60" rx="14" ry="18" fill="#c07888"/>
+  <ellipse cx="100" cy="60" rx="14" ry="18" fill="#c07888"/>
+  <!-- Back cushion (inset, narrower than frame) -->
+  <rect x="30" y="22" width="60" height="48" rx="10" fill="#d8a4b4"/>
+  <!-- Shadow strip — 3D depth cue between back and seat -->
+  <rect x="30" y="64" width="60" height="6" rx="1" fill="#8a506a"/>
+  <!-- Seat cushion (wider than back, protrudes forward) -->
+  <rect x="14" y="68" width="92" height="22" rx="10" fill="#d8a4b4"/>
+  <!-- Front apron -->
+  <rect x="16" y="87" width="88" height="7" rx="3" fill="#a3647a"/>
+  <!-- Short stubby legs -->
+  <rect x="26" y="92" width="14" height="18" rx="5" fill="#7a6d88"/>
+  <rect x="80" y="92" width="14" height="18" rx="5" fill="#7a6d88"/>
+</svg>

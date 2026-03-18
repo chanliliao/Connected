@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Top surface: steep angle -->
+  <polygon points="26,6 94,6 118,62 2,62" fill="#d8a4b4"/>
+  <!-- Front edge -->
+  <rect x="2" y="62" width="116" height="4" rx="1" fill="#c07888"/>
+  <!-- Left hairpin (short) -->
+  <line x1="8" y1="66" x2="2" y2="96" stroke="#7a6d88" stroke-width="3" stroke-linecap="round"/>
+  <line x1="18" y1="66" x2="14" y2="96" stroke="#7a6d88" stroke-width="3" stroke-linecap="round"/>
+  <line x1="2" y1="96" x2="14" y2="96" stroke="#7a6d88" stroke-width="3" stroke-linecap="round"/>
+  <!-- Right hairpin (short) -->
+  <line x1="102" y1="66" x2="106" y2="96" stroke="#7a6d88" stroke-width="3" stroke-linecap="round"/>
+  <line x1="112" y1="66" x2="118" y2="96" stroke="#7a6d88" stroke-width="3" stroke-linecap="round"/>
+  <line x1="106" y1="96" x2="118" y2="96" stroke="#7a6d88" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -1,99 +1,269 @@
+/* =====================================================
+   HOME PAGE — NIGHT SKY ILLUSTRATION
+
+   PRIMARY COLORS  (canonical — all pages must follow)
+   --app-bg:           #fdf7f9   light blush — page bg / empty space on desktop
+   --app-pink:         #ec4899   hot pink — primary accent
+   --app-pink-light:   #fb7185   coral pink — gradient start, roof stroke, active icons
+   --app-gradient:     linear-gradient(135deg, #fb7185, #ec4899)
+   --app-border:       #fce7f3   light pink border
+
+   SKY / HOUSE PALETTE  (dark rose variants — NOT purple)
+   --sky-top:          #2d0a1e   deep dark rose — top of sky
+   --sky-bottom:       #8b1a5c   rich rose — bottom of sky / house junction
+   --house-bg:         #160412   near-black rose — walls + SVG roof fill
+   --carpet-bg:        #1f0818   slightly lighter — floor strip
+   ===================================================== */
+
+/* ── Page shell — provides empty blush space on desktop ── */
 .home-page {
-  min-height: 100vh;
-  background: var(--color-bg, #fdf7f9);
+  min-height: 100svh;
+  background: #fdf7f9;
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  font-family: var(--font-body, 'Quicksand', sans-serif);
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.home-nav {
+/* ── Centered phone-like app container ── */
+.home-app {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 100svh;
+  overflow: hidden;
+}
+
+/* ── Sky ── */
+.home-sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #2d0a1e 0%, #8b1a5c 100%);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 32px;
-  background: var(--color-card, #fff);
-  border-bottom: 1px solid var(--color-border, #fce7f3);
-  box-shadow: 0 1px 6px rgba(236, 72, 153, 0.07);
+  z-index: 0;
 }
 
-.home-nav-brand {
-  font-family: var(--font-heading, 'Caveat', cursive);
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--color-text, #1c1c2e);
-}
-
-.home-nav-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.home-profile-link {
-  background: transparent;
-  color: var(--color-secondary, #ec4899);
-  border: 1.5px solid var(--color-secondary, #ec4899);
-  border-radius: var(--radius-input, 12px);
-  padding: 8px 20px;
-  font-size: 0.85rem;
-  font-family: var(--font-body, 'Quicksand', sans-serif);
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.home-profile-link:hover {
-  background: rgba(236, 72, 153, 0.07);
-}
-
-.home-content {
+.home-sky-left,
+.home-sky-right {
   flex: 1;
+}
+
+/* Stars — scattered via box-shadow */
+.home-sky::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  top: 10%;
+  left: 15%;
+  box-shadow:
+    50px  -18px 0 0px rgba(255, 255, 255, 0.60),
+   -30px   40px 0 1px rgba(255, 255, 255, 0.45),
+   100px   12px 0 0px rgba(255, 255, 255, 0.70),
+   -75px   -8px 0 1px rgba(255, 255, 255, 0.40),
+   160px   48px 0 0px rgba(255, 255, 255, 0.55),
+  -120px   22px 0 1px rgba(255, 255, 255, 0.60),
+   210px  -25px 0 0px rgba(255, 255, 255, 0.45),
+   -55px  -40px 0 0px rgba(255, 255, 255, 0.35);
+}
+
+/* ── Moon — cream crescent ── */
+.home-moon {
+  position: absolute;
+  top: 52px;
+  right: 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f0dfa0;
+  z-index: 1;
+}
+
+.home-moon::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: -6px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  /* matches sky color at ~52px from top */
+  background: #330b21;
+}
+
+/* ── House container — bottom 85% (peak at 15% from top) ── */
+.home-house-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 85svh;
+  z-index: 1;
+}
+
+/* ── Roof SVG — top 20% of house-wrap ──
+   The <polygon> fills the triangle with house color so the sky
+   doesn't bleed through; the <polyline> draws the pink outline.
+   Being a sibling of house-walls (not a child), it is never clipped. */
+.home-roof-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 9.5%;   /* ~19° angle to match reference image */
+  display: block;
+  z-index: 2;
+}
+
+/* ── House walls — rectangle below the eaves ── */
+.home-house-walls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9%;        /* 0.5% overlap with roof SVG to avoid any gap */
+  bottom: 131px;  /* 76px carpet + 55px floor */
+  background: #160412;
+  z-index: 1;
+}
+
+/* ── Interior left / right split ── */
+.home-house-interior {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.home-house-left {
+  flex: 1;
+}
+
+.home-house-right {
+  flex: 1;
+  border-left: 1px solid rgba(251, 113, 133, 0.08);
+}
+
+/* ── Floor band — sits between walls and nav ── */
+.home-floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 76px;
+  height: 55px;
+  background: #4a1528;
+  border-top: 1px solid rgba(251, 113, 133, 0.28);
+  z-index: 1;
+}
+
+/* ── Curved arch SVG — separates floor from nav ── */
+.home-nav-curve {
+  position: absolute;
+  bottom: 76px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 24px;
+  display: block;
+  z-index: 2;
+}
+
+/* ── Carpet / floor strip ── */
+.home-carpet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 76px;
+  background: #0f0310;
+  z-index: 1;
+}
+
+/* ── Bottom navigation — centered on carpet ── */
+.home-bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 76px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.home-nav-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(236, 72, 153, 0.15);
+  border: 1px solid rgba(236, 72, 153, 0.22);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.home-card {
-  background: var(--color-card, #fff);
-  border-radius: var(--radius-card, 24px);
-  padding: 48px 40px;
-  text-align: center;
-  box-shadow: var(--shadow-card, 0 4px 24px rgba(0, 0, 0, 0.05));
-  min-width: 320px;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-}
-
-.home-title {
-  font-family: var(--font-heading, 'Caveat', cursive);
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--color-text, #1c1c2e);
-  margin: 0 0 12px;
-}
-
-.home-email {
-  color: var(--color-text-muted, #9ca3af);
-  font-family: var(--font-body, 'Quicksand', sans-serif);
-  font-size: 0.95rem;
-  margin: 0;
-}
-
-.home-logout-btn {
-  background: var(--gradient-primary, linear-gradient(135deg, #fb7185, #ec4899));
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-input, 12px);
-  padding: 9px 22px;
-  font-size: 0.85rem;
-  font-family: var(--font-body, 'Quicksand', sans-serif);
-  font-weight: 700;
   cursor: pointer;
-  transition: filter 0.2s;
-  box-shadow: var(--shadow-btn, 0 4px 16px rgba(236, 72, 153, 0.30));
+  color: #fb7185;
+  transition: background 0.2s, color 0.2s;
 }
 
-.home-logout-btn:hover {
-  filter: brightness(0.92);
+.home-nav-btn:hover {
+  background: rgba(236, 72, 153, 0.28);
+}
+
+/* ── Ceiling lights ── */
+.home-lights {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.home-light {
+  position: absolute;
+  top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.home-light-left  { left: 25%; transform: translateX(-50%); }
+.home-light-right { left: 75%; transform: translateX(-50%); }
+
+.home-light-fixture {
+  width: 52px;
+  height: 10px;
+  background: linear-gradient(180deg, #4b5563 0%, #9ca3af 100%);
+  border-radius: 3px 3px 5px 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  position: relative;
+  z-index: 1;
+}
+
+.home-light-beam {
+  width: 130px;
+  height: 38svh;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(200, 220, 255, 0.30) 0%,
+    rgba(200, 220, 255, 0.10) 55%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  margin-top: -5px;
+}
+
+.home-light--on .home-light-beam {
+  opacity: 1;
 }

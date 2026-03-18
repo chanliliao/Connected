@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Top surface: narrow back, wide front, steep angle -->
+  <polygon points="26,6 94,6 118,62 2,62" fill="#d8a4b4"/>
+  <!-- Front slab face -->
+  <rect x="2" y="62" width="116" height="6" rx="1" fill="#c07888"/>
+  <!-- Apron -->
+  <rect x="6" y="68" width="108" height="4" rx="1" fill="#a3647a"/>
+  <!-- Front legs (short) -->
+  <rect x="6" y="72" width="10" height="26" rx="2" fill="#7a6d88"/>
+  <rect x="104" y="72" width="10" height="26" rx="2" fill="#7a6d88"/>
+</svg>

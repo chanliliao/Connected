@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140">
+  <!-- Eames-style Lounge Chair: round back cushion + round seat on shell, angled legs -->
+  <!-- Wood shell back (oval, darker) -->
+  <ellipse cx="60" cy="36" rx="36" ry="28" fill="#a3647a"/>
+  <!-- Back cushion -->
+  <ellipse cx="60" cy="36" rx="28" ry="22" fill="#d8a4b4"/>
+  <!-- Spine connector -->
+  <rect x="50" y="60" width="20" height="10" rx="4" fill="#7a6d88"/>
+  <!-- Seat shell -->
+  <rect x="16" y="66" width="88" height="24" rx="12" fill="#a3647a"/>
+  <!-- Seat cushion -->
+  <rect x="22" y="68" width="76" height="20" rx="10" fill="#d8a4b4"/>
+  <!-- Angled legs (splaying outward) -->
+  <line x1="28" y1="90" x2="12" y2="124" stroke="#7a6d88" stroke-width="6" stroke-linecap="round"/>
+  <line x1="92" y1="90" x2="108" y2="124" stroke="#7a6d88" stroke-width="6" stroke-linecap="round"/>
+  <!-- Base cross bar -->
+  <rect x="18" y="118" width="84" height="6" rx="3" fill="#7a6d88"/>
+</svg>

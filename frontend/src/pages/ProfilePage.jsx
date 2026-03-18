@@ -1,17 +1,115 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import './ProfilePage.css'
 
+const TIMEZONES = Intl.supportedValuesOf('timeZone')
+
+function tzLabel(tz) {
+  return tz.split('/').pop().replace(/_/g, ' ')
+}
+
+function TzPicker({ value, onChange }) {
+  const [query, setQuery] = useState('')
+  const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+
+  const filtered = query.length > 0
+    ? TIMEZONES.filter(tz => tzLabel(tz).toLowerCase().includes(query.toLowerCase())).slice(0, 80)
+    : TIMEZONES.slice(0, 80)
+
+  useEffect(() => {
+    function handleOutside(e) {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false)
+        setQuery('')
+      }
+    }
+    if (open) document.addEventListener('mousedown', handleOutside)
+    return () => document.removeEventListener('mousedown', handleOutside)
+  }, [open])
+
+  function select(tz) {
+    onChange(tz)
+    setQuery('')
+    setOpen(false)
+  }
+
+  function toggle() {
+    setOpen(v => !v)
+    if (!open) setQuery('')
+  }
+
+  return (
+    <div className="tz-picker" ref={ref}>
+      <div className={`tz-picker-trigger${open ? ' tz-picker-trigger--open' : ''}`} onClick={toggle}>
+        <span className="tz-picker-value">{tzLabel(value)}</span>
+        <svg className={`tz-picker-chevron${open ? ' tz-picker-chevron--open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 10l5 5 5-5z"/>
+        </svg>
+      </div>
+      {open && (
+        <div className="tz-picker-dropdown">
+          <div className="tz-picker-search-wrap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="tz-picker-search-icon">
+              <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+            <input
+              className="tz-picker-search"
+              placeholder="Search city…"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              autoFocus
+            />
+          </div>
+          <ul className="tz-picker-list">
+            {filtered.map(tz => (
+              <li
+                key={tz}
+                className={`tz-picker-option${tz === value ? ' tz-picker-option--active' : ''}`}
+                onClick={() => select(tz)}
+              >
+                {tzLabel(tz)}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function getCurrentTime(timeZone) {
+  return new Date().toLocaleTimeString('en-US', {
+    timeZone,
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+}
+
 export default function ProfilePage({ session }) {
   const navigate = useNavigate()
+
   const [profile, setProfile] = useState(null)
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [birthday, setBirthday] = useState('')
   const [saving, setSaving] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState('')
+  const [saveSuccess, setSaveSuccess] = useState(false)
+  const [saveError, setSaveError] = useState('')
+
+  const [settingsOpen, setSettingsOpen] = useState(false)
+
+  const defaultTz = Intl.DateTimeFormat().resolvedOptions().timeZone
+  const [userTz, setUserTz] = useState(defaultTz)
+  const [soTz, setSoTz] = useState('America/New_York')
+  const [userTime, setUserTime] = useState(getCurrentTime(defaultTz))
+  const [soTime, setSoTime] = useState(getCurrentTime('America/New_York'))
+
+  const [specialDates, setSpecialDates] = useState([
+    { label: 'Anniversary', date: '' },
+    { label: 'First Met', date: '' },
+  ])
 
   useEffect(() => {
     async function loadProfile() {
@@ -20,9 +118,7 @@ export default function ProfilePage({ session }) {
         .select('*')
         .eq('id', session.user.id)
         .single()
-      if (error) {
-        setError(error.message)
-      } else {
+      if (!error) {
         setProfile(data)
         setFirstName(data.first_name ?? '')
         setLastName(data.last_name ?? '')
@@ -32,88 +128,197 @@ export default function ProfilePage({ session }) {
     loadProfile()
   }, [session.user.id])
 
-  async function handleSave(e) {
+  useEffect(() => {
+    const tick = () => {
+      setUserTime(getCurrentTime(userTz))
+      setSoTime(getCurrentTime(soTz))
+    }
+    tick()
+    const id = setInterval(tick, 60000)
+    return () => clearInterval(id)
+  }, [userTz, soTz])
+
+  const handleSave = useCallback(async (e) => {
     e.preventDefault()
     setSaving(true)
-    setSuccess(false)
-    setError('')
+    setSaveSuccess(false)
+    setSaveError('')
     const { error } = await supabase
       .from('profiles')
       .update({ first_name: firstName, last_name: lastName, birthday: birthday || null })
       .eq('id', session.user.id)
     setSaving(false)
     if (error) {
-      setError(error.message)
+      setSaveError(error.message)
     } else {
-      setSuccess(true)
+      setSaveSuccess(true)
     }
-  }
+  }, [firstName, lastName, birthday, session.user.id])
 
   async function handleDelete() {
     if (!window.confirm('Are you sure you want to delete your account? This cannot be undone.')) return
     const { error } = await supabase.rpc('delete_own_account')
     if (error) {
-      setError(error.message)
+      setSaveError(error.message)
       return
     }
     await supabase.auth.signOut()
     navigate('/login')
   }
 
+  function addSpecialDate() {
+    setSpecialDates(prev => [...prev, { label: '', date: '' }])
+  }
+
+  function updateSpecialDate(index, field, value) {
+    setSpecialDates(prev => prev.map((d, i) => i === index ? { ...d, [field]: value } : d))
+  }
+
+  const displayName = profile ? (firstName || profile.username || 'You') : 'You'
+  const partnerName = profile?.partner_name || 'Your SO'
+
   if (!profile) return <div className="profile-loading">Loading…</div>
 
   return (
     <div className="profile-page">
-      <div className="profile-card">
-        <h1 className="profile-title">My Profile</h1>
 
-        <div className="profile-field-row">
-          <span className="profile-field-label">Username</span>
-          <span className="profile-field-value">{profile.username}</span>
-        </div>
-        <div className="profile-field-row">
-          <span className="profile-field-label">Role</span>
-          <span className="profile-field-value">{profile.role ?? 'user'}</span>
-        </div>
+      {/* Top bar */}
+      <div className="profile-topbar">
+        <button className="profile-back-btn" aria-label="Back to Home" onClick={() => navigate('/')}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+          </svg>
+        </button>
+        <span className="profile-topbar-title">About Us</span>
+        <button className="profile-gear-btn" aria-label="Settings" onClick={() => setSettingsOpen(true)}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+          </svg>
+        </button>
+      </div>
 
-        <form className="profile-form" onSubmit={handleSave}>
-          <input
-            className="profile-input"
-            placeholder="First Name"
-            value={firstName}
-            onChange={e => setFirstName(e.target.value)}
-          />
-          <input
-            className="profile-input"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={e => setLastName(e.target.value)}
-          />
-          <input
-            className="profile-input profile-input-date"
-            type="date"
-            value={birthday}
-            onChange={e => setBirthday(e.target.value)}
-          />
-          <div className="profile-actions">
-            <button className="profile-btn-primary" type="submit" disabled={saving}>
-              {saving ? 'Saving…' : 'Save Changes'}
-            </button>
-            <button className="profile-btn-secondary" type="button" onClick={() => navigate('/')}>
-              Back to Home
-            </button>
+      {/* Scrollable content */}
+      <div className="profile-content">
+
+        {/* Panel 1 — Us */}
+        <div className="profile-panel profile-panel--borderless">
+          <div className="profile-couple-row">
+            <div className="profile-avatar-block">
+              <div className="profile-avatar">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7H4z" />
+                </svg>
+              </div>
+              <span className="profile-avatar-name">{displayName}</span>
+            </div>
+
+            <div className="profile-connector">
+              <div className="profile-connector-line" />
+              <span className="profile-connector-heart">♥</span>
+              <div className="profile-connector-line" />
+            </div>
+
+            <div className="profile-avatar-block">
+              <div className="profile-avatar">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7H4z" />
+                </svg>
+              </div>
+              <span className="profile-avatar-name">{partnerName}</span>
+            </div>
           </div>
-        </form>
+        </div>
 
-        {success && <p className="profile-success-msg">Changes saved successfully.</p>}
-        {error && <p className="profile-error">{error}</p>}
+        {/* Panel 2 — Timezones */}
+        <div className="profile-panel">
+          <h2 className="profile-panel-heading">Time Zones</h2>
+          <div className="profile-tz-row">
+            <div className="profile-tz-card">
+              <span className="profile-tz-label">You</span>
+              <div className="profile-tz-time">{userTime}</div>
+              <TzPicker value={userTz} onChange={setUserTz} />
+            </div>
 
-        <div className="profile-danger-zone">
-          <button className="profile-btn-danger" type="button" onClick={handleDelete}>
-            Delete Account
+            <div className="profile-tz-card">
+              <span className="profile-tz-label">Them</span>
+              <div className="profile-tz-time">{soTime}</div>
+              <TzPicker value={soTz} onChange={setSoTz} />
+            </div>
+          </div>
+        </div>
+
+        {/* Panel 3 — Special Dates */}
+        <div className="profile-panel">
+          <h2 className="profile-panel-heading">Special Dates</h2>
+          <div className="profile-dates-list">
+            {specialDates.map((item, i) => (
+              <div key={i} className="profile-date-row">
+                <input
+                  className="profile-date-label-input"
+                  value={item.label}
+                  placeholder="Label"
+                  onChange={e => updateSpecialDate(i, 'label', e.target.value)}
+                />
+                <input
+                  className="profile-date-input"
+                  type="date"
+                  value={item.date}
+                  onChange={e => updateSpecialDate(i, 'date', e.target.value)}
+                />
+              </div>
+            ))}
+          </div>
+          <button className="profile-add-date-btn" onClick={addSpecialDate}>
+            + Add Date
           </button>
         </div>
+
       </div>
+
+      {/* Settings modal */}
+      {settingsOpen && (
+        <div className="profile-modal-backdrop" onClick={() => setSettingsOpen(false)}>
+          <div className="profile-modal-panel" onClick={e => e.stopPropagation()}>
+            <div className="profile-modal-handle" />
+            <h2 className="profile-modal-heading">Your Info</h2>
+
+            <form className="profile-modal-form" onSubmit={handleSave}>
+              <input
+                className="profile-modal-input"
+                placeholder="First Name"
+                value={firstName}
+                onChange={e => setFirstName(e.target.value)}
+              />
+              <input
+                className="profile-modal-input"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={e => setLastName(e.target.value)}
+              />
+              <input
+                className="profile-modal-input profile-modal-input-date"
+                type="date"
+                value={birthday}
+                onChange={e => setBirthday(e.target.value)}
+              />
+              <button className="profile-modal-btn-save" type="submit" disabled={saving}>
+                {saving ? 'Saving…' : 'Save Changes'}
+              </button>
+            </form>
+
+            {saveSuccess && <p className="profile-modal-success">Changes saved successfully.</p>}
+            {saveError && <p className="profile-modal-error">{saveError}</p>}
+
+            <div className="profile-modal-separator" />
+
+            <button className="profile-modal-btn-danger" type="button" onClick={handleDelete}>
+              Delete Account
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

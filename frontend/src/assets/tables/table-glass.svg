@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Glass top surface: correct perspective, steep angle, semi-transparent -->
+  <polygon points="26,6 94,6 118,62 2,62" fill="#d8a4b4" opacity="0.35"/>
+  <polygon points="26,6 94,6 118,62 2,62" fill="none" stroke="#d8a4b4" stroke-width="2"/>
+  <!-- Thin metal front edge -->
+  <rect x="2" y="62" width="116" height="3" rx="1" fill="#c07888"/>
+  <!-- Slim front-left leg (short) -->
+  <rect x="4" y="65" width="4" height="34" rx="1" fill="#7a6d88"/>
+  <!-- Slim front-right leg (short) -->
+  <rect x="112" y="65" width="4" height="34" rx="1" fill="#7a6d88"/>
+  <!-- Crossbar -->
+  <rect x="8" y="84" width="104" height="3" rx="1" fill="#a3647a" opacity="0.55"/>
+</svg>

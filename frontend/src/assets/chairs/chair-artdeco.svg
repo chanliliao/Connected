@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140">
+  <!-- Art Deco: stepped geometric back (descending tiers, widest at bottom) -->
+  <!-- Stepped outer back frame -->
+  <path d="M42,10 L78,10 L78,28 L88,28 L88,46 L100,46 L100,72 L20,72 L20,46 L32,46 L32,28 L42,28 Z" fill="#a3647a"/>
+  <!-- Back cushion (stepped inner, inset 4px from frame) -->
+  <path d="M46,14 L74,14 L74,30 L84,30 L84,48 L96,48 L96,68 L24,68 L24,48 L36,48 L36,30 L46,30 Z" fill="#d8a4b4"/>
+  <!-- Shadow strip at bottom of back — 3D depth cue -->
+  <rect x="20" y="68" width="80" height="6" rx="1" fill="#8a506a"/>
+  <!-- Seat cushion (protrudes wider than widest back tier) -->
+  <rect x="14" y="72" width="92" height="22" rx="4" fill="#d8a4b4"/>
+  <!-- Front apron -->
+  <rect x="16" y="91" width="88" height="6" rx="2" fill="#a3647a"/>
+  <!-- Geometric straight legs -->
+  <rect x="24" y="95" width="10" height="30" rx="2" fill="#7a6d88"/>
+  <rect x="86" y="95" width="10" height="30" rx="2" fill="#7a6d88"/>
+</svg>

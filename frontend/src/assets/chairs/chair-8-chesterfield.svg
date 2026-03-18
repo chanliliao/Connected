@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140">
+  <!-- Chesterfield Chair — wide, low, scrolled roll arms -->
+  <!-- Main wide body -->
+  <rect x="12" y="52" width="96" height="46" rx="8" fill="#c07888"/>
+  <!-- Back cushion with tufting -->
+  <rect x="22" y="36" width="76" height="42" rx="8" fill="#d8a4b4"/>
+  <!-- Tufting dash lines -->
+  <line x1="22" y1="52" x2="98" y2="52" stroke="#a3647a" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="22" y1="64" x2="98" y2="64" stroke="#a3647a" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <!-- Left scroll arm (circular roll end) -->
+  <circle cx="12" cy="62" r="13" fill="#c07888"/>
+  <circle cx="12" cy="62" r="7" fill="#a3647a"/>
+  <!-- Right scroll arm -->
+  <circle cx="108" cy="62" r="13" fill="#c07888"/>
+  <circle cx="108" cy="62" r="7" fill="#a3647a"/>
+  <!-- Front apron -->
+  <rect x="12" y="94" width="96" height="8" rx="4" fill="#a3647a"/>
+  <!-- Bun feet -->
+  <circle cx="28" cy="107" r="7" fill="#7a6d88"/>
+  <circle cx="92" cy="107" r="7" fill="#7a6d88"/>
+</svg>
