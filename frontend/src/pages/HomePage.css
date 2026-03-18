@@ -2,9 +2,57 @@
   min-height: 100vh;
   background: #FFF5F7;
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  font-family: 'Lato', sans-serif;
+}
+
+.home-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: #fff;
+  border-bottom: 1px solid #f0d0d5;
+  box-shadow: 0 1px 6px rgba(232, 96, 122, 0.08);
+}
+
+.home-nav-brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #E8607A;
+  font-family: 'Lato', sans-serif;
+}
+
+.home-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-profile-link {
+  background: transparent;
+  color: #E8607A;
+  border: 1.5px solid #E8607A;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.home-profile-link:hover {
+  background: rgba(232, 96, 122, 0.08);
+}
+
+.home-content {
+  flex: 1;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Lato', sans-serif;
 }
 
 .home-card {
@@ -26,7 +74,7 @@
 .home-email {
   color: #555;
   font-size: 1rem;
-  margin: 0 0 32px;
+  margin: 0;
 }
 
 .home-logout-btn {
@@ -34,8 +82,8 @@
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 12px 32px;
-  font-size: 1rem;
+  padding: 8px 20px;
+  font-size: 0.9rem;
   font-family: 'Lato', sans-serif;
   font-weight: 600;
   cursor: pointer;
