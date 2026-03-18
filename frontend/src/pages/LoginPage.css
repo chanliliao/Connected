@@ -110,7 +110,7 @@
   background: var(--color-input-bg);
   color: var(--color-input-text);
   font-family: var(--font-input);
-  font-size: 13px;
+  font-size: 16px;
   box-sizing: border-box;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
