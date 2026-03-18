@@ -28,13 +28,28 @@
   margin-bottom: 32px;
 }
 
+.login-logo-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 20px;
+  margin: 0 auto 12px;
+  background: var(--gradient-primary, linear-gradient(135deg, #fb7185, #ec4899));
+  box-shadow: var(--shadow-btn, 0 4px 16px rgba(236, 72, 153, 0.30));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #fff;
+  line-height: 1;
+}
+
 .login-title {
   font-family: var(--font-heading);
   font-size: 36px;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-text);
   margin: 0 0 6px;
-  letter-spacing: -0.5px;
+  letter-spacing: 0;
 }
 
 .login-subtitle {
@@ -89,13 +104,13 @@
 
 .login-input {
   width: 100%;
-  padding: 14px 16px;
-  border: 1px solid var(--color-border);
+  padding: 10px 14px;
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-input);
   background: var(--color-input-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: 15px;
+  color: var(--color-input-text);
+  font-family: var(--font-input);
+  font-size: 13px;
   box-sizing: border-box;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -107,7 +122,7 @@
 
 .login-input:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(232, 96, 122, 0.12);
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.10);
 }
 
 /* Error */
@@ -126,20 +141,21 @@
 .login-btn-primary {
   width: 100%;
   padding: 14px;
-  background: var(--color-primary);
+  background: var(--gradient-primary);
   color: #fff;
   border: none;
   border-radius: var(--radius-input);
   font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  transition: filter 0.2s, transform 0.1s;
+  box-shadow: var(--shadow-btn);
   margin-top: 4px;
 }
 
 .login-btn-primary:hover:not(:disabled) {
-  background: var(--color-primary-hover);
+  filter: brightness(0.92);
 }
 
 .login-btn-primary:active:not(:disabled) {

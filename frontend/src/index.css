@@ -3,7 +3,9 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: #fce4ec;
-  font-size: 1.2rem;
-  color: #880e4f;
+  background: #fdf7f9;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ec4899;
 }

@@ -60,8 +60,9 @@ export default function LoginPage() {
     <div className="login-page">
       <div className="login-card">
         <div className="login-brand">
+          <div className="login-logo-box">♥</div>
           <h1 className="login-title">Connected</h1>
-          <p className="login-subtitle">for the two of you</p>
+          <p className="login-subtitle">stay close</p>
         </div>
 
         <div className="login-tabs">

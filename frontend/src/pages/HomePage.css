@@ -1,11 +1,11 @@
 .home-page {
   min-height: 100vh;
-  background: #FFF5F7;
+  background: var(--color-bg, #fdf7f9);
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  font-family: 'Lato', sans-serif;
+  font-family: var(--font-body, 'Quicksand', sans-serif);
 }
 
 .home-nav {
@@ -13,16 +13,16 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 32px;
-  background: #fff;
-  border-bottom: 1px solid #f0d0d5;
-  box-shadow: 0 1px 6px rgba(232, 96, 122, 0.08);
+  background: var(--color-card, #fff);
+  border-bottom: 1px solid var(--color-border, #fce7f3);
+  box-shadow: 0 1px 6px rgba(236, 72, 153, 0.07);
 }
 
 .home-nav-brand {
-  font-size: 1.2rem;
+  font-family: var(--font-heading, 'Caveat', cursive);
+  font-size: 1.6rem;
   font-weight: 700;
-  color: #E8607A;
-  font-family: 'Lato', sans-serif;
+  color: var(--color-text, #1c1c2e);
 }
 
 .home-nav-right {
@@ -33,19 +33,19 @@
 
 .home-profile-link {
   background: transparent;
-  color: #E8607A;
-  border: 1.5px solid #E8607A;
-  border-radius: 8px;
+  color: var(--color-secondary, #ec4899);
+  border: 1.5px solid var(--color-secondary, #ec4899);
+  border-radius: var(--radius-input, 12px);
   padding: 8px 20px;
-  font-size: 0.9rem;
-  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-family: var(--font-body, 'Quicksand', sans-serif);
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
 }
 
 .home-profile-link:hover {
-  background: rgba(232, 96, 122, 0.08);
+  background: rgba(236, 72, 153, 0.07);
 }
 
 .home-content {
@@ -56,40 +56,44 @@
 }
 
 .home-card {
-  background: #fff;
-  border-radius: 16px;
+  background: var(--color-card, #fff);
+  border-radius: var(--radius-card, 24px);
   padding: 48px 40px;
   text-align: center;
-  box-shadow: 0 4px 24px rgba(232, 96, 122, 0.1);
+  box-shadow: var(--shadow-card, 0 4px 24px rgba(0, 0, 0, 0.05));
   min-width: 320px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .home-title {
-  font-size: 2rem;
+  font-family: var(--font-heading, 'Caveat', cursive);
+  font-size: 2.2rem;
   font-weight: 700;
-  color: #E8607A;
+  color: var(--color-text, #1c1c2e);
   margin: 0 0 12px;
 }
 
 .home-email {
-  color: #555;
-  font-size: 1rem;
+  color: var(--color-text-muted, #9ca3af);
+  font-family: var(--font-body, 'Quicksand', sans-serif);
+  font-size: 0.95rem;
   margin: 0;
 }
 
 .home-logout-btn {
-  background: #E8607A;
+  background: var(--gradient-primary, linear-gradient(135deg, #fb7185, #ec4899));
   color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 8px 20px;
-  font-size: 0.9rem;
-  font-family: 'Lato', sans-serif;
-  font-weight: 600;
+  border-radius: var(--radius-input, 12px);
+  padding: 9px 22px;
+  font-size: 0.85rem;
+  font-family: var(--font-body, 'Quicksand', sans-serif);
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: filter 0.2s;
+  box-shadow: var(--shadow-btn, 0 4px 16px rgba(236, 72, 153, 0.30));
 }
 
 .home-logout-btn:hover {
-  background: #d44f69;
+  filter: brightness(0.92);
 }

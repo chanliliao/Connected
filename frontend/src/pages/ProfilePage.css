@@ -1,10 +1,10 @@
 .profile-page {
   min-height: 100vh;
-  background: var(--color-bg, #FFF5F7);
+  background: var(--color-bg, #fdf7f9);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-body, 'Lato', sans-serif);
+  font-family: var(--font-body, 'Quicksand', sans-serif);
   padding: 24px;
   box-sizing: border-box;
 }
@@ -14,8 +14,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-body, 'Lato', sans-serif);
-  color: #888;
+  font-family: var(--font-body, 'Quicksand', sans-serif);
+  color: var(--color-text-muted, #9ca3af);
 }
 
 .profile-card {
@@ -33,10 +33,10 @@
 }
 
 .profile-title {
-  font-family: var(--font-heading, 'Lato', sans-serif);
-  font-size: 2rem;
+  font-family: var(--font-heading, 'Caveat', cursive);
+  font-size: 2.2rem;
   font-weight: 700;
-  color: var(--color-primary, #E8607A);
+  color: var(--color-text, #1c1c2e);
   margin: 0 0 24px;
   text-align: center;
 }
@@ -72,25 +72,25 @@
 
 .profile-input {
   width: 100%;
-  padding: 14px 16px;
-  border: 1px solid var(--color-border, #e0e0e0);
-  border-radius: var(--radius-input, 10px);
-  background: var(--color-input-bg, #fafafa);
-  color: var(--color-text, #222);
-  font-family: var(--font-body, 'Lato', sans-serif);
-  font-size: 15px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--color-border, #fce7f3);
+  border-radius: var(--radius-input, 12px);
+  background: var(--color-input-bg, #fdf8fb);
+  color: var(--color-input-text, #6b7280);
+  font-family: var(--font-input, 'Inter', sans-serif);
+  font-size: 13px;
   box-sizing: border-box;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .profile-input::placeholder {
-  color: var(--color-text-muted, #aaa);
+  color: var(--color-text-muted, #9ca3af);
 }
 
 .profile-input:focus {
-  border-color: var(--color-primary, #E8607A);
-  box-shadow: 0 0 0 3px rgba(232, 96, 122, 0.12);
+  border-color: var(--color-primary, #ec4899);
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.10);
 }
 
 .profile-input-date {
@@ -106,19 +106,20 @@
 .profile-btn-primary {
   flex: 1;
   padding: 14px;
-  background: var(--color-primary, #E8607A);
+  background: var(--gradient-primary, linear-gradient(135deg, #fb7185, #ec4899));
   color: #fff;
   border: none;
-  border-radius: var(--radius-input, 10px);
-  font-family: var(--font-body, 'Lato', sans-serif);
-  font-size: 15px;
-  font-weight: 600;
+  border-radius: var(--radius-input, 12px);
+  font-family: var(--font-body, 'Quicksand', sans-serif);
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: filter 0.2s;
+  box-shadow: var(--shadow-btn, 0 4px 16px rgba(236, 72, 153, 0.30));
 }
 
 .profile-btn-primary:hover:not(:disabled) {
-  background: var(--color-primary-hover, #d44f69);
+  filter: brightness(0.92);
 }
 
 .profile-btn-primary:disabled {
@@ -130,18 +131,18 @@
   flex: 1;
   padding: 14px;
   background: transparent;
-  color: var(--color-primary, #E8607A);
-  border: 1.5px solid var(--color-primary, #E8607A);
-  border-radius: var(--radius-input, 10px);
-  font-family: var(--font-body, 'Lato', sans-serif);
-  font-size: 15px;
+  color: var(--color-secondary, #ec4899);
+  border: 1.5px solid var(--color-secondary, #ec4899);
+  border-radius: var(--radius-input, 12px);
+  font-family: var(--font-body, 'Quicksand', sans-serif);
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s;
 }
 
 .profile-btn-secondary:hover {
-  background: rgba(232, 96, 122, 0.06);
+  background: rgba(236, 72, 153, 0.07);
 }
 
 .profile-success-msg {
@@ -152,7 +153,7 @@
   border-radius: 8px;
   font-size: 13px;
   color: #1a7a33;
-  font-family: var(--font-body, 'Lato', sans-serif);
+  font-family: var(--font-body, 'Quicksand', sans-serif);
 }
 
 .profile-error {
@@ -163,13 +164,13 @@
   border-radius: 8px;
   font-size: 13px;
   color: #c94d66;
-  font-family: var(--font-body, 'Lato', sans-serif);
+  font-family: var(--font-body, 'Quicksand', sans-serif);
 }
 
 .profile-danger-zone {
   margin-top: 32px;
   padding-top: 24px;
-  border-top: 1px solid #f0d0d5;
+  border-top: 1px solid var(--color-border, #fce7f3);
   text-align: center;
 }
 
@@ -179,7 +180,7 @@
   color: #dc3545;
   border: 1.5px solid #dc3545;
   border-radius: var(--radius-input, 10px);
-  font-family: var(--font-body, 'Lato', sans-serif);
+  font-family: var(--font-body, 'Quicksand', sans-serif);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
