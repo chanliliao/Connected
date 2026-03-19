@@ -134,6 +134,7 @@ export default function ProfilePage({ session }) {
   const [saveError, setSaveError] = useState('')
 
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [connectionOpen, setConnectionOpen] = useState(false)
   const [pairCode, setPairCode] = useState('')
   const [pairError, setPairError] = useState('')
   const [pairLoading, setPairLoading] = useState(false)
@@ -317,15 +318,21 @@ export default function ProfilePage({ session }) {
               <div className="profile-connector-line" />
             </div>
 
-            <div className="profile-avatar-block">
-              <div className="profile-avatar">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <circle cx="12" cy="8" r="4" />
-                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7H4z" />
-                </svg>
+            <button className="profile-avatar-btn" onClick={() => setConnectionOpen(true)} aria-label="Partner connection">
+              <div className={`profile-avatar${!profile.partner_id ? ' profile-avatar--add' : ''}`}>
+                {profile.partner_id ? (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7H4z" />
+                  </svg>
+                ) : (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                  </svg>
+                )}
               </div>
-              <span className="profile-avatar-name">{partnerName}</span>
-            </div>
+              <span className="profile-avatar-name">{profile.partner_id ? partnerName : 'Connect'}</span>
+            </button>
           </div>
         </div>
 
@@ -424,10 +431,40 @@ export default function ProfilePage({ session }) {
               {saveError && <p className="profile-modal-error">{saveError}</p>}
 
               <div className="profile-modal-separator" />
+              <button className="profile-modal-btn-logout" type="button" onClick={handleLogout}>
+                Log Out
+              </button>
+              <button className="profile-modal-btn-danger" type="button" onClick={handleDelete}>
+                Delete Account
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
-              {/* ── Status section ── */}
+      {/* Connection modal */}
+      <AnimatePresence>
+        {connectionOpen && (
+          <div className="profile-modal-backdrop" onClick={() => setConnectionOpen(false)}>
+            <motion.div
+              className="profile-modal-panel"
+              onClick={e => e.stopPropagation()}
+              drag="y"
+              dragConstraints={{ top: 0 }}
+              dragElastic={{ top: 0, bottom: 0.4 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.y > 80) setConnectionOpen(false)
+              }}
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            >
+              <div className="profile-modal-handle" />
+
+              {/* Status row */}
               <div className="profile-modal-status-row">
-                <h2 className="profile-modal-heading">Status</h2>
+                <h2 className="profile-modal-heading">Connection</h2>
                 <div className="profile-modal-status-badge-wrap">
                   <span className={`profile-modal-status-badge${profile.partner_id ? ' profile-modal-status-badge--paired' : ''}`}>
                     {profile.partner_id ? '♥ Paired' : '○ Not Paired'}
@@ -475,14 +512,6 @@ export default function ProfilePage({ session }) {
                   <button className="profile-modal-code-btn" onClick={shareCode}>Share</button>
                 </div>
               </div>
-
-              <div className="profile-modal-separator" />
-              <button className="profile-modal-btn-logout" type="button" onClick={handleLogout}>
-                Log Out
-              </button>
-              <button className="profile-modal-btn-danger" type="button" onClick={handleDelete}>
-                Delete Account
-              </button>
             </motion.div>
           </div>
         )}

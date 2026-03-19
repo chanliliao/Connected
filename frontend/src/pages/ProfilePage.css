@@ -138,6 +138,24 @@
 }
 
 
+.profile-avatar-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  min-width: 60px;
+}
+
+.profile-avatar--add {
+  background: rgba(251, 113, 133, 0.10);
+  border-style: dashed;
+  color: rgba(251, 113, 133, 0.65);
+}
+
 .profile-connector {
   display: flex;
   align-items: center;
@@ -271,7 +289,7 @@
   outline: none;
   color: #f9d8e4;
   font-family: 'Quicksand', sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   padding: 0;
   margin: 0;
 }
@@ -345,7 +363,7 @@
   border-radius: 8px;
   color: #f9d8e4;
   font-family: 'Quicksand', sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   padding: 7px 10px;
   outline: none;
   min-width: 0;
@@ -366,12 +384,17 @@
   border-radius: 8px;
   color: #f9d8e4;
   font-family: 'Quicksand', sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   padding: 7px 8px;
   outline: none;
   color-scheme: dark;
   box-sizing: border-box;
   flex-shrink: 0;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .profile-date-input:focus {
@@ -451,7 +474,7 @@
   border-radius: 10px;
   color: #f9d8e4;
   font-family: 'Quicksand', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   outline: none;
   box-sizing: border-box;
   transition: border-color 0.2s;
@@ -467,6 +490,11 @@
 
 .profile-modal-input-date {
   color-scheme: dark;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .profile-modal-btn-save {
