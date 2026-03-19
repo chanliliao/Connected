@@ -134,6 +134,10 @@ export default function HomePage({ session }) {
               <div className="home-house-left" />
               <div className="home-house-right" />
             </div>
+
+            {/* ── Right-side shelves ── */}
+            <div className="home-shelf home-shelf--right-top" />
+            <div className="home-shelf home-shelf--right-mid" />
           </div>
 
           {/* Floor band — visible divide from walls above */}

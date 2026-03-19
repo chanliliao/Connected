@@ -98,7 +98,7 @@ export default function BedroomPage({ session }) {
             />
           </svg>
 
-          {/* Walls — no ceiling lights */}
+          {/* Walls */}
           <div className="home-house-walls">
             {/* Home door — invisible right-side click zone */}
             <button
