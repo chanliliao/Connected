@@ -37,18 +37,99 @@
 .home-sky {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #2d0a1e 0%, #8b1a5c 100%);
   display: flex;
   z-index: 0;
 }
 
-.home-sky-left,
-.home-sky-right {
+/* ── Sky half wrappers — structural only, no background ── */
+.home-sky-user {
   flex: 1;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Stars — scattered via box-shadow */
-.home-sky::before {
+.home-sky-partner {
+  flex: 1;
+  position: relative;
+  clip-path: inset(0);
+}
+
+/* ── Morning sky variants ── */
+.sky-morning-left,
+.sky-morning-right {
+  background: linear-gradient(180deg, #6b1a4a 0%, #c4406e 100%);
+}
+
+/* Cloud 1 — morning LEFT */
+.sky-morning-left::before {
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 57%;
+  width: 42px;
+  height: 13px;
+  background: rgba(255, 180, 200, 0.55);
+  border-radius: 20px;
+  box-shadow:
+    11px -10px 0 7px rgba(255, 180, 200, 0.55),
+    25px  -6px 0 5px rgba(255, 180, 200, 0.55);
+}
+
+/* Cloud 2 — morning LEFT */
+.sky-morning-left::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 35%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 9px;
+  background: rgba(255, 160, 185, 0.45);
+  border-radius: 15px;
+  box-shadow:
+    8px -7px 0 4px rgba(255, 160, 185, 0.45),
+    16px -4px 0 3px rgba(255, 160, 185, 0.45);
+}
+
+/* Cloud 1 — morning RIGHT (mirror) */
+.sky-morning-right::before {
+  content: '';
+  position: absolute;
+  top: 8%;
+  right: 57%;
+  width: 42px;
+  height: 13px;
+  background: rgba(255, 180, 200, 0.55);
+  border-radius: 20px;
+  box-shadow:
+    -11px -10px 0 7px rgba(255, 180, 200, 0.55),
+    -25px  -6px 0 5px rgba(255, 180, 200, 0.55);
+}
+
+/* Cloud 2 — morning RIGHT (mirror) */
+.sky-morning-right::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  right: 35%;
+  transform: translateX(50%);
+  width: 28px;
+  height: 9px;
+  background: rgba(255, 160, 185, 0.45);
+  border-radius: 15px;
+  box-shadow:
+    -8px -7px 0 4px rgba(255, 160, 185, 0.45),
+    -16px -4px 0 3px rgba(255, 160, 185, 0.45);
+}
+
+/* ── Night sky variants ── */
+.sky-night-left,
+.sky-night-right {
+  background: linear-gradient(180deg, #2d0a1e 0%, #8b1a5c 100%);
+}
+
+/* Stars — night RIGHT (original side) */
+.sky-night-right::before {
   content: '';
   position: absolute;
   width: 2px;
@@ -58,14 +139,33 @@
   top: 10%;
   left: 15%;
   box-shadow:
-    50px  -18px 0 0px rgba(255, 255, 255, 0.60),
-   -30px   40px 0 1px rgba(255, 255, 255, 0.45),
-   100px   12px 0 0px rgba(255, 255, 255, 0.70),
-   -75px   -8px 0 1px rgba(255, 255, 255, 0.40),
-   160px   48px 0 0px rgba(255, 255, 255, 0.55),
-  -120px   22px 0 1px rgba(255, 255, 255, 0.60),
-   210px  -25px 0 0px rgba(255, 255, 255, 0.45),
-   -55px  -40px 0 0px rgba(255, 255, 255, 0.35);
+     50px  -18px 0 0px rgba(255, 255, 255, 0.60),
+    100px   12px 0 0px rgba(255, 255, 255, 0.70),
+    -75px   -8px 0 1px rgba(255, 255, 255, 0.40),
+    160px   48px 0 0px rgba(255, 255, 255, 0.55),
+   -120px   22px 0 1px rgba(255, 255, 255, 0.60),
+    210px  -25px 0 0px rgba(255, 255, 255, 0.45),
+    -55px  -40px 0 0px rgba(255, 255, 255, 0.35);
+}
+
+/* Stars — night LEFT (mirror: anchor right:15%, negate x-offsets) */
+.sky-night-left::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  top: 10%;
+  right: 15%;
+  box-shadow:
+     -50px  -18px 0 0px rgba(255, 255, 255, 0.60),
+    -100px   12px 0 0px rgba(255, 255, 255, 0.70),
+      75px   -8px 0 1px rgba(255, 255, 255, 0.40),
+    -160px   48px 0 0px rgba(255, 255, 255, 0.55),
+     120px   22px 0 1px rgba(255, 255, 255, 0.60),
+    -210px  -25px 0 0px rgba(255, 255, 255, 0.45),
+      55px  -40px 0 0px rgba(255, 255, 255, 0.35);
 }
 
 /* ── Moon — cream crescent ── */
@@ -90,6 +190,33 @@
   border-radius: 50%;
   /* matches sky color at ~52px from top */
   background: #330b21;
+}
+
+/* Moon on left side — mirror */
+.home-moon--left {
+  right: auto;
+  left: 44px;
+}
+
+.home-moon--left::after {
+  right: auto;
+  left: -6px;
+}
+
+/* ── Sun — morning side, mirrors moon position ── */
+.home-sun {
+  position: absolute;
+  top: 52px;
+  left: 44px;
+  width: 60px;
+  height: 60px;
+  z-index: 1;
+}
+
+/* Sun on right side — mirror */
+.home-sun--right {
+  left: auto;
+  right: 44px;
 }
 
 /* ── House container — bottom 85% (peak at 15% from top) ── */
@@ -122,7 +249,7 @@
   left: 0;
   right: 0;
   top: 9%;        /* 0.5% overlap with roof SVG to avoid any gap */
-  bottom: 131px;  /* 76px carpet + 55px floor */
+  bottom: 160px;  /* 105px carpet + 55px floor */
   background: #160412;
   z-index: 1;
 }
@@ -148,7 +275,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 76px;
+  bottom: 105px;
   height: 55px;
   background: #4a1528;
   border-top: 1px solid rgba(251, 113, 133, 0.28);
@@ -158,7 +285,7 @@
 /* ── Curved arch SVG — separates floor from nav ── */
 .home-nav-curve {
   position: absolute;
-  bottom: 76px;
+  bottom: 105px;
   left: 0;
   right: 0;
   width: 100%;
@@ -173,7 +300,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 76px;
+  height: 105px;
   background: #0f0310;
   z-index: 1;
 }
@@ -184,7 +311,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 76px;
+  height: 105px;
   display: flex;
   gap: 16px;
   align-items: center;

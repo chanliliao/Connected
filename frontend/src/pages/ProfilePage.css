@@ -415,12 +415,8 @@
   max-width: 430px;
   padding: 20px 24px 40px;
   box-sizing: border-box;
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0); }
+  overflow-y: auto;
+  max-height: 90svh;
 }
 
 .profile-modal-handle {
@@ -437,6 +433,7 @@
   font-weight: 700;
   color: #fb7185;
   margin: 0 0 16px;
+  text-align: center;
 }
 
 .profile-modal-form {
@@ -524,6 +521,26 @@
   margin: 16px 0;
 }
 
+.profile-modal-btn-logout {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: rgba(249, 216, 228, 0.60);
+  border: 1.5px solid rgba(249, 216, 228, 0.20);
+  border-radius: 12px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 10px;
+}
+
+.profile-modal-btn-logout:hover {
+  background: rgba(249, 216, 228, 0.08);
+  color: #f9d8e4;
+}
+
 .profile-modal-btn-danger {
   width: 100%;
   padding: 12px;
@@ -540,4 +557,153 @@
 
 .profile-modal-btn-danger:hover {
   background: rgba(248, 113, 113, 0.12);
+}
+
+/* ── Status section ── */
+.profile-modal-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.profile-modal-status-row .profile-modal-heading {
+  margin-bottom: 0;
+}
+
+.profile-modal-status-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-modal-status-badge {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(249, 216, 228, 0.45);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(251, 113, 133, 0.20);
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+
+.profile-modal-status-badge--paired {
+  color: #fb7185;
+  background: rgba(251, 113, 133, 0.12);
+  border-color: rgba(251, 113, 133, 0.40);
+}
+
+.profile-modal-status-name {
+  font-size: 13px;
+  color: #f9d8e4;
+  font-weight: 600;
+}
+
+.profile-modal-pair-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.profile-modal-pair-input {
+  flex: 1;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.profile-modal-btn-connect {
+  padding: 11px 16px;
+  background: linear-gradient(135deg, #fb7185, #ec4899);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: filter 0.2s;
+}
+
+.profile-modal-btn-connect:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.profile-modal-btn-connect:hover:not(:disabled) {
+  filter: brightness(0.92);
+}
+
+.profile-modal-btn-unpair {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: rgba(249, 216, 228, 0.55);
+  border: 1px dashed rgba(251, 113, 133, 0.30);
+  border-radius: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background 0.2s;
+}
+
+.profile-modal-btn-unpair:hover {
+  background: rgba(248, 113, 113, 0.08);
+  color: #f87171;
+}
+
+.profile-modal-code-block {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(251, 113, 133, 0.18);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 4px;
+}
+
+.profile-modal-code-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(251, 113, 133, 0.60);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.profile-modal-code-display {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.profile-modal-code-value {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #f9d8e4;
+}
+
+.profile-modal-code-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.profile-modal-code-btn {
+  flex: 1;
+  padding: 8px;
+  background: rgba(251, 113, 133, 0.10);
+  border: 1px solid rgba(251, 113, 133, 0.25);
+  border-radius: 8px;
+  color: #fb7185;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.profile-modal-code-btn:hover {
+  background: rgba(251, 113, 133, 0.20);
 }

@@ -134,6 +134,10 @@ export default function ProfilePage({ session }) {
   const [saveError, setSaveError] = useState('')
 
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [pairCode, setPairCode] = useState('')
+  const [pairError, setPairError] = useState('')
+  const [pairLoading, setPairLoading] = useState(false)
+  const [codeCopied, setCodeCopied] = useState(false)
 
   const defaultTz = Intl.DateTimeFormat().resolvedOptions().timeZone
   const [userTz, setUserTz] = useState(defaultTz)
@@ -154,10 +158,17 @@ export default function ProfilePage({ session }) {
         .eq('id', session.user.id)
         .single()
       if (!error) {
+        if (!data.pairing_code) {
+          const generated = Math.random().toString(36).substring(2, 8).toUpperCase()
+          await supabase.from('profiles').update({ pairing_code: generated }).eq('id', session.user.id)
+          data.pairing_code = generated
+        }
         setProfile(data)
         setFirstName(data.first_name ?? '')
         setLastName(data.last_name ?? '')
         setBirthday(data.birthday ?? '')
+        if (data.user_tz) setUserTz(data.user_tz)
+        if (data.partner_tz) setSoTz(data.partner_tz)
       }
     }
     loadProfile()
@@ -189,6 +200,56 @@ export default function ProfilePage({ session }) {
       setSaveSuccess(true)
     }
   }, [firstName, lastName, birthday, session.user.id])
+
+  async function handlePair() {
+    setPairLoading(true)
+    setPairError('')
+    const { data, error } = await supabase.rpc('pair_with_code', { code: pairCode.trim() })
+    setPairLoading(false)
+    if (error || data?.error) {
+      setPairError(error?.message || data.error)
+    } else {
+      setProfile(prev => ({ ...prev, partner_id: data.partner_id, partner_name: data.partner_name }))
+      setPairCode('')
+    }
+  }
+
+  async function handleUnpair() {
+    await supabase.rpc('unpair_account')
+    setProfile(prev => ({ ...prev, partner_id: null, partner_name: null }))
+  }
+
+  async function copyCode() {
+    await navigator.clipboard.writeText(profile.pairing_code)
+    setCodeCopied(true)
+    setTimeout(() => setCodeCopied(false), 2000)
+  }
+
+  async function shareCode() {
+    const text = `Join me on Connected! My code: ${profile.pairing_code}`
+    if (navigator.share) {
+      await navigator.share({ text })
+    } else {
+      await navigator.clipboard.writeText(profile.pairing_code)
+      setCodeCopied(true)
+      setTimeout(() => setCodeCopied(false), 2000)
+    }
+  }
+
+  async function handleUserTzChange(tz) {
+    setUserTz(tz)
+    await supabase.from('profiles').update({ user_tz: tz }).eq('id', session.user.id)
+  }
+
+  async function handleSoTzChange(tz) {
+    setSoTz(tz)
+    await supabase.from('profiles').update({ partner_tz: tz }).eq('id', session.user.id)
+  }
+
+  async function handleLogout() {
+    await supabase.auth.signOut()
+    navigate('/login')
+  }
 
   async function handleDelete() {
     if (!window.confirm('Are you sure you want to delete your account? This cannot be undone.')) return
@@ -273,13 +334,13 @@ export default function ProfilePage({ session }) {
             <div className="profile-tz-card">
               <span className="profile-tz-label">You</span>
               <div className="profile-tz-time">{userTime}</div>
-              <TzPicker value={userTz} onChange={setUserTz} />
+              <TzPicker value={userTz} onChange={handleUserTzChange} />
             </div>
 
             <div className="profile-tz-card">
               <span className="profile-tz-label">Them</span>
               <div className="profile-tz-time">{soTime}</div>
-              <TzPicker value={soTz} onChange={setSoTz} />
+              <TzPicker value={soTz} onChange={handleSoTzChange} />
             </div>
           </div>
         </div>
@@ -313,47 +374,117 @@ export default function ProfilePage({ session }) {
       </div>
 
       {/* Settings modal */}
-      {settingsOpen && (
-        <div className="profile-modal-backdrop" onClick={() => setSettingsOpen(false)}>
-          <div className="profile-modal-panel" onClick={e => e.stopPropagation()}>
-            <div className="profile-modal-handle" />
-            <h2 className="profile-modal-heading">Your Info</h2>
+      <AnimatePresence>
+        {settingsOpen && (
+          <div className="profile-modal-backdrop" onClick={() => setSettingsOpen(false)}>
+            <motion.div
+              className="profile-modal-panel"
+              onClick={e => e.stopPropagation()}
+              drag="y"
+              dragConstraints={{ top: 0 }}
+              dragElastic={{ top: 0, bottom: 0.4 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.y > 80) setSettingsOpen(false)
+              }}
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            >
+              <div className="profile-modal-handle" />
 
-            <form className="profile-modal-form" onSubmit={handleSave}>
-              <input
-                className="profile-modal-input"
-                placeholder="First Name"
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
-              />
-              <input
-                className="profile-modal-input"
-                placeholder="Last Name"
-                value={lastName}
-                onChange={e => setLastName(e.target.value)}
-              />
-              <input
-                className="profile-modal-input profile-modal-input-date"
-                type="date"
-                value={birthday}
-                onChange={e => setBirthday(e.target.value)}
-              />
-              <button className="profile-modal-btn-save" type="submit" disabled={saving}>
-                {saving ? 'Saving…' : 'Save Changes'}
+              {/* ── Your Info section ── */}
+              <h2 className="profile-modal-heading">Your Info</h2>
+              <form className="profile-modal-form" onSubmit={handleSave}>
+                <input
+                  className="profile-modal-input"
+                  placeholder="First Name"
+                  value={firstName}
+                  onChange={e => setFirstName(e.target.value)}
+                />
+                <input
+                  className="profile-modal-input"
+                  placeholder="Last Name"
+                  value={lastName}
+                  onChange={e => setLastName(e.target.value)}
+                />
+                <input
+                  className="profile-modal-input profile-modal-input-date"
+                  type="date"
+                  value={birthday}
+                  onChange={e => setBirthday(e.target.value)}
+                />
+                <button className="profile-modal-btn-save" type="submit" disabled={saving}>
+                  {saving ? 'Saving…' : 'Save Changes'}
+                </button>
+              </form>
+              {saveSuccess && <p className="profile-modal-success">Changes saved successfully.</p>}
+              {saveError && <p className="profile-modal-error">{saveError}</p>}
+
+              <div className="profile-modal-separator" />
+
+              {/* ── Status section ── */}
+              <div className="profile-modal-status-row">
+                <h2 className="profile-modal-heading">Status</h2>
+                <div className="profile-modal-status-badge-wrap">
+                  <span className={`profile-modal-status-badge${profile.partner_id ? ' profile-modal-status-badge--paired' : ''}`}>
+                    {profile.partner_id ? '♥ Paired' : '○ Not Paired'}
+                  </span>
+                  {profile.partner_id && (
+                    <span className="profile-modal-status-name">with {profile.partner_name || 'Your SO'}</span>
+                  )}
+                </div>
+              </div>
+
+              {profile.partner_id ? (
+                <button className="profile-modal-btn-unpair" onClick={handleUnpair}>
+                  Unpair
+                </button>
+              ) : (
+                <div className="profile-modal-pair-row">
+                  <input
+                    className="profile-modal-input profile-modal-pair-input"
+                    placeholder="Enter partner's code…"
+                    value={pairCode}
+                    onChange={e => setPairCode(e.target.value.toUpperCase())}
+                    maxLength={8}
+                  />
+                  <button
+                    className="profile-modal-btn-connect"
+                    onClick={handlePair}
+                    disabled={pairLoading || pairCode.trim().length < 4}
+                  >
+                    {pairLoading ? '…' : 'Connect'}
+                  </button>
+                </div>
+              )}
+
+              {pairError && <p className="profile-modal-error">{pairError}</p>}
+
+              <div className="profile-modal-code-block">
+                <span className="profile-modal-code-label">Your code</span>
+                <div className="profile-modal-code-display" onClick={copyCode}>
+                  <span className="profile-modal-code-value">{profile.pairing_code}</span>
+                </div>
+                <div className="profile-modal-code-actions">
+                  <button className="profile-modal-code-btn" onClick={copyCode}>
+                    {codeCopied ? 'Copied!' : 'Copy'}
+                  </button>
+                  <button className="profile-modal-code-btn" onClick={shareCode}>Share</button>
+                </div>
+              </div>
+
+              <div className="profile-modal-separator" />
+              <button className="profile-modal-btn-logout" type="button" onClick={handleLogout}>
+                Log Out
               </button>
-            </form>
-
-            {saveSuccess && <p className="profile-modal-success">Changes saved successfully.</p>}
-            {saveError && <p className="profile-modal-error">{saveError}</p>}
-
-            <div className="profile-modal-separator" />
-
-            <button className="profile-modal-btn-danger" type="button" onClick={handleDelete}>
-              Delete Account
-            </button>
+              <button className="profile-modal-btn-danger" type="button" onClick={handleDelete}>
+                Delete Account
+              </button>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   )
 }

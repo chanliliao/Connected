@@ -1,12 +1,44 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import sunSvg from '../assets/sun.svg'
 import './HomePage.css'
+
+function isMorning(tz) {
+  if (!tz) return true
+  const hour = parseInt(
+    new Date().toLocaleString('en-US', { timeZone: tz, hour: 'numeric', hour12: false }),
+    10
+  )
+  return hour >= 6 && hour < 18
+}
 
 export default function HomePage({ session }) {
   const navigate = useNavigate()
   const [userLightOn, setUserLightOn] = useState(true)
   const [soLightOn, setSoLightOn] = useState(true)
+  const [userTz, setUserTz] = useState(null)
+  const [partnerTz, setPartnerTz] = useState(null)
+
+  useEffect(() => {
+    async function fetchTzs() {
+      const { data } = await supabase
+        .from('profiles')
+        .select('user_tz, partner_tz')
+        .eq('id', session.user.id)
+        .single()
+      if (data) {
+        setUserTz(data.user_tz)
+        setPartnerTz(data.partner_tz)
+      }
+    }
+    fetchTzs()
+  }, [session.user.id])
+
+  const userIsMorning = isMorning(userTz)
+  const partnerIsMorning = isMorning(partnerTz)
+  const userSkyClass = userIsMorning ? 'sky-morning-left' : 'sky-night-left'
+  const partnerSkyClass = partnerIsMorning ? 'sky-morning-right' : 'sky-night-right'
 
   async function handleLogout() {
     await supabase.auth.signOut()
@@ -19,9 +51,20 @@ export default function HomePage({ session }) {
 
         {/* Sky — full background */}
         <div className="home-sky">
-          <div className="home-sky-left" />
-          <div className="home-sky-right" />
-          <div className="home-moon" />
+          <div className={`home-sky-user ${userSkyClass}`} />
+          <div className={`home-sky-partner ${partnerSkyClass}`} />
+          {userIsMorning && (
+            <img src={sunSvg} className="home-sun" alt="" aria-hidden="true" />
+          )}
+          {partnerIsMorning && (
+            <img src={sunSvg} className="home-sun home-sun--right" alt="" aria-hidden="true" />
+          )}
+          {!userIsMorning && (
+            <div className="home-moon home-moon--left" />
+          )}
+          {!partnerIsMorning && (
+            <div className="home-moon" />
+          )}
         </div>
 
         {/* House — bottom 75% */}
