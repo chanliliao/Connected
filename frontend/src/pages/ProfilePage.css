@@ -227,14 +227,14 @@
   white-space: nowrap;
 }
 
-.tz-picker-chevron {
+.tz-picker-chevron-wrap {
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
-  color: rgba(251, 113, 133, 0.60);
-  transition: transform 0.2s;
 }
 
-.tz-picker-chevron--open {
-  transform: rotate(180deg);
+.tz-picker-chevron {
+  color: rgba(251, 113, 133, 0.60);
 }
 
 .tz-picker-dropdown {
@@ -243,11 +243,10 @@
   left: 0;
   right: 0;
   background: #1a0515;
-  border: 1px solid rgba(251, 113, 133, 0.30);
+  border: 2px solid rgba(251, 113, 133, 0.30);
   border-top: none;
   border-radius: 0 0 8px 8px;
   z-index: 20;
-  overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
@@ -255,8 +254,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px 8px 24px;
-  border-top: 1px solid rgba(251, 113, 133, 0.15);
+  padding: 8px 12px;
   border-bottom: 1px solid rgba(251, 113, 133, 0.15);
   box-sizing: border-box;
 }
@@ -264,7 +262,6 @@
 .tz-picker-search-icon {
   color: rgba(251, 113, 133, 0.60);
   flex-shrink: 0;
-  display: block;
 }
 
 .tz-picker-search {
@@ -284,12 +281,13 @@
 }
 
 .tz-picker-list {
+  width: 100%;
   max-height: 160px;
+  overflow-x: hidden;
   overflow-y: auto;
   margin: 0;
-  padding: 4px 0 4px 24px;
+  padding: 0;
   list-style: none;
-  list-style-type: none;
   scrollbar-width: none;
   box-sizing: border-box;
 }
@@ -300,14 +298,15 @@
 
 .tz-picker-option {
   display: block;
-  padding: 8px 0 8px 24px;
+  width: 100%;
+  padding: 8px 12px;
   font-family: 'Quicksand', sans-serif;
   font-size: 12px;
   color: #f9d8e4;
   cursor: pointer;
-  transition: background 0.15s;
-  border-bottom: 1px solid rgba(251, 113, 133, 0.25);
+  border-bottom: 1px solid rgba(251, 113, 133, 0.15);
   box-sizing: border-box;
+  transition: background 0.15s;
 }
 
 .tz-picker-option:last-child {
@@ -315,12 +314,14 @@
 }
 
 .tz-picker-option:hover {
-  background: rgba(251, 113, 133, 0.15);
+  background: rgba(251, 113, 133, 0.12);
+  color: #fb7185;
 }
 
 .tz-picker-option--active {
   color: #fb7185;
   font-weight: 700;
+  background: rgba(251, 113, 133, 0.08);
 }
 
 /* ── Panel 3 — Special dates ── */

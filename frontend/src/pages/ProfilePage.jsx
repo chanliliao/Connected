@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import './ProfilePage.css'
@@ -42,39 +43,73 @@ function TzPicker({ value, onChange }) {
 
   return (
     <div className="tz-picker" ref={ref}>
-      <div className={`tz-picker-trigger${open ? ' tz-picker-trigger--open' : ''}`} onClick={toggle}>
+      <div
+        className={`tz-picker-trigger${open ? ' tz-picker-trigger--open' : ''}`}
+        onClick={toggle}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
         <span className="tz-picker-value">{tzLabel(value)}</span>
-        <svg className={`tz-picker-chevron${open ? ' tz-picker-chevron--open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M7 10l5 5 5-5z"/>
-        </svg>
+        <motion.div
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2, ease: 'easeInOut' }}
+          className="tz-picker-chevron-wrap"
+        >
+          <svg className="tz-picker-chevron" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 10l5 5 5-5z"/>
+          </svg>
+        </motion.div>
       </div>
-      {open && (
-        <div className="tz-picker-dropdown">
-          <div className="tz-picker-search-wrap">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="tz-picker-search-icon">
-              <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-            </svg>
-            <input
-              className="tz-picker-search"
-              placeholder="Search city…"
-              value={query}
-              onChange={e => setQuery(e.target.value)}
-              autoFocus
-            />
-          </div>
-          <ul className="tz-picker-list">
-            {filtered.map(tz => (
-              <li
-                key={tz}
-                className={`tz-picker-option${tz === value ? ' tz-picker-option--active' : ''}`}
-                onClick={() => select(tz)}
-              >
-                {tzLabel(tz)}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="tz-picker-dropdown"
+            role="listbox"
+            initial={{ opacity: 0, y: -8, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.97 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+          >
+            <div className="tz-picker-search-wrap">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="tz-picker-search-icon">
+                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+              </svg>
+              <input
+                className="tz-picker-search"
+                placeholder="Search city…"
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+                autoFocus
+              />
+            </div>
+
+            <motion.ul
+              className="tz-picker-list"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                visible: { transition: { staggerChildren: 0.025 } }
+              }}
+            >
+              {filtered.map(tz => (
+                <motion.li
+                  key={tz}
+                  className={`tz-picker-option${tz === value ? ' tz-picker-option--active' : ''}`}
+                  onClick={() => select(tz)}
+                  variants={{
+                    hidden: { opacity: 0, x: -16 },
+                    visible: { opacity: 1, x: 0 },
+                  }}
+                  transition={{ duration: 0.15 }}
+                >
+                  {tzLabel(tz)}
+                </motion.li>
+              ))}
+            </motion.ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
