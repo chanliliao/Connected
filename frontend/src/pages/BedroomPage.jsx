@@ -14,10 +14,8 @@ function isMorning(tz) {
   return hour >= 6 && hour < 18
 }
 
-export default function HomePage({ session }) {
+export default function BedroomPage({ session }) {
   const navigate = useNavigate()
-  const [userLightOn, setUserLightOn] = useState(true)
-  const [soLightOn, setSoLightOn] = useState(true)
   const [userTz, setUserTz] = useState(() => localStorage.getItem('connected_user_tz') || null)
   const [partnerTz, setPartnerTz] = useState(() => localStorage.getItem('connected_partner_tz') || null)
 
@@ -49,8 +47,8 @@ export default function HomePage({ session }) {
   }
 
   function handleDragEnd(_e, info) {
-    if (info.offset.x < -80) {
-      navigate('/bedroom')
+    if (info.offset.x > 80) {
+      navigate('/')
     }
   }
 
@@ -60,7 +58,7 @@ export default function HomePage({ session }) {
         className="home-app"
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={{ left: 0.3, right: 0 }}
+        dragElastic={{ left: 0, right: 0.3 }}
         onDragEnd={handleDragEnd}
       >
 
@@ -102,42 +100,17 @@ export default function HomePage({ session }) {
 
           {/* Walls */}
           <div className="home-house-walls">
-            {/* Bedroom door — invisible left-side click zone */}
+            {/* Home door — invisible right-side click zone */}
             <button
-              className="home-door-left"
-              onClick={() => navigate('/bedroom')}
-              aria-label="Go to bedroom"
+              className="home-door-right"
+              onClick={() => navigate('/')}
+              aria-label="Go to home"
             />
-
-            {/* Ceiling lights — left = user, right = SO */}
-            <div className="home-lights">
-              <button
-                className={`home-light home-light-left ${userLightOn ? 'home-light--on' : ''}`}
-                onClick={() => setUserLightOn(v => !v)}
-                aria-label={userLightOn ? 'Turn your light off' : 'Turn your light on'}
-              >
-                <div className="home-light-fixture" />
-                <div className="home-light-beam" />
-              </button>
-
-              <button
-                className={`home-light home-light-right ${soLightOn ? 'home-light--on' : ''}`}
-                onClick={() => setSoLightOn(v => !v)}
-                aria-label={soLightOn ? "Turn SO's light off" : "Turn SO's light on"}
-              >
-                <div className="home-light-fixture" />
-                <div className="home-light-beam" />
-              </button>
-            </div>
 
             <div className="home-house-interior">
               <div className="home-house-left" />
               <div className="home-house-right" />
             </div>
-
-            {/* ── Right-side shelves ── */}
-            <div className="home-shelf home-shelf--right-top" />
-            <div className="home-shelf home-shelf--right-mid" />
           </div>
 
           {/* Floor band — visible divide from walls above */}
