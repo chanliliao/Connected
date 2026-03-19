@@ -159,7 +159,9 @@ export default function ProfilePage({ session }) {
         .single()
       if (!error) {
         if (!data.pairing_code) {
-          const generated = Math.random().toString(36).substring(2, 8).toUpperCase()
+          const arr = new Uint32Array(1)
+          crypto.getRandomValues(arr)
+          const generated = arr[0].toString(36).padStart(7, '0').substring(0, 8).toUpperCase()
           await supabase.from('profiles').update({ pairing_code: generated }).eq('id', session.user.id)
           data.pairing_code = generated
         }
