@@ -17,19 +17,22 @@
 
 /* ── Page shell — provides empty blush space on desktop ── */
 .home-page {
-  min-height: 100svh;
-  background: #fdf7f9;
+  width: 100vw;
+  height: 100svh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow: hidden;
+  background: #0a0008;
 }
 
 /* ── Centered phone-like app container ── */
 .home-app {
   position: relative;
-  width: 100%;
-  max-width: 430px;
-  height: 100svh;
+  width: 430px;
+  height: 932px;
+  flex-shrink: 0;
+  transform-origin: top center;
   overflow: hidden;
 }
 
@@ -225,7 +228,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 85svh;
+  height: 792px;
   z-index: 1;
 }
 
@@ -376,7 +379,7 @@
 
 .home-light-beam {
   width: 130px;
-  height: 38svh;
+  height: 354px;
   clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
   background: linear-gradient(
     180deg,
@@ -504,4 +507,91 @@
   bottom: -59px;
   z-index: 3;
   pointer-events: none;
+}
+
+/* ── Mood Light Modal ── */
+.home-mood-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 20;
+}
+
+.home-mood-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1f0818;
+  border-radius: 20px 20px 0 0;
+  border-top: 1px solid rgba(251, 113, 133, 0.2);
+  padding: 12px 20px 36px;
+  z-index: 21;
+  touch-action: none;
+}
+
+.home-mood-handle {
+  width: 40px;
+  height: 4px;
+  background: rgba(251, 113, 133, 0.3);
+  border-radius: 2px;
+  margin: 0 auto 20px;
+}
+
+.home-mood-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fce7f3;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.home-mood-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.home-mood-bulb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 10px 4px 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.home-mood-bulb--selected {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.home-mood-label {
+  font-size: 10px;
+  color: rgba(252, 231, 243, 0.75);
+  text-align: center;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.home-mood-save {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #fb7185, #ec4899);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.home-mood-save:hover {
+  opacity: 0.88;
 }
