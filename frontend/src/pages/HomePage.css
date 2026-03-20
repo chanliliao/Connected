@@ -277,7 +277,7 @@
   bottom: 105px;
   height: 95px;
   background: #2d0a1e;
-  z-index: 1;
+  z-index: 0;
 }
 
 /* ── Curved arch SVG — separates floor from nav ── */
@@ -299,7 +299,7 @@
   left: 0;
   right: 0;
   height: 105px;
-  background: #0f0310;
+  background: #3d1a30;
   z-index: 1;
 }
 
@@ -345,7 +345,7 @@
   right: 0;
   bottom: 0;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
 }
 
 .home-light {
@@ -361,7 +361,7 @@
   pointer-events: auto;
 }
 
-.home-light-left  { left: 25%; transform: translateX(-50%); }
+.home-light-left  { left: 27%; transform: translateX(-50%); }
 .home-light-right { left: 75%; transform: translateX(-50%); }
 
 .home-light-fixture {
@@ -432,8 +432,8 @@
 /* ── Right-side shelves ── */
 .home-shelf {
   position: absolute;
-  right: 5%;
-  width: 42%;
+  right: 7.5%;
+  width: 35%;
   height: 4px;
   background: rgba(251, 113, 133, 0.18);
   border-radius: 2px;
@@ -443,10 +443,65 @@
 
 /* Upper shelf — matches reference: speaker + vase level */
 .home-shelf--right-top {
-  top: 44%;
+  top: 49%;
 }
 
 /* Lower shelf — matches reference: TV level */
 .home-shelf--right-mid {
-  top: 67%;
+  top: 72%;
+}
+
+/* ── Left bookshelf ── */
+.home-bookshelf {
+  position: absolute;
+  left: 9%;
+  top: 45%;
+  width: 32%;
+  bottom: -28px;   /* extends ~mid-floor, height reduced ~10% */
+  border: 9px solid rgba(251, 113, 133, 0.28);
+  background-color: #3d1a30;  /* lighter rose interior — clearly visible against dark wall, matches nav carpet */
+  border-radius: 2px 2px 0 0;
+  z-index: 2;
+}
+
+/* Horizontal shelf dividers — thick like reference */
+.home-bookshelf-shelf {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(251, 113, 133, 0.28);
+  border-radius: 1px;
+}
+
+.home-bookshelf-shelf:nth-child(1) {
+  top: 30%;   /* after bonsai section */
+}
+
+.home-bookshelf-shelf:nth-child(2) {
+  top: 52%;   /* after books/trophy section */
+}
+
+.home-bookshelf-shelf:nth-child(3) {
+  top: 72%;   /* after armchair-level section — 4th compartment hidden behind chair legs */
+}
+
+/* ── Plush armchair — left room, in front of bookshelf ── */
+.home-chair-plush {
+  position: absolute;
+  left: 6%;
+  width: 47%;
+  bottom: calc(-28px - 20%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ── Basic table — right room, centered ── */
+.home-table-basic {
+  position: absolute;
+  left: 55.89%;
+  width: 38.22%;
+  bottom: -59px;
+  z-index: 3;
+  pointer-events: none;
 }

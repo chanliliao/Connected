@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { supabase } from '../lib/supabase'
 import sunSvg from '../assets/sun.svg'
+import chairPlushSvg from '../assets/chairs/chair-plush.svg'
+import tableBasicSvg from '../assets/tables/table-basic.svg'
 import './HomePage.css'
 
 function isMorning(tz) {
@@ -138,6 +140,19 @@ export default function HomePage({ session }) {
             {/* ── Right-side shelves ── */}
             <div className="home-shelf home-shelf--right-top" />
             <div className="home-shelf home-shelf--right-mid" />
+
+            {/* ── Left bookshelf — empty ── */}
+            <div className="home-bookshelf">
+              <div className="home-bookshelf-shelf" />
+              <div className="home-bookshelf-shelf" />
+              <div className="home-bookshelf-shelf" />
+            </div>
+
+            {/* Plush armchair — in front of left bookshelf */}
+            <img src={chairPlushSvg} className="home-chair-plush" alt="" aria-hidden="true" />
+
+            {/* Basic table — right room, centered, at floor level */}
+            <img src={tableBasicSvg} className="home-table-basic" alt="" aria-hidden="true" />
           </div>
 
           {/* Floor band — visible divide from walls above */}
@@ -145,7 +160,7 @@ export default function HomePage({ session }) {
 
           {/* Curved SVG arch — separates floor from nav (no line, just shape) */}
           <svg className="home-nav-curve" viewBox="0 0 430 24" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0,24 Q215,0 430,24 L430,24 L0,24 Z" fill="#0f0310"/>
+            <path d="M0,24 Q215,0 430,24 L430,24 L0,24 Z" fill="#3d1a30"/>
           </svg>
 
           {/* Carpet / floor strip where nav lives */}

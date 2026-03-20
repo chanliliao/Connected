@@ -118,7 +118,7 @@ export default function BedroomPage({ session }) {
 
           {/* Curved SVG arch — separates floor from nav (no line, just shape) */}
           <svg className="home-nav-curve" viewBox="0 0 430 24" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0,24 Q215,0 430,24 L430,24 L0,24 Z" fill="#0f0310"/>
+            <path d="M0,24 Q215,0 430,24 L430,24 L0,24 Z" fill="#3d1a30"/>
           </svg>
 
           {/* Carpet / floor strip where nav lives */}
