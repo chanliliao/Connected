@@ -46,20 +46,10 @@ export default function BedroomPage({ session }) {
     navigate('/login')
   }
 
-  function handleDragEnd(_e, info) {
-    if (info.offset.x > 80) {
-      navigate('/')
-    }
-  }
-
   return (
     <div className="home-page">
       <motion.div
         className="home-app"
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={{ left: 0, right: 0.3 }}
-        onDragEnd={handleDragEnd}
       >
 
         {/* Sky — full background */}
