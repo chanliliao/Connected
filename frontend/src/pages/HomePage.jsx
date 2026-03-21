@@ -5,6 +5,9 @@ import { supabase } from '../lib/supabase'
 import sunSvg from '../assets/sun.svg'
 import calendarSvg from '../assets/calendar.svg'
 import chairPlushSvg from '../assets/chairs/chair-plush.svg'
+import brownPomSvg from '../assets/dogs/brown_pom.svg'
+import blackPomSvg from '../assets/dogs/black_pom.svg'
+import whitePomSvg from '../assets/dogs/white_pom.svg'
 import tableBasicSvg from '../assets/tables/table-basic.svg'
 import './HomePage.css'
 
@@ -277,13 +280,20 @@ export default function HomePage({ session }) {
               <div className="home-bookshelf-shelf" />
               <div className="home-bookshelf-shelf" />
               <div className="home-bookshelf-shelf" />
+              <img src={whitePomSvg} className="home-bookshelf-pom" alt="" aria-hidden="true" />
             </div>
 
             {/* Plush armchair — in front of left bookshelf */}
-            <img src={chairPlushSvg} className="home-chair-plush" alt="" aria-hidden="true" />
+            <div className="home-chair-plush">
+              <img src={chairPlushSvg} className="home-chair-plush__img" alt="" aria-hidden="true" />
+              <img src={brownPomSvg} className="home-chair-pom" alt="" aria-hidden="true" />
+            </div>
 
             {/* Basic table — right room, centered, at floor level */}
-            <img src={tableBasicSvg} className="home-table-basic" alt="" aria-hidden="true" />
+            <div className="home-table-basic">
+              <img src={tableBasicSvg} className="home-table-basic__img" alt="" aria-hidden="true" />
+              <img src={blackPomSvg} className="home-table-pom" alt="" aria-hidden="true" />
+            </div>
           </div>
 
           {/* Floor band — visible divide from walls above */}

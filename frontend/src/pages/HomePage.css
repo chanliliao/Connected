@@ -254,7 +254,7 @@
   top: 9%;        /* 0.5% overlap with roof SVG to avoid any gap */
   bottom: 200px;  /* 105px carpet + 95px floor */
   background: #160412;
-  z-index: 1;
+  z-index: 3;
 }
 
 /* ── Interior left / right split ── */
@@ -489,6 +489,15 @@
   top: 72%;   /* after armchair-level section — 4th compartment hidden behind chair legs */
 }
 
+.home-bookshelf-pom {
+  position: absolute;
+  left: 50%;
+  bottom: 91%;
+  transform: translateX(-50%);
+  width: 97%;
+  pointer-events: none;
+}
+
 /* ── Plush armchair — left room, in front of bookshelf ── */
 .home-chair-plush {
   position: absolute;
@@ -496,6 +505,20 @@
   width: 47%;
   bottom: calc(-28px - 20%);
   z-index: 3;
+  pointer-events: none;
+}
+
+.home-chair-plush__img {
+  width: 100%;
+  display: block;
+}
+
+.home-chair-pom {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  width: 66%;
   pointer-events: none;
 }
 
@@ -507,6 +530,21 @@
   bottom: -59px;
   z-index: 3;
   pointer-events: none;
+}
+
+.home-table-basic__img {
+  width: 100%;
+  display: block;
+}
+
+.home-table-pom {
+  position: absolute;
+  left: 50%;
+  top: 95%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  pointer-events: none;
+  z-index: 5;
 }
 
 /* ── Calendar button — wall decoration + countdown widget ── */
