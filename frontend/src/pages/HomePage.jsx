@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { supabase } from '../lib/supabase'
 import sunSvg from '../assets/sun.svg'
+import calendarSvg from '../assets/calendar.svg'
 import chairPlushSvg from '../assets/chairs/chair-plush.svg'
 import tableBasicSvg from '../assets/tables/table-basic.svg'
 import './HomePage.css'
@@ -43,6 +44,19 @@ function LightbulbSVG({ color }) {
   )
 }
 
+function daysUntil(dateStr) {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const target = new Date(dateStr + 'T00:00:00')
+  return Math.ceil((target - today) / (1000 * 60 * 60 * 24))
+}
+
+function filterAndSort(list) {
+  return list
+    .filter(item => daysUntil(item.date) > 0)
+    .sort((a, b) => new Date(a.date) - new Date(b.date))
+}
+
 function isMorning(tz) {
   if (!tz) return true
   const hour = parseInt(
@@ -55,12 +69,18 @@ function isMorning(tz) {
 export default function HomePage({ session }) {
   const navigate = useNavigate()
   const appRef = useRef(null)
-  const [soLightOn, setSoLightOn] = useState(true)
   const [moodModalOpen, setMoodModalOpen] = useState(false)
-  const [userMood, setUserMood] = useState('peace')
-  const [pendingMood, setPendingMood] = useState('peace')
+  const [userMood, setUserMood] = useState(() => localStorage.getItem('connected_user_mood') || 'peace')
+  const [pendingMood, setPendingMood] = useState(() => localStorage.getItem('connected_user_mood') || 'peace')
+  const [partnerMood, setPartnerMood] = useState(() => localStorage.getItem('connected_partner_mood') || 'peace')
   const [userTz, setUserTz] = useState(() => localStorage.getItem('connected_user_tz') || null)
   const [partnerTz, setPartnerTz] = useState(() => localStorage.getItem('connected_partner_tz') || null)
+  const [countdownModalOpen, setCountdownModalOpen] = useState(false)
+  const [countdowns, setCountdowns] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('connected_countdowns') || '[]') } catch { return [] }
+  })
+  const [newLabel, setNewLabel] = useState('')
+  const [newDate, setNewDate] = useState('')
 
   useEffect(() => {
     const DESIGN_W = 430
@@ -79,7 +99,7 @@ export default function HomePage({ session }) {
     async function fetchTzs() {
       const { data } = await supabase
         .from('profiles')
-        .select('user_tz, partner_tz')
+        .select('user_tz, partner_tz, mood, partner_id, countdown_dates')
         .eq('id', session.user.id)
         .single()
       if (data) {
@@ -87,10 +107,33 @@ export default function HomePage({ session }) {
         setPartnerTz(data.partner_tz)
         localStorage.setItem('connected_user_tz', data.user_tz ?? '')
         localStorage.setItem('connected_partner_tz', data.partner_tz ?? '')
+        if (data.mood) {
+          setUserMood(data.mood)
+          setPendingMood(data.mood)
+          localStorage.setItem('connected_user_mood', data.mood)
+        }
+        if (data.countdown_dates) {
+          const sorted = filterAndSort(data.countdown_dates)
+          setCountdowns(sorted)
+          localStorage.setItem('connected_countdowns', JSON.stringify(sorted))
+        }
+        if (data.partner_id) {
+          const { data: pData } = await supabase
+            .from('profiles')
+            .select('mood')
+            .eq('id', data.partner_id)
+            .single()
+          if (pData?.mood) {
+            setPartnerMood(pData.mood)
+            localStorage.setItem('connected_partner_mood', pData.mood)
+          }
+        }
       }
     }
     fetchTzs()
   }, [session.user.id])
+
+  const nextCountdown = countdowns[0] ?? null
 
   const userIsMorning = isMorning(userTz)
   const partnerIsMorning = isMorning(partnerTz)
@@ -102,10 +145,21 @@ export default function HomePage({ session }) {
     navigate('/login')
   }
 
-  function handleDragEnd(_e, info) {
-    if (info.offset.x < -80) {
-      navigate('/bedroom')
-    }
+  async function addCountdown() {
+    if (!newLabel.trim() || !newDate) return
+    const updated = filterAndSort([...countdowns, { label: newLabel.trim(), date: newDate }])
+    setCountdowns(updated)
+    localStorage.setItem('connected_countdowns', JSON.stringify(updated))
+    setNewLabel('')
+    setNewDate('')
+    await supabase.rpc('save_countdown_dates', { dates: updated })
+  }
+
+  async function deleteCountdown(index) {
+    const updated = countdowns.filter((_, i) => i !== index)
+    setCountdowns(updated)
+    localStorage.setItem('connected_countdowns', JSON.stringify(updated))
+    await supabase.rpc('save_countdown_dates', { dates: updated })
   }
 
   return (
@@ -113,10 +167,6 @@ export default function HomePage({ session }) {
       <motion.div
         className="home-app"
         ref={appRef}
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={{ left: 0.3, right: 0 }}
-        onDragEnd={handleDragEnd}
       >
 
         {/* Sky — full background */}
@@ -157,13 +207,6 @@ export default function HomePage({ session }) {
 
           {/* Walls */}
           <div className="home-house-walls">
-            {/* Bedroom door — invisible left-side click zone */}
-            <button
-              className="home-door-left"
-              onClick={() => navigate('/bedroom')}
-              aria-label="Go to bedroom"
-            />
-
             {/* Ceiling lights — left = user, right = SO */}
             <div className="home-lights">
               <button
@@ -186,15 +229,39 @@ export default function HomePage({ session }) {
                 />
               </button>
 
-              <button
-                className={`home-light home-light-right ${soLightOn ? 'home-light--on' : ''}`}
-                onClick={() => setSoLightOn(v => !v)}
-                aria-label={soLightOn ? "Turn SO's light off" : "Turn SO's light on"}
+              <div
+                className="home-light home-light-right home-light--on"
               >
-                <div className="home-light-fixture" />
-                <div className="home-light-beam" />
-              </button>
+                <div
+                  className="home-light-fixture"
+                  style={{
+                    background: MOOD_COLORS[partnerMood].fixture,
+                    boxShadow: `0 0 10px ${MOOD_COLORS[partnerMood].fixture}, 0 2px 4px rgba(0,0,0,0.6)`,
+                  }}
+                />
+                <div
+                  className="home-light-beam"
+                  style={{
+                    background: `linear-gradient(180deg, ${MOOD_COLORS[partnerMood].beam}0.35) 0%, ${MOOD_COLORS[partnerMood].beam}0.12) 55%, transparent 100%)`,
+                  }}
+                />
+              </div>
             </div>
+
+            <button
+              className="home-calendar-btn"
+              onClick={() => setCountdownModalOpen(true)}
+              aria-label="Open countdown list"
+            >
+              <img src={calendarSvg} alt="" aria-hidden="true" className="home-calendar-img" />
+              {nextCountdown && (
+                <div className="home-calendar-overlay">
+                  <span className="home-calendar-event-label">{nextCountdown.label.slice(0, 6)}</span>
+                  <span className="home-calendar-days-text">days left</span>
+                  <span className="home-calendar-days-num">{daysUntil(nextCountdown.date)}</span>
+                </div>
+              )}
+            </button>
 
             <div className="home-house-interior">
               <div className="home-house-left" />
@@ -253,6 +320,71 @@ export default function HomePage({ session }) {
           </button>
         </nav>
 
+        {/* Countdown Modal */}
+        <AnimatePresence>
+          {countdownModalOpen && (
+            <>
+              <motion.div
+                className="home-mood-backdrop"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setCountdownModalOpen(false)}
+              />
+              <motion.div
+                className="home-mood-panel"
+                initial={{ y: '100%' }}
+                animate={{ y: 0 }}
+                exit={{ y: '100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                drag="y"
+                dragConstraints={{ top: 0, bottom: 0 }}
+                dragElastic={{ top: 0, bottom: 0.5 }}
+                onDragEnd={(_, info) => { if (info.offset.y > 80) setCountdownModalOpen(false) }}
+              >
+                <div className="home-mood-handle" />
+                <h2 className="home-mood-title">Countdown List</h2>
+
+                <div className="home-countdown-list">
+                  {countdowns.length === 0 && (
+                    <p className="home-countdown-empty">No countdowns yet.</p>
+                  )}
+                  {countdowns.map((item, i) => (
+                    <div key={i} className="home-countdown-row">
+                      <div className="home-countdown-info">
+                        <span className="home-countdown-row-label">{item.label}</span>
+                        <span className="home-countdown-row-days">{daysUntil(item.date)} days left</span>
+                      </div>
+                      <button className="profile-date-delete-btn" onClick={() => deleteCountdown(i)} aria-label="Remove">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="home-countdown-add-row">
+                  <input
+                    className="profile-date-label-input"
+                    placeholder="Label"
+                    maxLength={6}
+                    value={newLabel}
+                    onChange={e => setNewLabel(e.target.value)}
+                  />
+                  <input
+                    className="profile-date-input"
+                    type="date"
+                    value={newDate}
+                    onChange={e => setNewDate(e.target.value)}
+                  />
+                </div>
+                <button className="home-mood-save" onClick={addCountdown}>Add Countdown</button>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+
         {/* Mood Light Modal */}
         <AnimatePresence>
           {moodModalOpen && (
@@ -298,7 +430,12 @@ export default function HomePage({ session }) {
                 </div>
                 <button
                   className="home-mood-save"
-                  onClick={() => { setUserMood(pendingMood); setMoodModalOpen(false) }}
+                  onClick={async () => {
+                    setUserMood(pendingMood)
+                    localStorage.setItem('connected_user_mood', pendingMood)
+                    setMoodModalOpen(false)
+                    await supabase.from('profiles').update({ mood: pendingMood }).eq('id', session.user.id)
+                  }}
                 >
                   Set Mood
                 </button>

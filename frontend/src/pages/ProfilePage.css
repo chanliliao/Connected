@@ -187,10 +187,18 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(251, 113, 133, 0.15);
   border-radius: 10px;
-  padding: 10px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0;
+}
+
+.profile-tz-card .profile-tz-label {
+  margin-bottom: 6px;
+}
+
+.profile-tz-card .profile-tz-time {
+  margin-bottom: 10px;
 }
 
 .profile-tz-label {
@@ -350,6 +358,41 @@
   margin-bottom: 10px;
 }
 
+.profile-dates-empty {
+  color: rgba(249, 216, 228, 0.35);
+  font-size: 13px;
+  text-align: center;
+  margin: 4px 0;
+}
+
+.profile-date-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-date-row-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f9d8e4;
+}
+
+.profile-date-row-date {
+  font-size: 12px;
+  color: rgba(249, 216, 228, 0.55);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.profile-date-add-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
 .profile-date-row {
   display: flex;
   gap: 8px;
@@ -418,6 +461,35 @@
 .profile-add-date-btn:hover {
   background: rgba(251, 113, 133, 0.22);
 }
+
+.profile-date-delete-btn {
+  background: none;
+  border: none;
+  color: rgba(251, 113, 133, 0.45);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+
+.profile-date-delete-btn:hover {
+  color: #fb7185;
+}
+
+.profile-tz-static {
+  font-size: 13px;
+  color: rgba(251, 113, 133, 0.85);
+  font-weight: 600;
+  padding: 6px 10px;
+  background: rgba(251, 113, 133, 0.08);
+  border: 1px solid rgba(251, 113, 133, 0.2);
+  border-radius: 8px;
+  text-align: center;
+}
+
 
 /* ── Settings modal ── */
 .profile-modal-backdrop {

@@ -146,10 +146,9 @@ export default function ProfilePage({ session }) {
   const [userTime, setUserTime] = useState(getCurrentTime(defaultTz))
   const [soTime, setSoTime] = useState(getCurrentTime('America/New_York'))
 
-  const [specialDates, setSpecialDates] = useState([
-    { label: 'Anniversary', date: '' },
-    { label: 'First Met', date: '' },
-  ])
+  const [specialDates, setSpecialDates] = useState([])
+  const [newDateLabel, setNewDateLabel] = useState('')
+  const [newDateInput, setNewDateInput] = useState('')
 
   useEffect(() => {
     async function loadProfile() {
@@ -172,6 +171,7 @@ export default function ProfilePage({ session }) {
         setBirthday(data.birthday ?? '')
         if (data.user_tz) setUserTz(data.user_tz)
         if (data.partner_tz) setSoTz(data.partner_tz)
+        if (data.special_dates?.length) setSpecialDates(data.special_dates)
       }
     }
     loadProfile()
@@ -241,12 +241,7 @@ export default function ProfilePage({ session }) {
 
   async function handleUserTzChange(tz) {
     setUserTz(tz)
-    await supabase.from('profiles').update({ user_tz: tz }).eq('id', session.user.id)
-  }
-
-  async function handleSoTzChange(tz) {
-    setSoTz(tz)
-    await supabase.from('profiles').update({ partner_tz: tz }).eq('id', session.user.id)
+    await supabase.rpc('update_user_tz', { new_tz: tz })
   }
 
   async function handleLogout() {
@@ -266,11 +261,22 @@ export default function ProfilePage({ session }) {
   }
 
   function addSpecialDate() {
-    setSpecialDates(prev => [...prev, { label: '', date: '' }])
+    if (!newDateLabel.trim() && !newDateInput) return
+    const updated = [...specialDates, { label: newDateLabel.trim(), date: newDateInput }]
+    setSpecialDates(updated)
+    setNewDateLabel('')
+    setNewDateInput('')
+    supabase.rpc('save_special_dates', { dates: updated }).then(({ error }) => {
+      if (error) console.error('save_special_dates error:', error)
+    })
   }
 
-  function updateSpecialDate(index, field, value) {
-    setSpecialDates(prev => prev.map((d, i) => i === index ? { ...d, [field]: value } : d))
+  function deleteSpecialDate(index) {
+    const updated = specialDates.filter((_, i) => i !== index)
+    setSpecialDates(updated)
+    supabase.rpc('save_special_dates', { dates: updated }).then(({ error }) => {
+      if (error) console.error('save_special_dates error:', error)
+    })
   }
 
   const displayName = profile ? (firstName || profile.username || 'You') : 'You'
@@ -349,7 +355,7 @@ export default function ProfilePage({ session }) {
             <div className="profile-tz-card">
               <span className="profile-tz-label">Them</span>
               <div className="profile-tz-time">{soTime}</div>
-              <TzPicker value={soTz} onChange={handleSoTzChange} />
+              <div className="profile-tz-static">{soTz ? tzLabel(soTz) : '—'}</div>
             </div>
           </div>
         </div>
@@ -357,27 +363,43 @@ export default function ProfilePage({ session }) {
         {/* Panel 3 — Special Dates */}
         <div className="profile-panel">
           <h2 className="profile-panel-heading">Special Dates</h2>
+
+          {/* Display list at top */}
           <div className="profile-dates-list">
+            {specialDates.length === 0 && (
+              <p className="profile-dates-empty">No special dates yet.</p>
+            )}
             {specialDates.map((item, i) => (
               <div key={i} className="profile-date-row">
-                <input
-                  className="profile-date-label-input"
-                  value={item.label}
-                  placeholder="Label"
-                  onChange={e => updateSpecialDate(i, 'label', e.target.value)}
-                />
-                <input
-                  className="profile-date-input"
-                  type="date"
-                  value={item.date}
-                  onChange={e => updateSpecialDate(i, 'date', e.target.value)}
-                />
+                <div className="profile-date-info">
+                  <span className="profile-date-row-label">{item.label || '—'}</span>
+                  <span className="profile-date-row-date">{item.date ? item.date.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$2/$3/$1') : '—'}</span>
+                </div>
+                <button className="profile-date-delete-btn" onClick={() => deleteSpecialDate(i)} aria-label="Remove date">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                  </svg>
+                </button>
               </div>
             ))}
           </div>
-          <button className="profile-add-date-btn" onClick={addSpecialDate}>
-            + Add Date
-          </button>
+
+          {/* Input section at bottom */}
+          <div className="profile-date-add-row">
+            <input
+              className="profile-date-label-input"
+              placeholder="Label"
+              value={newDateLabel}
+              onChange={e => setNewDateLabel(e.target.value)}
+            />
+            <input
+              className="profile-date-input"
+              type="date"
+              value={newDateInput}
+              onChange={e => setNewDateInput(e.target.value)}
+            />
+          </div>
+          <button className="profile-add-date-btn" onClick={addSpecialDate}>+ Add Date</button>
         </div>
 
       </div>
