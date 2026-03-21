@@ -17,19 +17,22 @@
 
 /* ── Page shell — provides empty blush space on desktop ── */
 .home-page {
-  min-height: 100svh;
-  background: #fdf7f9;
+  width: 100vw;
+  height: 100svh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow: hidden;
+  background: #0a0008;
 }
 
 /* ── Centered phone-like app container ── */
 .home-app {
   position: relative;
-  width: 100%;
-  max-width: 430px;
-  height: 100svh;
+  width: 430px;
+  height: 932px;
+  flex-shrink: 0;
+  transform-origin: top center;
   overflow: hidden;
 }
 
@@ -225,7 +228,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 85svh;
+  height: 792px;
   z-index: 1;
 }
 
@@ -376,7 +379,7 @@
 
 .home-light-beam {
   width: 130px;
-  height: 38svh;
+  height: 354px;
   clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
   background: linear-gradient(
     180deg,
@@ -504,4 +507,267 @@
   bottom: -59px;
   z-index: 3;
   pointer-events: none;
+}
+
+/* ── Calendar button — wall decoration + countdown widget ── */
+.home-calendar-btn {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.home-calendar-img {
+  width: 100%;
+  display: block;
+}
+
+/* Text overlay — centered on top of SVG */
+.home-calendar-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding-top: 22px;
+}
+
+.home-calendar-event-label {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fb7185;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 90%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.home-calendar-days-num {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #f9d8e4;
+  line-height: 1;
+}
+
+.home-calendar-days-text {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(249, 216, 228, 0.60);
+  line-height: 1.2;
+}
+
+/* ── Countdown modal list ── */
+.home-countdown-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 14px;
+}
+
+.home-countdown-empty {
+  font-size: 13px;
+  color: rgba(252, 231, 243, 0.45);
+  text-align: center;
+  padding: 12px 0;
+  margin: 0;
+}
+
+.home-countdown-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(251, 113, 133, 0.1);
+}
+
+.home-countdown-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.home-countdown-row-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fce7f3;
+}
+
+.home-countdown-row-days {
+  font-size: 11px;
+  color: #fb7185;
+}
+
+/* ── Add form row ── */
+.home-countdown-add-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.home-countdown-add-row .profile-date-label-input {
+  flex: 1;
+}
+
+.home-countdown-add-row .profile-date-input {
+  flex: 1;
+}
+
+/* ── Shared input styles (mirrored from ProfilePage.css for use in countdown modal) ── */
+.home-mood-panel .profile-date-label-input {
+  background: rgba(22, 4, 18, 0.7);
+  border: 1px solid rgba(251, 113, 133, 0.20);
+  border-radius: 8px;
+  color: #f9d8e4;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  padding: 7px 10px;
+  outline: none;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.home-mood-panel .profile-date-label-input::placeholder {
+  color: rgba(249, 216, 228, 0.35);
+}
+
+.home-mood-panel .profile-date-label-input:focus {
+  border-color: rgba(251, 113, 133, 0.50);
+}
+
+.home-mood-panel .profile-date-input {
+  background: rgba(22, 4, 18, 0.7);
+  border: 1px solid rgba(251, 113, 133, 0.20);
+  border-radius: 8px;
+  color: #f9d8e4;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  padding: 7px 8px;
+  outline: none;
+  color-scheme: dark;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.home-mood-panel .profile-date-input:focus {
+  border-color: rgba(251, 113, 133, 0.50);
+}
+
+.home-mood-panel .profile-date-delete-btn {
+  background: none;
+  border: none;
+  color: rgba(251, 113, 133, 0.45);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+
+.home-mood-panel .profile-date-delete-btn:hover {
+  color: #fb7185;
+}
+
+/* ── Mood Light Modal ── */
+.home-mood-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 20;
+}
+
+.home-mood-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1f0818;
+  border-radius: 20px 20px 0 0;
+  border-top: 1px solid rgba(251, 113, 133, 0.2);
+  padding: 12px 20px 36px;
+  z-index: 21;
+  touch-action: none;
+}
+
+.home-mood-handle {
+  width: 40px;
+  height: 4px;
+  background: rgba(251, 113, 133, 0.3);
+  border-radius: 2px;
+  margin: 0 auto 20px;
+}
+
+.home-mood-title {
+  font-family: 'Caveat', cursive;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fb7185;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.home-mood-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.home-mood-bulb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 10px 4px 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.home-mood-bulb--selected {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.home-mood-label {
+  font-size: 10px;
+  color: rgba(252, 231, 243, 0.75);
+  text-align: center;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.home-mood-save {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #fb7185, #ec4899);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.home-mood-save:hover {
+  opacity: 0.88;
 }
