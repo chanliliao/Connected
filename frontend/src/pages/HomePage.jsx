@@ -6,6 +6,7 @@ import sunSvg from '../assets/sun.svg'
 import calendarSvg from '../assets/calendar.svg'
 import chairPlushSvg from '../assets/chairs/chair-plush.svg'
 import tableBasicSvg from '../assets/tables/table-basic.svg'
+import pictureFrameSvg from '../assets/picture_frame.svg'
 import './HomePage.css'
 
 const MOOD_COLORS = {
@@ -209,13 +210,11 @@ export default function HomePage({ session }) {
           <div className="home-house-walls">
             {/* Ceiling lights — left = user, right = SO */}
             <div className="home-lights">
-              <button
-                className="home-light home-light-left home-light--on"
-                onClick={() => { setPendingMood(userMood); setMoodModalOpen(true) }}
-                aria-label="Open mood light"
-              >
-                <div
+              <div className="home-light home-light-left home-light--on">
+                <button
                   className="home-light-fixture"
+                  onClick={() => { setPendingMood(userMood); setMoodModalOpen(true) }}
+                  aria-label="Open mood light"
                   style={{
                     background: MOOD_COLORS[userMood].fixture,
                     boxShadow: `0 0 10px ${MOOD_COLORS[userMood].fixture}, 0 2px 4px rgba(0,0,0,0.6)`,
@@ -227,7 +226,7 @@ export default function HomePage({ session }) {
                     background: `linear-gradient(180deg, ${MOOD_COLORS[userMood].beam}0.35) 0%, ${MOOD_COLORS[userMood].beam}0.12) 55%, transparent 100%)`,
                   }}
                 />
-              </button>
+              </div>
 
               <div
                 className="home-light home-light-right home-light--on"
@@ -274,6 +273,9 @@ export default function HomePage({ session }) {
 
             {/* ── Left bookshelf — empty ── */}
             <div className="home-bookshelf">
+              <button className="home-photo-frame-btn" onClick={() => navigate('/our-photos')} aria-label="Our Photos">
+                <img src={pictureFrameSvg} alt="Our Photos" />
+              </button>
               <div className="home-bookshelf-shelf" />
               <div className="home-bookshelf-shelf" />
               <div className="home-bookshelf-shelf" />

@@ -1,0 +1,336 @@
+/* ── Our Photos Page ── */
+.photos-page {
+  min-height: 100dvh;
+  background: #160412;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Quicksand', sans-serif;
+  color: #f9d8e4;
+  position: relative;
+}
+
+/* ── Header ── */
+.photos-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 8px;
+  background: #2d1224;
+  border-bottom: 1px solid rgba(251, 113, 133, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.photos-back-btn {
+  width: 38px;
+  height: 38px;
+  background: rgba(251, 113, 133, 0.12);
+  border: 1px solid rgba(251, 113, 133, 0.25);
+  color: #fb7185;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.photos-back-btn:hover {
+  background: rgba(251, 113, 133, 0.24);
+}
+
+.photos-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fb7185;
+  margin: 0;
+}
+
+.photos-add-btn {
+  width: 38px;
+  height: 38px;
+  background: rgba(251, 113, 133, 0.12);
+  border: 1px solid rgba(251, 113, 133, 0.25);
+  color: #fb7185;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.photos-add-btn:hover {
+  background: rgba(251, 113, 133, 0.24);
+}
+
+/* ── Feed ── */
+.photos-feed {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.photos-empty {
+  text-align: center;
+  color: rgba(251, 113, 133, 0.5);
+  margin-top: 40px;
+}
+
+.photos-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 60px;
+  color: rgba(249, 216, 228, 0.45);
+  font-size: 15px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ── Photo Card ── */
+.photos-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(251, 113, 133, 0.15);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.photos-card-img {
+  width: 100%;
+  display: block;
+  max-height: 340px;
+  object-fit: cover;
+}
+
+.photos-card-info {
+  padding: 10px 14px 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.photos-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.photos-card-options-btn {
+  background: none;
+  border: none;
+  color: rgba(251, 113, 133, 0.5);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s;
+}
+
+.photos-card-options-btn:hover {
+  color: #fb7185;
+  background: rgba(251, 113, 133, 0.1);
+}
+
+.photos-card-caption {
+  margin: 0;
+  font-size: 14px;
+  color: #f9d8e4;
+  line-height: 1.45;
+}
+
+.photos-card-date {
+  font-size: 12px;
+  color: rgba(251, 113, 133, 0.5);
+}
+
+/* ── Backdrop ── */
+.photos-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 40;
+}
+
+/* ── Modal ── */
+.photos-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1f0818;
+  border: 1px solid rgba(251, 113, 133, 0.2);
+  border-radius: 20px 20px 0 0;
+  padding: 12px 20px 36px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  touch-action: none;
+}
+
+.photos-modal-handle {
+  width: 40px;
+  height: 4px;
+  background: rgba(251, 113, 133, 0.3);
+  border-radius: 2px;
+  margin: 0 auto 20px;
+}
+
+.photos-modal-title {
+  font-family: 'Caveat', cursive;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fb7185;
+  margin: 0 0 20px;
+  text-align: center;
+  align-self: center;
+}
+
+/* ── Photo Picker ── */
+.photos-picker {
+  width: 100%;
+  min-height: 160px;
+  background: rgba(22, 4, 18, 0.6);
+  border: 1.5px dashed rgba(251, 113, 133, 0.35);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: border-color 0.15s, background 0.15s;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.photos-picker:hover {
+  border-color: rgba(251, 113, 133, 0.6);
+  background: rgba(22, 4, 18, 0.8);
+}
+
+.photos-picker-preview {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.photos-picker-hint {
+  font-size: 13px;
+  color: rgba(251, 113, 133, 0.55);
+}
+
+/* ── Caption Input ── */
+.photos-caption-input {
+  width: 100%;
+  background: rgba(22, 4, 18, 0.7);
+  border: 1px solid rgba(251, 113, 133, 0.2);
+  border-radius: 10px;
+  color: #f9d8e4;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  padding: 10px 14px;
+  resize: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.photos-caption-input::placeholder {
+  color: rgba(249, 216, 228, 0.35);
+}
+
+.photos-caption-input:focus {
+  outline: none;
+  border-color: rgba(251, 113, 133, 0.5);
+}
+
+/* ── Submit Button ── */
+.photos-submit-btn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, #fb7185, #ec4899);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.photos-submit-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.photos-submit-btn:not(:disabled):hover {
+  opacity: 0.88;
+}
+
+/* ── Options Modal ── */
+.photos-options-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1f0818;
+  border: 1px solid rgba(251, 113, 133, 0.2);
+  border-radius: 20px 20px 0 0;
+  padding: 12px 20px 36px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  touch-action: none;
+}
+
+.photos-options-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  color: #f9d8e4;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.photos-options-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.photos-options-item--delete {
+  color: #fb7185;
+}
+
+.photos-upload-error {
+  width: 100%;
+  margin: 0;
+  font-size: 13px;
+  color: #fb7185;
+  text-align: center;
+  line-height: 1.4;
+}

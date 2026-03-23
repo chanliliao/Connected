@@ -360,8 +360,7 @@
   background: none;
   border: none;
   padding: 0;
-  cursor: pointer;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .home-light-left  { left: 27%; transform: translateX(-50%); }
@@ -375,12 +374,18 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.6);
   position: relative;
   z-index: 1;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .home-light-beam {
   width: 130px;
   height: 354px;
   clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+  z-index: 1;
+  pointer-events: none;
   background: linear-gradient(
     180deg,
     rgba(200, 220, 255, 0.30) 0%,
@@ -477,16 +482,42 @@
   border-radius: 1px;
 }
 
-.home-bookshelf-shelf:nth-child(1) {
-  top: 30%;   /* after bonsai section */
-}
-
 .home-bookshelf-shelf:nth-child(2) {
-  top: 52%;   /* after books/trophy section */
+  top: 30%;
 }
 
 .home-bookshelf-shelf:nth-child(3) {
-  top: 72%;   /* after armchair-level section — 4th compartment hidden behind chair legs */
+  top: 52%;
+}
+
+.home-bookshelf-shelf:nth-child(4) {
+  top: 72%;
+}
+
+/* ── Picture frame button on bookshelf ── */
+.home-photo-frame-btn {
+  position: absolute;
+  top: -110px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 58px;
+  z-index: 2;
+}
+
+.home-photo-frame-btn img {
+  width: 100%;
+  filter: drop-shadow(0 2px 6px rgba(251, 113, 133, 0.35));
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.home-photo-frame-btn:hover img,
+.home-photo-frame-btn:active img {
+  transform: scale(1.08);
+  filter: drop-shadow(0 4px 10px rgba(251, 113, 133, 0.6));
 }
 
 /* ── Plush armchair — left room, in front of bookshelf ── */

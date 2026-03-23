@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import BedroomPage from './pages/BedroomPage'
 import ProfilePage from './pages/ProfilePage'
+import OurPhotosPage from './pages/OurPhotosPage'
 
 function ProtectedRoute({ session, children }) {
   if (session === undefined) return <div className="app-loading">Loading…</div>
@@ -48,6 +49,11 @@ function App() {
         <Route path="/profile" element={
           <ProtectedRoute session={session}>
             <ProfilePage session={session} />
+          </ProtectedRoute>
+        } />
+        <Route path="/our-photos" element={
+          <ProtectedRoute session={session}>
+            <OurPhotosPage session={session} />
           </ProtectedRoute>
         } />
       </Routes>
