@@ -1,9 +1,11 @@
-<svg width="80" height="110" viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg">
+<svg width="80" height="110" viewBox="0 -8 80 118" xmlns="http://www.w3.org/2000/svg">
   <rect x="0" y="0" width="80" height="110" rx="4" fill="#2d1224"/>
   <rect x="0" y="0" width="80" height="24" fill="#3d1a30"/>
   <line x1="0" y1="24" x2="80" y2="24" stroke="#fb7185" stroke-dasharray="3,2" stroke-width="1" opacity="0.55"/>
-  <circle cx="22" cy="12" r="7" fill="#160412"/>
-  <circle cx="58" cy="12" r="7" fill="#160412"/>
-  <circle cx="22" cy="12" r="7" fill="none" stroke="#fb7185" stroke-width="1.5" opacity="0.65"/>
-  <circle cx="58" cy="12" r="7" fill="none" stroke="#fb7185" stroke-width="1.5" opacity="0.65"/>
+  <!-- Binding tabs sticking above top edge -->
+  <rect x="8"  y="-4" width="5" height="16" rx="2" fill="#fb7185" opacity="0.8"/>
+  <rect x="22" y="-4" width="5" height="16" rx="2" fill="#fb7185" opacity="0.8"/>
+  <rect x="36" y="-4" width="5" height="16" rx="2" fill="#fb7185" opacity="0.8"/>
+  <rect x="50" y="-4" width="5" height="16" rx="2" fill="#fb7185" opacity="0.8"/>
+  <rect x="64" y="-4" width="5" height="16" rx="2" fill="#fb7185" opacity="0.8"/>
 </svg>
