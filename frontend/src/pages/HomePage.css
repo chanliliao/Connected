@@ -531,13 +531,43 @@
 }
 
 /* ── Basic table — right room, centered ── */
-.home-table-basic {
+.home-table-wrapper {
   position: absolute;
   left: 55.89%;
   width: 38.22%;
   bottom: -59px;
   z-index: 3;
+}
+
+.home-table-img {
+  width: 100%;
   pointer-events: none;
+}
+
+/* ── Envelope button on table ── */
+.home-envelope-btn {
+  position: absolute;
+  right: 20%;
+  top: 25px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 42px;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.home-envelope-btn img {
+  width: 100%;
+  filter: drop-shadow(0 2px 6px rgba(251, 113, 133, 0.35));
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.home-envelope-btn:hover img,
+.home-envelope-btn:active img {
+  transform: scale(1.08);
+  filter: drop-shadow(0 4px 10px rgba(251, 113, 133, 0.6));
 }
 
 /* ── Calendar button — wall decoration + countdown widget ── */

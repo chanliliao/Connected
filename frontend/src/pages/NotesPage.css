@@ -1,0 +1,319 @@
+/* ── Notes Page ── */
+.notes-page {
+  min-height: 100dvh;
+  background: #160412;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Quicksand', sans-serif;
+  color: #f9d8e4;
+  position: relative;
+}
+
+/* ── Header ── */
+.notes-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: #2d1224;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.notes-back-btn {
+  width: 38px;
+  height: 38px;
+  background: rgba(251, 113, 133, 0.12);
+  border: 1px solid rgba(251, 113, 133, 0.25);
+  color: #fb7185;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.notes-back-btn:hover {
+  background: rgba(251, 113, 133, 0.24);
+}
+
+.notes-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fb7185;
+  margin: 0;
+}
+
+.notes-add-btn {
+  width: 38px;
+  height: 38px;
+  background: rgba(251, 113, 133, 0.12);
+  border: 1px solid rgba(251, 113, 133, 0.25);
+  color: #fb7185;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.notes-add-btn:hover {
+  background: rgba(251, 113, 133, 0.24);
+}
+
+/* ── Feed ── */
+.notes-feed {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.notes-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 60px;
+  color: rgba(249, 216, 228, 0.45);
+  font-size: 15px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.notes-loading {
+  text-align: center;
+  color: rgba(251, 113, 133, 0.5);
+  margin-top: 40px;
+}
+
+/* ── Date Section ── */
+.notes-date-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notes-date-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(251, 113, 133, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Note Card (feed preview) ── */
+.notes-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(251, 113, 133, 0.15);
+  border-radius: 14px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.notes-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.notes-card-from {
+  font-size: 12px;
+  color: rgba(251, 113, 133, 0.6);
+  font-weight: 600;
+}
+
+.notes-card-preview {
+  font-size: 14px;
+  color: #f9d8e4;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Backdrop ── */
+.notes-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 40;
+}
+
+/* ── Modal (shared) ── */
+.notes-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1f0818;
+  border: 1px solid rgba(251, 113, 133, 0.2);
+  border-radius: 20px 20px 0 0;
+  padding: 12px 20px 36px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  touch-action: none;
+  max-height: 85dvh;
+  overflow-y: auto;
+}
+
+.notes-modal-handle {
+  width: 40px;
+  height: 4px;
+  background: rgba(251, 113, 133, 0.3);
+  border-radius: 2px;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.notes-modal-title {
+  font-family: 'Caveat', cursive;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fb7185;
+  margin: 0 0 20px;
+  text-align: center;
+  align-self: center;
+}
+
+/* ── Letter Card ── */
+.notes-letter {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(251, 113, 133, 0.15);
+  border-radius: 14px;
+  position: relative;
+  margin-bottom: 24px;
+  overflow: visible;
+}
+
+.notes-letter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px 16px 10px;
+}
+
+.notes-letter-names {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.notes-letter-from,
+.notes-letter-to {
+  font-size: 13px;
+  color: rgba(249, 216, 228, 0.7);
+  font-weight: 600;
+}
+
+.notes-letter-date {
+  font-size: 12px;
+  color: rgba(251, 113, 133, 0.5);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.notes-letter-divider {
+  height: 1px;
+  background: rgba(251, 113, 133, 0.15);
+  margin: 0 16px;
+}
+
+.notes-letter-body {
+  padding: 14px 16px 24px;
+  font-size: 14px;
+  color: #f9d8e4;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  min-height: 80px;
+}
+
+/* Textarea for write mode */
+.notes-letter-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #f9d8e4;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  padding: 14px 16px 24px;
+  resize: none;
+  box-sizing: border-box;
+  line-height: 1.6;
+  min-height: 120px;
+}
+
+.notes-letter-textarea::placeholder {
+  color: rgba(249, 216, 228, 0.35);
+}
+
+.notes-letter-textarea:focus {
+  outline: none;
+}
+
+/* Small heart — bottom right */
+.notes-letter-heart-small {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  color: #fb7185;
+  opacity: 0.6;
+}
+
+/* Big heart — center bottom, half in / half out */
+.notes-letter-heart-big {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fb7185;
+  filter: drop-shadow(0 2px 8px rgba(251, 113, 133, 0.4));
+}
+
+/* ── Submit Button ── */
+.notes-submit-btn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, #fb7185, #ec4899);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.notes-submit-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.notes-submit-btn:not(:disabled):hover {
+  opacity: 0.88;
+}
+
+/* ── Error ── */
+.notes-error {
+  width: 100%;
+  margin: 0;
+  font-size: 13px;
+  color: #fb7185;
+  text-align: center;
+  line-height: 1.4;
+}

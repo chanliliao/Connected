@@ -7,6 +7,7 @@ import calendarSvg from '../assets/calendar.svg'
 import chairPlushSvg from '../assets/chairs/chair-plush.svg'
 import tableBasicSvg from '../assets/tables/table-basic.svg'
 import pictureFrameSvg from '../assets/picture_frame.svg'
+import envelopeSvg from '../assets/envelope.svg'
 import './HomePage.css'
 
 const MOOD_COLORS = {
@@ -285,7 +286,12 @@ export default function HomePage({ session }) {
             <img src={chairPlushSvg} className="home-chair-plush" alt="" aria-hidden="true" />
 
             {/* Basic table — right room, centered, at floor level */}
-            <img src={tableBasicSvg} className="home-table-basic" alt="" aria-hidden="true" />
+            <div className="home-table-wrapper">
+              <button className="home-envelope-btn" onClick={() => navigate('/notes')} aria-label="Notes">
+                <img src={envelopeSvg} alt="Notes" />
+              </button>
+              <img src={tableBasicSvg} className="home-table-img" alt="" aria-hidden="true" />
+            </div>
           </div>
 
           {/* Floor band — visible divide from walls above */}
