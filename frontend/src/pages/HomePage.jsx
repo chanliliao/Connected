@@ -5,9 +5,6 @@ import { supabase } from '../lib/supabase'
 import sunSvg from '../assets/sun.svg'
 import calendarSvg from '../assets/calendar.svg'
 import chairPlushSvg from '../assets/chairs/chair-plush.svg'
-import brownPomSvg from '../assets/dogs/brown_pom.svg'
-import blackPomSvg from '../assets/dogs/black_pom.svg'
-import whitePomSvg from '../assets/dogs/white_pom.svg'
 import tableBasicSvg from '../assets/tables/table-basic.svg'
 import './HomePage.css'
 
@@ -16,8 +13,8 @@ const MOOD_COLORS = {
   angry:  { beam: 'rgba(190,20,20,',    fixture: '#be1414' },
   happy:  { beam: 'rgba(190,160,50,',   fixture: '#bea032' },
   horny:  { beam: 'rgba(170,70,130,',   fixture: '#aa4682' },
-  peace:  { beam: 'rgba(255,255,255,',  fixture: '#ffffff' },
-  tired:  { beam: 'rgba(90,110,140,',   fixture: '#5a6e8c' },
+  relaxed: { beam: 'rgba(255,255,255,',  fixture: '#ffffff' },
+  tired:   { beam: 'rgba(130,130,130,', fixture: '#828282' },
   hungry: { beam: 'rgba(190,100,40,',   fixture: '#be6428' },
   stress: { beam: 'rgba(130,75,200,',   fixture: '#824bc8' },
 }
@@ -27,8 +24,8 @@ const MOODS = [
   { key: 'angry',  label: 'Angry',  color: '#be1414' },
   { key: 'happy',  label: 'Happy',  color: '#bea032' },
   { key: 'horny',  label: 'Horny',  color: '#aa4682' },
-  { key: 'peace',  label: 'Peace',  color: '#ffffff' },
-  { key: 'tired',  label: 'Tired',  color: '#5a6e8c' },
+  { key: 'relaxed', label: 'Relaxed', color: '#ffffff' },
+  { key: 'tired',   label: 'Tired',   color: '#828282' },
   { key: 'hungry', label: 'Hungry', color: '#be6428' },
   { key: 'stress', label: 'Stress', color: '#824bc8' },
 ]
@@ -73,9 +70,9 @@ export default function HomePage({ session }) {
   const navigate = useNavigate()
   const appRef = useRef(null)
   const [moodModalOpen, setMoodModalOpen] = useState(false)
-  const [userMood, setUserMood] = useState(() => localStorage.getItem('connected_user_mood') || 'peace')
-  const [pendingMood, setPendingMood] = useState(() => localStorage.getItem('connected_user_mood') || 'peace')
-  const [partnerMood, setPartnerMood] = useState(() => localStorage.getItem('connected_partner_mood') || 'peace')
+  const [userMood, setUserMood] = useState(() => localStorage.getItem('connected_user_mood') || 'relaxed')
+  const [pendingMood, setPendingMood] = useState(() => localStorage.getItem('connected_user_mood') || 'relaxed')
+  const [partnerMood, setPartnerMood] = useState(() => localStorage.getItem('connected_partner_mood') || 'relaxed')
   const [userTz, setUserTz] = useState(() => localStorage.getItem('connected_user_tz') || null)
   const [partnerTz, setPartnerTz] = useState(() => localStorage.getItem('connected_partner_tz') || null)
   const [countdownModalOpen, setCountdownModalOpen] = useState(false)
@@ -90,7 +87,7 @@ export default function HomePage({ session }) {
     const DESIGN_H = 932
     const apply = () => {
       if (!appRef.current) return
-      const scale = Math.min(window.innerWidth / DESIGN_W, window.innerHeight / DESIGN_H)
+      const scale = window.innerWidth / DESIGN_W
       appRef.current.style.transform = `scale(${scale})`
     }
     apply()
@@ -280,20 +277,13 @@ export default function HomePage({ session }) {
               <div className="home-bookshelf-shelf" />
               <div className="home-bookshelf-shelf" />
               <div className="home-bookshelf-shelf" />
-              <img src={whitePomSvg} className="home-bookshelf-pom" alt="" aria-hidden="true" />
             </div>
 
             {/* Plush armchair — in front of left bookshelf */}
-            <div className="home-chair-plush">
-              <img src={chairPlushSvg} className="home-chair-plush__img" alt="" aria-hidden="true" />
-              <img src={brownPomSvg} className="home-chair-pom" alt="" aria-hidden="true" />
-            </div>
+            <img src={chairPlushSvg} className="home-chair-plush" alt="" aria-hidden="true" />
 
             {/* Basic table — right room, centered, at floor level */}
-            <div className="home-table-basic">
-              <img src={tableBasicSvg} className="home-table-basic__img" alt="" aria-hidden="true" />
-              <img src={blackPomSvg} className="home-table-pom" alt="" aria-hidden="true" />
-            </div>
+            <img src={tableBasicSvg} className="home-table-basic" alt="" aria-hidden="true" />
           </div>
 
           {/* Floor band — visible divide from walls above */}

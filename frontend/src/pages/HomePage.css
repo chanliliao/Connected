@@ -489,15 +489,6 @@
   top: 72%;   /* after armchair-level section — 4th compartment hidden behind chair legs */
 }
 
-.home-bookshelf-pom {
-  position: absolute;
-  left: 50%;
-  bottom: 91%;
-  transform: translateX(-50%);
-  width: 97%;
-  pointer-events: none;
-}
-
 /* ── Plush armchair — left room, in front of bookshelf ── */
 .home-chair-plush {
   position: absolute;
@@ -505,20 +496,6 @@
   width: 47%;
   bottom: calc(-28px - 20%);
   z-index: 3;
-  pointer-events: none;
-}
-
-.home-chair-plush__img {
-  width: 100%;
-  display: block;
-}
-
-.home-chair-pom {
-  position: absolute;
-  left: 50%;
-  top: 45%;
-  transform: translate(-50%, -50%);
-  width: 66%;
   pointer-events: none;
 }
 
@@ -530,21 +507,6 @@
   bottom: -59px;
   z-index: 3;
   pointer-events: none;
-}
-
-.home-table-basic__img {
-  width: 100%;
-  display: block;
-}
-
-.home-table-pom {
-  position: absolute;
-  left: 50%;
-  top: 95%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  pointer-events: none;
-  z-index: 5;
 }
 
 /* ── Calendar button — wall decoration + countdown widget ── */
@@ -574,13 +536,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 2px;
   padding-top: 22px;
 }
 
 .home-calendar-event-label {
   font-family: 'Quicksand', sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: #fb7185;
   text-align: center;
@@ -593,7 +555,7 @@
 
 .home-calendar-days-num {
   font-family: 'Quicksand', sans-serif;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   color: #f9d8e4;
   line-height: 1;
@@ -601,7 +563,7 @@
 
 .home-calendar-days-text {
   font-family: 'Quicksand', sans-serif;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 600;
   color: rgba(249, 216, 228, 0.60);
   line-height: 1.2;
