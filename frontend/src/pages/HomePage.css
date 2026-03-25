@@ -241,7 +241,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 9.5%;   /* ~19° angle to match reference image */
+  height: 9%;
   display: block;
   z-index: 2;
 }
@@ -251,7 +251,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 9.5%;      /* align with bottom of roof SVG */
+  top: 8.95%;
   bottom: 200px;  /* 105px carpet + 95px floor */
   background: #160412;
   z-index: 3;
