@@ -23,9 +23,30 @@ function formatDate(dateStr) {
   })
 }
 
+function getDateParts(dateStr) {
+  const d = new Date(dateStr)
+  return {
+    day: d.getDate(),
+    month: d.toLocaleDateString('en-US', { month: 'short' })
+  }
+}
+
+function groupByDate(photos) {
+  const groups = {}
+  for (const photo of photos) {
+    const dateKey = new Date(photo.created_at).toLocaleDateString('en-CA') // YYYY-MM-DD
+    if (!groups[dateKey]) groups[dateKey] = []
+    groups[dateKey].push(photo)
+  }
+  return Object.entries(groups)
+    .sort(([a], [b]) => b.localeCompare(a))
+    .map(([date, photos]) => ({ date, photos }))
+}
+
 export default function OurPhotosPage({ session }) {
   const navigate = useNavigate()
   const fileInputRef = useRef(null)
+  const touchStartX = useRef(0)
 
   const [photos, setPhotos] = useState([])
   const [loading, setLoading] = useState(true)
@@ -37,7 +58,8 @@ export default function OurPhotosPage({ session }) {
   const [uploadError, setUploadError] = useState(null)
   const [partnerId, setPartnerId] = useState(null)
   const [optionsPhotoId, setOptionsPhotoId] = useState(null)
-  const dragY = useRef(0)
+  const [viewerPhotos, setViewerPhotos] = useState(null)
+  const [viewerIndex, setViewerIndex] = useState(0)
 
   const userId = session?.user?.id
 
@@ -137,12 +159,21 @@ export default function OurPhotosPage({ session }) {
   async function handleDelete(photo) {
     setOptionsPhotoId(null)
     try {
-      // Extract storage path from public URL
       const urlParts = photo.image_url.split('/couple-photos/')
       if (urlParts[1]) {
         await supabase.storage.from('couple-photos').remove([urlParts[1]])
       }
       await supabase.from('couple_photos').delete().eq('id', photo.id)
+      // Close viewer if the deleted photo was the last one, or adjust index
+      if (viewerPhotos) {
+        const remaining = viewerPhotos.filter(p => p.id !== photo.id)
+        if (remaining.length === 0) {
+          closeViewer()
+        } else {
+          setViewerPhotos(remaining)
+          setViewerIndex(i => Math.min(i, remaining.length - 1))
+        }
+      }
       fetchPhotos()
     } catch (err) {
       console.error('Delete failed:', err)
@@ -167,7 +198,33 @@ export default function OurPhotosPage({ session }) {
     }
   }
 
+  function openViewer(dayPhotos) {
+    setViewerPhotos(dayPhotos)
+    setViewerIndex(0)
+  }
+
+  function closeViewer() {
+    setViewerPhotos(null)
+    setViewerIndex(0)
+  }
+
+  function handleSwipeStart(e) {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  function handleSwipeEnd(e) {
+    if (!viewerPhotos) return
+    const diff = touchStartX.current - e.changedTouches[0].clientX
+    if (Math.abs(diff) < 50) return
+    if (diff > 0 && viewerIndex < viewerPhotos.length - 1) {
+      setViewerIndex(i => i + 1)
+    } else if (diff < 0 && viewerIndex > 0) {
+      setViewerIndex(i => i - 1)
+    }
+  }
+
   const optionsPhoto = photos.find(p => p.id === optionsPhotoId)
+  const groups = groupByDate(photos)
 
   return (
     <div className="photos-page">
@@ -197,25 +254,110 @@ export default function OurPhotosPage({ session }) {
             <p>No photos yet.<br/>Tap + to add your first one.</p>
           </div>
         )}
-        {photos.map(photo => (
-          <div key={photo.id} className="photos-card">
-            <img src={photo.image_url} alt={photo.caption || 'Photo'} className="photos-card-img" />
-            <div className="photos-card-info">
-              <div className="photos-card-text">
-                {photo.caption && <p className="photos-card-caption">{photo.caption}</p>}
-                <span className="photos-card-date">{formatDate(photo.created_at)}</span>
+        {groups.map(group => {
+          const thumbs = group.photos.slice(0, 4)
+          const extra = group.photos.length - 4
+          const captions = group.photos.filter(p => p.caption).map(p => p.caption)
+
+          return (
+            <div key={group.date} className="photos-day-row">
+              <div className="photos-day-date">
+                <span className="photos-day-date-num">{getDateParts(group.date + 'T12:00:00').day}</span>
+                <span className="photos-day-date-month">{getDateParts(group.date + 'T12:00:00').month}</span>
               </div>
-              <button className="photos-card-options-btn" onClick={() => setOptionsPhotoId(photo.id)} aria-label="Options">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <circle cx="12" cy="5" r="2"/>
-                  <circle cx="12" cy="12" r="2"/>
-                  <circle cx="12" cy="19" r="2"/>
+              <div className="photos-day-grid" onClick={() => openViewer(group.photos)}>
+                {thumbs.map((photo, i) => (
+                  <div key={photo.id} className="photos-day-thumb-wrap">
+                    <img src={photo.image_url} alt={photo.caption || ''} className="photos-day-thumb" />
+                    {i === 3 && extra > 0 && (
+                      <div className="photos-day-more">+{extra}</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="photos-day-captions">
+                {captions.length > 0
+                  ? captions.map((c, i) => (
+                      <p key={i} className="photos-day-caption-text">{c}</p>
+                    ))
+                  : <p className="photos-day-caption-empty">No captions</p>
+                }
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Fullscreen Viewer */}
+      <AnimatePresence>
+        {viewerPhotos && (
+          <motion.div
+            className="photos-viewer"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onTouchStart={handleSwipeStart}
+            onTouchEnd={handleSwipeEnd}
+          >
+            <button className="photos-viewer-close" onClick={closeViewer} aria-label="Close">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+              </svg>
+            </button>
+
+            <div className="photos-viewer-img-wrap">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={viewerPhotos[viewerIndex].id}
+                  src={viewerPhotos[viewerIndex].image_url}
+                  alt={viewerPhotos[viewerIndex].caption || ''}
+                  className="photos-viewer-img"
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -40 }}
+                  transition={{ duration: 0.2 }}
+                />
+              </AnimatePresence>
+            </div>
+
+            <div className="photos-viewer-info">
+              {viewerPhotos[viewerIndex].caption && (
+                <p className="photos-viewer-caption">{viewerPhotos[viewerIndex].caption}</p>
+              )}
+              <span className="photos-viewer-counter">
+                {viewerIndex + 1} / {viewerPhotos.length}
+              </span>
+            </div>
+
+            <button
+              className="photos-viewer-options-btn"
+              onClick={(e) => { e.stopPropagation(); setOptionsPhotoId(viewerPhotos[viewerIndex].id) }}
+              aria-label="Options"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="5" cy="12" r="2"/>
+                <circle cx="12" cy="12" r="2"/>
+                <circle cx="19" cy="12" r="2"/>
+              </svg>
+            </button>
+
+            {viewerIndex > 0 && (
+              <button className="photos-viewer-prev" onClick={() => setViewerIndex(i => i - 1)} aria-label="Previous">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
                 </svg>
               </button>
-            </div>
-          </div>
-        ))}
-      </div>
+            )}
+            {viewerIndex < viewerPhotos.length - 1 && (
+              <button className="photos-viewer-next" onClick={() => setViewerIndex(i => i + 1)} aria-label="Next">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+              </button>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Options Modal */}
       <AnimatePresence>
@@ -282,7 +424,6 @@ export default function OurPhotosPage({ session }) {
               <div className="photos-modal-handle" />
               <h2 className="photos-modal-title">Add Photo</h2>
 
-              {/* Photo picker */}
               <button className="photos-picker" onClick={() => fileInputRef.current?.click()}>
                 {preview
                   ? <img src={preview} alt="Preview" className="photos-picker-preview" />
@@ -298,7 +439,6 @@ export default function OurPhotosPage({ session }) {
                 onChange={handleFileChange}
               />
 
-              {/* Caption */}
               <textarea
                 className="photos-caption-input"
                 placeholder="Add a caption…"
@@ -309,7 +449,6 @@ export default function OurPhotosPage({ session }) {
 
               {uploadError && <p className="photos-upload-error">{uploadError}</p>}
 
-              {/* Add button */}
               <button
                 className="photos-submit-btn"
                 onClick={handleAdd}
