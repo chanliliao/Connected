@@ -8,6 +8,7 @@ import chairPlushSvg from '../assets/chairs/chair-plush.svg'
 import tableBasicSvg from '../assets/tables/table-basic.svg'
 import pictureFrameSvg from '../assets/picture_frame.svg'
 import envelopeSvg from '../assets/envelope.svg'
+import blackPomSvg from '../assets/dogs/black_pom.svg'
 import './HomePage.css'
 
 const MOOD_COLORS = {
@@ -291,6 +292,7 @@ export default function HomePage({ session }) {
 
             {/* Plush armchair — in front of left bookshelf */}
             <img src={chairPlushSvg} className="home-chair-plush" alt="" aria-hidden="true" />
+            <img src={blackPomSvg} className="home-black-pom" alt="" aria-hidden="true" />
 
             {/* Basic table — right room, centered, at floor level */}
             <div className="home-table-wrapper">
