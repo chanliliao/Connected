@@ -395,6 +395,7 @@ export default function ProfilePage({ session }) {
             <input
               className="profile-date-input"
               type="date"
+              placeholder="mm/dd/yyyy"
               value={newDateInput}
               onChange={e => setNewDateInput(e.target.value)}
             />

@@ -89,12 +89,19 @@ export default function HomePage({ session }) {
     const DESIGN_H = 932
     const apply = () => {
       if (!appRef.current) return
-      const scale = window.innerWidth / DESIGN_W
+      const page = appRef.current.closest('.home-page')
+      if (!page) return
+      const rect = page.getBoundingClientRect()
+      const scale = Math.min(rect.width / DESIGN_W, rect.height / DESIGN_H)
       appRef.current.style.transform = `scale(${scale})`
     }
     apply()
     window.addEventListener('resize', apply)
-    return () => window.removeEventListener('resize', apply)
+    window.visualViewport?.addEventListener('resize', apply)
+    return () => {
+      window.removeEventListener('resize', apply)
+      window.visualViewport?.removeEventListener('resize', apply)
+    }
   }, [])
 
   useEffect(() => {

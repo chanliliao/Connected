@@ -15,15 +15,15 @@
    --carpet-bg:        #1f0818   slightly lighter — floor strip
    ===================================================== */
 
-/* ── Page shell — provides empty blush space on desktop ── */
+/* ── Page shell ── */
 .home-page {
-  width: 100vw;
-  height: 100svh;
+  position: fixed;
+  inset: 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   overflow: hidden;
-  background: #0a0008;
+  background: #160412;
 }
 
 /* ── Centered phone-like app container ── */
@@ -251,7 +251,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 9%;        /* 0.5% overlap with roof SVG to avoid any gap */
+  top: 9.5%;      /* align with bottom of roof SVG */
   bottom: 200px;  /* 105px carpet + 95px floor */
   background: #160412;
   z-index: 3;
